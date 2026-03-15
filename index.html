@@ -746,7 +746,7 @@ function toggleTheme(){
 <!-- PROBLEM + COST COMPARISON -->
 <section class="problem-section">
   <div class="section-label">Try it now</div>
-  <h2>You're a plumber, not an IT department.</h2>
+  <h2>You didn't start your business to manage 6 different apps.</h2>
   <p>You didn't start your business to manage 6 different apps. You started it to do <strong>good work and get paid.</strong> But somehow you're spending $500+/month on software you barely open, missing leads because you're on a job, and doing invoices at midnight.<br><br><strong>OAKAS handles all of it from one text thread. No logins. No dashboards. No apps to learn.</strong></p>
 </section>
 
@@ -812,8 +812,12 @@ function toggleTheme(){
           <input type="text" id="f-name" placeholder="Mike Johnson" required>
         </div>
         <div class="form-group">
-          <label>Phone or Email</label>
-          <input type="text" id="f-phone" placeholder="(813) 555-1234 or mike@email.com" required>
+          <label>Email</label>
+          <input type="email" id="f-email" placeholder="mike@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="f-phone" placeholder="(813) 555-1234" required>
         </div>
         <div class="form-group">
           <label>What's your trade?</label>
@@ -1110,6 +1114,7 @@ function handleSubmit(e) {
   const form = e.target;
   const data = {
     name: document.getElementById('f-name').value,
+    email: document.getElementById('f-email').value,
     phone: document.getElementById('f-phone').value,
     industry: document.getElementById('f-industry').value,
     painpoint: document.getElementById('f-painpoint').value
