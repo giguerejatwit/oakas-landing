@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>openHand — Cancel Your Apps. Keep Your Business.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root, [data-theme="dark"] {
+  --bg: #000000;
+  --surface: #000000;
+  --surface2: #000000;
+  --border: #ffffff;
+  --text: #ffffff;
+  --text-dim: #ffffff;
+  --accent: #ffffff;
+  --accent-soft: rgba(255, 255, 255, 0.05);
+  --accent-glow: rgba(255, 255, 255, 0.15);
+  --green: #ffffff;
+  --green-dim: rgba(255, 255, 255, 0.05);
+  --red: #ffffff;
+  --red-dim: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface2: #ffffff;
+  --border: #000000;
+  --text: #000000;
+  --text-dim: #000000;
+  --accent: #000000;
+  --accent-soft: rgba(0, 0, 0, 0.05);
+  --accent-glow: rgba(0, 0, 0, 0.1);
+  --green: #000000;
+  --green-dim: rgba(0, 0, 0, 0.05);
+  --red: #000000;
+  --red-dim: rgba(0, 0, 0, 0.05);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+
+/* --- NAV --- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-logo {
+  font-size: 22px; font-weight: 900; letter-spacing: 1px;
+  display: flex; align-items: center; gap: 10px;
+  text-transform: uppercase;
+}
+.nav-logo img { height: 44px; border-radius: 0; object-fit: contain; background: none; border: none; }
+[data-theme="light"] .nav-logo-img { filter: invert(1); }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--accent); color: var(--bg); border: none; padding: 10px 24px;
+  border-radius: 100px; font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 24px var(--accent-glow); }
+
+/* --- VIDEO HERO --- */
+.video-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.video-hero video {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+.video-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.5) 40%,
+    rgba(0,0,0,0.65) 100%
+  );
+  z-index: 1;
+}
+.video-hero-content {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; gap: 60px;
+  max-width: 1280px; width: 100%;
+  padding: 120px 40px 80px;
+}
+.video-hero-text { flex: 1; }
+.video-hero-text .hero-badge { margin-bottom: 20px; }
+.video-hero-text .hero-title { font-size: 60px; letter-spacing: -3px; }
+.video-hero-text .hero-sub { max-width: 520px; }
+.video-hero-text .hero-cta {
+  display: inline-block; padding: 14px 36px; border-radius: 100px;
+  background: var(--accent); color: var(--bg); text-decoration: none;
+  font-weight: 600; font-size: 15px; margin-top: 8px;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+.video-hero-text .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+
+/* FLOATING CHAT OVERLAY */
+.chat-overlay {
+  flex: 0 0 380px;
+  background: #ffffff;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.3), 0 0 60px rgba(59,130,246,0.15);
+  border: 1px solid rgba(59,130,246,0.2);
+}
+.chat-overlay .phone-header {
+  padding: 16px 20px;
+  background: #f0f4ff;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.chat-overlay .phone-name { color: var(--text); }
+.chat-overlay .phone-body {
+  padding: 20px 16px;
+  min-height: 380px;
+  display: flex; flex-direction: column; gap: 8px;
+  font-size: 14.5px; line-height: 1.5;
+  overflow: hidden;
+  background: #ffffff;
+}
+.chat-overlay .msg.user { background: #3b82f6; color: #fff; }
+.chat-overlay .msg.ai { background: var(--surface2); color: var(--text); }
+.chat-overlay .msg.ai .msg-time { color: var(--text-dim); }
+.chat-overlay .msg.status { color: var(--text-dim); }
+.chat-overlay .typing-dots { background: var(--surface2); }
+.chat-overlay .typing-dots span { background: var(--text-dim); }
+
+/* --- COMPARE SECTION (moved from hero) --- */
+.hero {
+  display: flex; align-items: center; justify-content: center;
+  padding: 80px 40px;
+  gap: 60px;
+  max-width: 1280px; margin: 0 auto;
+}
+
+/* COST COMPARISON SIDE */
+.compare-side { flex: 1.2; min-width: 0; }
+
+.app-graveyard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.app-graveyard h3 {
+  font-size: 15px; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;
+}
+.app-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  animation: fadeSlash 0.5s forwards;
+}
+.app-row:last-child { border-bottom: none; }
+.app-info { display: flex; align-items: center; gap: 12px; }
+.app-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.app-name { font-size: 15px; font-weight: 600; }
+.app-desc { font-size: 12px; color: var(--text-dim); }
+.app-price {
+  font-size: 16px; font-weight: 700; color: var(--red);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.app-row:nth-child(2) { animation-delay: 0.1s; }
+.app-row:nth-child(3) { animation-delay: 0.2s; }
+.app-row:nth-child(4) { animation-delay: 0.3s; }
+.app-row:nth-child(5) { animation-delay: 0.4s; }
+.app-row:nth-child(6) { animation-delay: 0.5s; }
+.app-row:nth-child(7) { animation-delay: 0.6s; }
+
+@keyframes fadeSlash { to { opacity: 1; } }
+
+.graveyard-total {
+  margin-top: 20px; padding-top: 20px;
+  border-top: 2px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.graveyard-total-label { font-size: 14px; color: var(--text-dim); font-weight: 600; }
+.graveyard-total-price { font-size: 28px; font-weight: 900; color: var(--red); text-decoration: line-through; }
+
+.vs-divider {
+  text-align: center; padding: 24px 0;
+  font-size: 14px; color: var(--text-dim); font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+
+.openhand-replace {
+  background: linear-gradient(135deg, var(--accent-glow), var(--accent-soft));
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.openhand-replace-left { display: flex; align-items: center; gap: 16px; }
+.openhand-replace-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  overflow: visible;
+}
+.openhand-replace-name { font-size: 22px; font-weight: 800; }
+.openhand-replace-desc { font-size: 14px; color: var(--green); font-weight: 600; }
+.openhand-replace-price { text-align: right; }
+.openhand-replace-price .price { font-size: 36px; font-weight: 900; color: var(--green); }
+.openhand-replace-price .per { font-size: 14px; color: var(--text-dim); }
+.openhand-replace-price .save { font-size: 13px; color: var(--green); font-weight: 600; margin-top: 4px; }
+
+/* FORM SIDE */
+.form-side { flex: 1; min-width: 0; }
+.hero-badge {
+  display: inline-block; padding: 6px 16px; border-radius: 20px;
+  background: var(--accent-soft); border: 1px solid var(--accent-glow);
+  color: var(--accent); font-size: 13px; font-weight: 600; margin-bottom: 20px;
+}
+.hero-title {
+  font-size: 52px; font-weight: 800; letter-spacing: -2px;
+  line-height: 1.05; margin-bottom: 24px;
+}
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-title .green { color: var(--green); }
+.hero-sub { font-size: 19px; color: var(--text-dim); margin-bottom: 36px; max-width: 480px; line-height: 1.7; }
+.hero-sub strong { color: var(--text); font-weight: 600; }
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.form-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.form-card p { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--text-dim); }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px;
+  transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-submit {
+  width: 100%; padding: 14px; border-radius: 100px;
+  background: var(--accent); color: var(--bg); border: none;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  margin-top: 8px;
+}
+.form-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 24px var(--accent-glow); }
+.form-urgency {
+  background: var(--accent-soft); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--text);
+  margin-bottom: 20px; text-align: center;
+}
+.form-urgency strong { color: var(--text); }
+.form-trust { font-size: 12px; color: var(--text-dim); text-align: center; margin-top: 12px; }
+
+/* --- FAQ --- */
+.faq-section { max-width: 800px; margin: 0 auto; padding: 80px 40px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  font-size: 18px; font-weight: 700; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.faq-q::after { content: '+'; font-size: 24px; color: var(--accent); font-weight: 400; transition: transform 0.2s; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a {
+  font-size: 16px; color: var(--text-dim); line-height: 1.7;
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s;
+  padding-top: 0;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-top: 16px; }
+
+/* --- GUARANTEE BADGE --- */
+.guarantee {
+  display: flex; align-items: center; gap: 12px; justify-content: center;
+  margin-top: 24px; padding: 16px 24px;
+  background: var(--accent-soft); border: 1px solid var(--border);
+  border-radius: 12px; font-size: 14px; color: var(--green);
+}
+.guarantee strong { color: var(--text); }
+
+/* --- PROBLEM --- */
+.problem-section {
+  max-width: 900px; margin: 0 auto; padding: 60px 40px 80px;
+  text-align: center;
+}
+.problem-section h2 { font-size: 46px; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 24px; line-height: 1.15; }
+.problem-section p { font-size: 20px; color: var(--text-dim); line-height: 1.8; max-width: 780px; margin: 0 auto; }
+.problem-section p strong { color: var(--text); }
+
+/* APP KILL LIST */
+.kill-section { max-width: 1100px; margin: 0 auto; padding: 80px 40px; }
+.kill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.kill-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px; position: relative; overflow: hidden;
+  transition: border-color 0.3s;
+}
+.kill-card:hover { border-color: var(--border); }
+.kill-card::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 120%; height: 2px; background: var(--red);
+  transform: translate(-50%,-50%) rotate(-12deg);
+  opacity: 0.15;
+}
+.kill-app { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.kill-price { font-size: 22px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+.kill-replaced { font-size: 13px; color: var(--green); font-weight: 600; }
+.kill-desc { font-size: 13px; color: var(--text-dim); margin-top: 8px; }
+
+/* --- FEATURES --- */
+.features {
+  max-width: 1400px; margin: 0 auto;
+  padding: 100px 40px;
+}
+.section-label { font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 16px; text-align: center; }
+.section-title { font-size: 44px; font-weight: 800; text-align: center; letter-spacing: -2px; margin-bottom: 16px; }
+.section-sub { text-align: center; color: var(--text-dim); font-size: 20px; margin-bottom: 64px; max-width: 640px; margin-left: auto; margin-right: auto; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px 36px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.feature-card:hover { border-color: var(--text-dim); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+.feature-icon { font-size: 36px; margin-bottom: 20px; }
+.feature-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+.feature-card p { font-size: 16px; color: var(--text-dim); line-height: 1.7; }
+
+/* --- HOW IT WORKS --- */
+.how-section { max-width: 1280px; margin: 0 auto; padding: 80px 40px; }
+.steps { display: flex; gap: 24px; margin-top: 56px; }
+.step {
+  flex: 1; text-align: center; padding: 40px 28px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+}
+.step-num {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--accent-soft); border: 1px solid var(--accent-glow);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; color: var(--accent); font-size: 18px;
+  margin: 0 auto 20px;
+}
+.step h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+.step p { font-size: 16px; color: var(--text-dim); line-height: 1.6; }
+
+/* --- SHARED CHAT STYLES --- */
+.phone-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #3b82f6;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; color: #fff;
+}
+.phone-name { font-size: 15px; font-weight: 700; }
+.phone-status { font-size: 11px; color: var(--green); font-weight: 500; }
+.msg {
+  max-width: 82%; padding: 10px 14px; border-radius: 18px;
+  opacity: 0; transform: translateY(10px);
+  animation: msgIn 0.35s forwards; word-wrap: break-word;
+}
+.msg.user { align-self: flex-end; background: #3b82f6; color: #fff; border-bottom-right-radius: 6px; }
+.msg.ai { align-self: flex-start; background: var(--surface2); color: var(--text); border-bottom-left-radius: 6px; }
+.msg.status { align-self: flex-start; background: none; color: var(--text-dim); font-size: 12px; padding: 2px 14px; opacity: 0; animation: msgIn 0.3s forwards; }
+.msg-time { font-size: 10px; color: var(--text-dim); margin-top: 4px; text-align: right; }
+.msg.ai .msg-time { color: var(--text-dim); text-align: left; }
+.typing-dots {
+  align-self: flex-start; padding: 12px 18px; background: var(--surface2);
+  border-radius: 18px; border-bottom-left-radius: 6px; display: flex; gap: 4px;
+}
+.typing-dots span {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--text-dim);
+  animation: dotBounce 1.4s infinite;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes msgIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes dotBounce { 0%,60%,100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-6px); opacity: 1; } }
+
+/* --- PRICING --- */
+.pricing { max-width: 1000px; margin: 0 auto; padding: 80px 40px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; align-items: start; }
+.pricing-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 36px 32px; position: relative; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.pricing-card:hover { transform: translateY(-6px); }
+.pricing-card.popular {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+  box-shadow: 0 0 60px rgba(255,255,255,0.18), 0 0 120px rgba(255,255,255,0.12), 0 0 180px rgba(255,255,255,0.06);
+  transform: scale(1.03);
+}
+.pricing-card.popular .pricing-tier,
+.pricing-card.popular .pricing-name,
+.pricing-card.popular .pricing-price,
+.pricing-card.popular .pricing-desc,
+.pricing-card.popular .pricing-note,
+.pricing-card.popular .pricing-features li,
+.pricing-card.popular .pricing-for { color: var(--bg); }
+.pricing-card.popular .pricing-divider { background: var(--bg); opacity: 0.2; }
+.pricing-card.popular .popular-badge { background: var(--bg); color: var(--text); }
+.pricing-card.popular:hover { transform: scale(1.04); }
+.popular-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: var(--bg); font-size: 12px; font-weight: 700;
+  padding: 4px 16px; border-radius: 20px; white-space: nowrap;
+}
+.pricing-tier { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 2px; }
+.pricing-name { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+.pricing-price { font-size: 44px; font-weight: 900; letter-spacing: -2px; margin-bottom: 2px; }
+.pricing-price span { font-size: 16px; font-weight: 500; color: var(--text-dim); letter-spacing: 0; }
+.pricing-note { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; }
+.pricing-desc { font-size: 16px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.6; }
+.pricing-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+.pricing-for { font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 12px; }
+.pricing-features { list-style: none; margin-bottom: 32px; }
+.pricing-features li { font-size: 16px; padding: 6px 0; color: var(--text); }
+.pricing-features li.dim { color: var(--text-dim); opacity: 0.4; }
+.pricing-btn {
+  display: block; text-align: center; padding: 14px; border-radius: 100px;
+  font-size: 15px; font-weight: 600; text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.pricing-btn.solid { background: var(--bg); color: var(--text); }
+.pricing-btn.solid:hover { transform: translateY(-1px); box-shadow: 0 6px 24px var(--accent-glow); }
+.pricing-btn.outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.pricing-btn.outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* SAVINGS CALLOUT */
+.savings-callout {
+  max-width: 1000px; margin: 0 auto; padding: 0 40px 80px;
+}
+.savings-box {
+  background: linear-gradient(135deg, var(--accent-soft), transparent);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px 48px;
+  text-align: center;
+}
+.savings-box h3 { font-size: 32px; font-weight: 900; margin-bottom: 12px; }
+.savings-box .savings-num { font-size: 56px; font-weight: 900; color: var(--green); letter-spacing: -2px; }
+.savings-box .savings-sub { font-size: 18px; color: var(--text-dim); margin-top: 8px; }
+
+/* --- USE CASES --- */
+.usecases { max-width: 1400px; margin: 0 auto; padding: 80px 40px; }
+.trade-selector { max-width: 1100px; margin: 0 auto; }
+.trade-tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 40px; }
+.trade-tab { padding: 10px 20px; border-radius: 100px; border: 1px solid var(--border); background: transparent; color: var(--text); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.trade-tab:hover { border-color: var(--text); }
+.trade-tab.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+.trade-demo { display: flex; gap: 40px; align-items: stretch; }
+.trade-demo-chat { flex: 0 0 360px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+.trade-chat-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+.trade-chat-body { padding: 20px 16px; min-height: 320px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; }
+.trade-chat-body .msg { max-width: 85%; padding: 10px 14px; border-radius: 18px; animation: msgIn 0.35s forwards; opacity: 0; transform: translateY(10px); }
+.trade-chat-body .msg.user { align-self: flex-end; background: #3b82f6; color: #fff; border-bottom-right-radius: 6px; }
+.trade-chat-body .msg.ai { align-self: flex-start; background: var(--surface2); color: var(--text); border-bottom-left-radius: 6px; border: 1px solid var(--border); }
+.trade-demo-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.trade-demo-info h3 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+.trade-demo-info p { font-size: 16px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.6; }
+.trade-demo-info ul { list-style: none; padding: 0; }
+.trade-demo-info ul li { font-size: 15px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.trade-demo-info ul li:last-child { border-bottom: none; }
+.trade-demo-info ul li::before { content: '→ '; color: var(--text-dim); }
+
+/* --- REVIEWS --- */
+.reviews { max-width: 1280px; margin: 0 auto; padding: 80px 40px 100px; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.review-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px;
+}
+.review-stars { color: var(--text); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+.review-text { font-size: 17px; line-height: 1.7; margin-bottom: 20px; color: var(--text); }
+.review-author { display: flex; align-items: center; gap: 12px; }
+.review-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700;
+}
+.review-name { font-size: 14px; font-weight: 600; }
+.review-role { font-size: 12px; color: var(--text-dim); }
+
+/* --- CTA --- */
+.cta-section { padding: 80px 40px; text-align: center; }
+.cta-box {
+  max-width: 680px; margin: 0 auto;
+  background: linear-gradient(135deg, var(--accent-glow), var(--accent-glow));
+  border: 1px solid var(--accent-glow);
+  border-radius: 24px; padding: 64px 48px;
+}
+.cta-box h2 { font-size: 44px; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 16px; line-height: 1.15; }
+.cta-box p { color: var(--text-dim); font-size: 20px; margin-bottom: 32px; }
+.cta-btn {
+  display: inline-block; padding: 16px 40px; border-radius: 100px;
+  background: var(--accent); color: var(--bg); text-decoration: none;
+  font-weight: 700; font-size: 16px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+
+/* --- FOOTER --- */
+footer {
+  padding: 40px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1280px; margin: 0 auto;
+  font-size: 13px; color: var(--text-dim);
+}
+footer a { color: var(--text-dim); text-decoration: none; }
+footer a:hover { color: var(--text); }
+.footer-links { display: flex; gap: 24px; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .video-hero-content { flex-direction: column; padding: 100px 20px 60px; gap: 30px; }
+  .video-hero-text .hero-title { font-size: 36px; }
+  .chat-overlay { flex: none; width: 100%; max-width: 380px; }
+  .hero { flex-direction: column; padding: 60px 20px; gap: 40px; }
+  .features-grid, .reviews-grid { grid-template-columns: 1fr; }
+  .kill-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .trade-demo { flex-direction: column; }
+  .trade-demo-chat { flex: none; width: 100%; }
+  .pricing-card.popular { transform: scale(1); }
+  .pricing-card.popular:hover { transform: scale(1); }
+  .steps { flex-direction: column; }
+  .hero-title { font-size: 32px; }
+  .demo-layout { flex-direction: column; }
+  nav { padding: 14px 20px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+}
+[data-theme="light"] nav { background: rgba(255,255,255,0.7); border-bottom-color: rgba(0,0,0,0.06); }
+[data-theme="light"] .nav-links a { color: var(--text-dim); }
+[data-theme="light"] .nav-links a:hover { color: var(--text); }
+[data-theme="light"] .video-overlay { background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.7) 100%); }
+[data-theme="light"] .chat-overlay { box-shadow: 0 24px 80px rgba(0,0,0,0.1); }
+[data-theme="light"] .app-graveyard { box-shadow: 0 24px 80px rgba(0,0,0,0.08); }
+[data-theme="light"] .feature-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+
+/* Dark mode: subtle white glow behind cards */
+[data-theme="dark"] .feature-card,
+:root .feature-card { box-shadow: 0 0 30px rgba(255,255,255,0.03), 0 0 60px rgba(255,255,255,0.02); }
+[data-theme="dark"] .pricing-card,
+:root .pricing-card { box-shadow: 0 0 50px rgba(255,255,255,0.12), 0 0 100px rgba(255,255,255,0.08), 0 0 150px rgba(255,255,255,0.05); }
+[data-theme="dark"] .form-card,
+:root .form-card { box-shadow: 0 0 30px rgba(255,255,255,0.03), 0 0 60px rgba(255,255,255,0.02); }
+[data-theme="dark"] .app-graveyard,
+:root .app-graveyard { box-shadow: 0 0 30px rgba(255,255,255,0.03), 0 0 60px rgba(255,255,255,0.02); }
+[data-theme="dark"] .review-card,
+:root .review-card { box-shadow: 0 0 30px rgba(255,255,255,0.03), 0 0 60px rgba(255,255,255,0.02); }
+[data-theme="dark"] .step,
+:root .step { box-shadow: 0 0 30px rgba(255,255,255,0.03), 0 0 60px rgba(255,255,255,0.02); }
+[data-theme="dark"] .trade-demo-chat,
+:root .trade-demo-chat { box-shadow: 0 0 40px rgba(255,255,255,0.06), 0 0 80px rgba(255,255,255,0.03); }
+[data-theme="dark"] .cta-box,
+:root .cta-box { box-shadow: 0 0 40px rgba(255,255,255,0.04), 0 0 80px rgba(255,255,255,0.02); }
+
+/* Remove glow in light mode */
+[data-theme="light"] .feature-card,
+[data-theme="light"] .pricing-card { box-shadow: 0 0 60px rgba(0,0,0,0.12), 0 0 120px rgba(0,0,0,0.08); }
+[data-theme="light"] .pricing-card.popular { box-shadow: 0 0 80px rgba(0,0,0,0.18), 0 0 150px rgba(0,0,0,0.1); }
+[data-theme="light"] .form-card,
+[data-theme="light"] .app-graveyard,
+[data-theme="light"] .review-card,
+[data-theme="light"] .step,
+[data-theme="light"] .trade-demo-chat,
+[data-theme="light"] .cta-box { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.theme-toggle { background:none; border:1px solid var(--border); border-radius:50%; width:36px; height:36px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color .2s; padding:0; }
+.theme-toggle:hover { border-color:var(--accent); }
+.toggle-icon { width:18px; height:18px; border-radius:50%; background:var(--text); transition:all .3s; }
+[data-theme="light"] .toggle-icon { background:transparent; border:2px solid var(--text); box-shadow:inset 6px -2px 0 0 var(--text); width:16px; height:16px; }
+.audience-tabs { display:flex; gap:6px; margin-bottom:14px; }
+.aud-tab { padding:8px 20px; border-radius:100px; border:1.5px solid var(--border); background:transparent; color:var(--text-dim); font-size:.9rem; cursor:pointer; transition:all .2s; }
+.aud-tab.active { background:var(--accent); color:var(--bg); border-color:var(--accent); }
+.aud-tab:hover:not(.active) { border-color:var(--text-dim); color:var(--text); }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+</style>
+<script>
+function switchTab(t){
+  document.querySelectorAll('.aud-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelector('.aud-tab[onclick*="'+t+'"]').classList.add('active');
+  document.getElementById('tab-'+t).classList.add('active');
+  // tab switched
+}
+function toggleTheme(){
+  var t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('openhand-theme',t);
+}
+(function(){var t=localStorage.getItem('openhand-theme');if(t){document.documentElement.setAttribute('data-theme',t);}})();
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="logo_bw.png" alt="openHand" class="nav-logo-img"> <span>openHand</span></div>
+  <div class="nav-links">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#how">Setup</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <button class="nav-cta" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">Book a Demo</button>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><span class="toggle-icon"></span></button>
+  </div>
+</nav>
+
+<!-- VIDEO HERO -->
+<section class="video-hero">
+  <video autoplay muted loop playsinline>
+    <source src="hero_video.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+  <div class="video-hero-content">
+    <div class="chat-overlay">
+      <div class="phone-header">
+        <div class="phone-avatar">P</div>
+        <div>
+          <div class="phone-name">openHand</div>
+          <div class="phone-status">● Online</div>
+        </div>
+      </div>
+      <div class="phone-body" id="hero-chat"></div>
+    </div>
+    <div class="video-hero-text">
+      <div class="hero-badge">⚡ One AI. Every App. Gone.</div>
+      <h1 class="hero-title">Do the work.<br>Not the <em>paperwork.</em></h1>
+      <p class="hero-sub">openHand is an AI assistant that handles your leads, invoices, scheduling, and follow-ups — <strong>all from one text conversation.</strong> Built for trades, contractors, small business owners, and entrepreneurs.</p>
+      <div class="audience-tabs">
+        <button class="aud-tab active" onclick="switchTab('solo')">Individual</button>
+        <button class="aud-tab" onclick="switchTab('biz')">Small Business</button>
+      </div>
+      <div id="tab-solo" class="tab-content active">
+        <p style="color:var(--text);margin:0 0 12px;font-size:.95rem;">One-person shop? Download and go — up and running in 5 minutes.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://buy.stripe.com/REPLACE_MAC_LINK" class="hero-cta">Download for Mac</a>
+          <a href="https://buy.stripe.com/REPLACE_WIN_LINK" class="hero-cta">Download for Windows</a>
+          <a href="#demo-form" class="hero-cta" style="background:transparent;border:2px solid var(--accent);color:var(--text);">Book a Demo →</a>
+        </div>
+      </div>
+      <div id="tab-biz" class="tab-content">
+        <p style="color:var(--text);margin:0 0 12px;font-size:.95rem;">Have a team or specific workflows? We'll tailor openHand to your business.</p>
+        <ul style="color:var(--text);font-size:.9rem;margin:0 0 16px;padding-left:18px;line-height:1.8;">
+          <li>Multi-user access — your whole crew on one system</li>
+          <li>Custom workflows built around how <em>you</em> already operate</li>
+          <li>CRM, accounting & tool integrations (QuickBooks, Jobber, etc.)</li>
+          <li>Dedicated onboarding & training for your team</li>
+          <li>Priority support with a real human</li>
+        </ul>
+        <a href="#demo-form" class="hero-cta">Book a Demo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT ACTUALLY WORKS (TRADE SELECTOR) -->
+<section class="usecases" id="how-it-works">
+  <div class="section-label">How It Actually Works</div>
+  <h2 class="section-title">You text. It handles everything.</h2>
+  <p class="section-sub">No apps. No logins. No learning curve. Just talk to it like you'd talk to a real assistant.</p>
+  <p class="section-sub" style="margin-bottom:40px;font-size:15px;">Click a trade to see openHand in action.</p>
+
+  <div class="trade-selector">
+    <div class="trade-tabs" id="tradeTabs">
+      <button class="trade-tab active" data-trade="plumber">Plumbers</button>
+      <button class="trade-tab" data-trade="electrician">Electricians</button>
+      <button class="trade-tab" data-trade="contractor">Contractors</button>
+      <button class="trade-tab" data-trade="handyman">Handymen</button>
+      <button class="trade-tab" data-trade="landscaper">Landscapers</button>
+      <button class="trade-tab" data-trade="painter">Painters</button>
+      <button class="trade-tab" data-trade="detailer">Auto Detailers</button>
+      <button class="trade-tab" data-trade="cleaner">Cleaning Services</button>
+      <button class="trade-tab" data-trade="trainer">Personal Trainers</button>
+      <button class="trade-tab" data-trade="pest">Pest Control</button>
+      <button class="trade-tab" data-trade="roofer">Roofers</button>
+      <button class="trade-tab" data-trade="pressure">Pressure Washers</button>
+    </div>
+    <div class="trade-demo">
+      <div class="trade-demo-chat" id="tradeChat">
+        <div class="trade-chat-header">
+          <div class="phone-avatar">P</div>
+          <div>
+            <div class="phone-name">openHand</div>
+            <div class="phone-status">● Online</div>
+          </div>
+        </div>
+        <div class="trade-chat-body" id="tradeChatBody"></div>
+      </div>
+      <div class="trade-demo-info" id="tradeInfo">
+        <h3 id="tradeTitle">Plumbers</h3>
+        <p id="tradeDesc">Lead capture, dispatch, invoicing — handled by text.</p>
+        <ul id="tradeFeatures">
+          <li>Instant lead response when a customer texts</li>
+          <li>Auto-schedule estimates based on your availability</li>
+          <li>Generate and send invoices from the job site</li>
+          <li>Follow up on unpaid invoices automatically</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROBLEM + COST COMPARISON -->
+<section class="problem-section">
+  <div class="section-label">Try it now</div>
+  <h2>You're a plumber, not an IT department.</h2>
+  <p>You didn't start your business to manage 6 different apps. You started it to do <strong>good work and get paid.</strong> But somehow you're spending $500+/month on software you barely open, missing leads because you're on a job, and doing invoices at midnight.<br><br><strong>openHand handles all of it from one text thread. No logins. No dashboards. No apps to learn.</strong></p>
+</section>
+
+<section class="hero" style="padding-top:0;">
+  <div class="compare-side">
+    <div class="app-graveyard">
+      <h3>What you're paying now</h3>
+      <div class="app-row">
+        <div class="app-info"><div class="app-icon" style="background:var(--accent-soft);">📋</div><div><div class="app-name">Jobber / Housecall Pro</div><div class="app-desc">Job management & dispatch</div></div></div>
+        <div class="app-price">$149/mo</div>
+      </div>
+      <div class="app-row">
+        <div class="app-info"><div class="app-icon" style="background:var(--accent-soft);">📊</div><div><div class="app-name">QuickBooks</div><div class="app-desc">Invoicing & bookkeeping</div></div></div>
+        <div class="app-price">$99/mo</div>
+      </div>
+      <div class="app-row">
+        <div class="app-info"><div class="app-icon" style="background:var(--accent-soft);">📞</div><div><div class="app-name">Ruby / Smith.ai</div><div class="app-desc">After-hours call handling</div></div></div>
+        <div class="app-price">$245/mo</div>
+      </div>
+      <div class="app-row">
+        <div class="app-info"><div class="app-icon" style="background:var(--accent-soft);">📅</div><div><div class="app-name">Calendly / Acuity</div><div class="app-desc">Appointment scheduling</div></div></div>
+        <div class="app-price">$16/mo</div>
+      </div>
+      <div class="app-row">
+        <div class="app-info"><div class="app-icon" style="background:var(--accent-soft);">💬</div><div><div class="app-name">GoHighLevel / HubSpot</div><div class="app-desc">CRM & lead tracking</div></div></div>
+        <div class="app-price">$97/mo</div>
+      </div>
+      <div class="app-row">
+        <div class="app-info"><div class="app-icon" style="background:var(--accent-soft);">📨</div><div><div class="app-name">Mailchimp / Constant Contact</div><div class="app-desc">Email marketing</div></div></div>
+        <div class="app-price">$45/mo</div>
+      </div>
+      <div class="graveyard-total">
+        <div class="graveyard-total-label">You're spending</div>
+        <div class="graveyard-total-price">$651/mo</div>
+      </div>
+    </div>
+
+    <div class="vs-divider">— replace all of it —</div>
+
+    <div class="openhand-replace">
+      <div class="openhand-replace-left">
+        <div class="openhand-replace-icon"><img src="logo_bw.png" alt="openHand" class="nav-logo-img" style="width:52px;height:52px;object-fit:contain;background:none;border:none;"></div>
+        <div>
+          <div class="openhand-replace-name">openHand</div>
+          <div class="openhand-replace-desc">Does everything above. From your phone.</div>
+        </div>
+      </div>
+      <div class="openhand-replace-price">
+        <div class="price">$199<span style="font-size:16px;color:var(--text-dim);font-weight:500">/mo</span></div>
+        <div class="save">↓ Save $452/mo ($5,424/yr)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-side">
+    <div class="form-card" id="demo-form">
+      <h3>Book a Demo</h3>
+      <p>15 minutes. We'll show you openHand on your actual business. No commitment.</p>
+      <div class="form-urgency">Available seats are limited</div>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="f-name" placeholder="Mike Johnson" required>
+        </div>
+        <div class="form-group">
+          <label>Phone or Email</label>
+          <input type="text" id="f-phone" placeholder="(813) 555-1234 or mike@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>What's your trade?</label>
+          <select id="f-industry">
+            <option value="">Select...</option>
+            <option>Plumbing / HVAC</option>
+            <option>Electrical</option>
+            <option>General Contracting</option>
+            <option>Roofing</option>
+            <option>Landscaping / Lawn Care</option>
+            <option>Painting</option>
+            <option>Cleaning Service</option>
+            <option>Auto Detailing</option>
+            <option>Personal Training</option>
+            <option>Pressure Washing</option>
+            <option>Pest Control</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>What's your biggest headache right now?</label>
+          <textarea id="f-painpoint" rows="2" placeholder="Missing leads after hours, invoices piling up, can't keep up with scheduling..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Book My Demo →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-label">Setup</div>
+  <h2 class="section-title">Up and running in minutes.</h2>
+  <p class="section-sub">Download. Install. Text your new assistant. That's it.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Download & Install</h3>
+      <p>One-click installer for Mac or Windows. No technical knowledge needed — if you can install an app, you can install openHand.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Scan Your WhatsApp QR</h3>
+      <p>The setup wizard walks you through connecting WhatsApp and entering your business info — name, trade, services, pricing. Takes about 2 minutes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Start Texting</h3>
+      <p>That's it. Text openHand like you'd text an employee. "Send Mike's invoice." "Book the estimate for Thursday." "What's my schedule tomorrow?" It just works.</p>
+    </div>
+  </div>
+</section>
+
+<!-- (demo chat moved to video hero) -->
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">Less than what you're already paying for apps you hate</h2>
+  <p class="section-sub">One-time setup + simple monthly. No contracts. No surprises.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Individual</div>
+      <div class="pricing-name">Self-Install</div>
+      <div class="pricing-price">$199<span>/mo</span></div>
+      <div class="pricing-note">Cancel anytime · No contracts</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-desc">Download, install, and go. You set it up yourself in under 5 minutes — no call needed.</div>
+      <ul class="pricing-features">
+        <li>✓ One-click Mac or Windows installer</li>
+        <li>✓ Self-service setup wizard</li>
+        <li>✓ WhatsApp / iMessage / Telegram</li>
+        <li>✓ Lead capture & auto-response</li>
+        <li>✓ Invoicing & estimates</li>
+        <li>✓ Scheduling & calendar</li>
+        <li>✓ Automatic follow-ups</li>
+        <li>✓ Unlimited messages</li>
+        <li>✓ 1 AI agent</li>
+      </ul>
+      <a href="#tab-solo" class="pricing-btn outline" onclick="switchTab('solo');window.scrollTo({top:0,behavior:'smooth'})">Download →</a>
+    </div>
+    <div class="pricing-card popular">
+      <div class="popular-badge">Small Business</div>
+      <div class="pricing-tier">One-Time Setup</div>
+      <div class="pricing-name">Custom Build</div>
+      <div class="pricing-price">$500</div>
+      <div class="pricing-note">One-time · then $199/mo</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-desc">We build it for you. Custom workflows, integrations, and multi-user setup tailored to how your business actually runs.</div>
+      <ul class="pricing-features">
+        <li>✓ Everything in Individual</li>
+        <li>✓ Custom workflows for your operations</li>
+        <li>✓ Multi-agent infrastructure</li>
+        <li>✓ CRM & accounting integrations</li>
+        <li>✓ Dedicated onboarding call</li>
+        <li>✓ 14-day hands-on tuning</li>
+        <li>✓ Multiple AI agents for different roles</li>
+        <li>✓ Priority support</li>
+        <li>✓ Same-day go-live</li>
+      </ul>
+      <a href="#demo-form" class="pricing-btn solid">Book a Demo →</a>
+    </div>
+  </div>
+  <div class="guarantee"><strong>30-day money-back guarantee.</strong> If openHand doesn't save you time and money, we refund everything — including the setup fee.</div>
+</section>
+
+<!-- SAVINGS CALLOUT -->
+<div class="savings-callout">
+  <div class="savings-box">
+    <h3>Average first-year savings</h3>
+    <div class="savings-num">$5,424</div>
+    <div class="savings-sub">vs. running Housecall Pro + QuickBooks + Ruby + GoHighLevel + Calendly + Mailchimp</div>
+  </div>
+</div>
+
+<!-- EARLY ACCESS -->
+<section class="reviews" id="reviews">
+  <div class="section-label">Early Access</div>
+  <h2 class="section-title">We're onboarding our first 10 businesses now.</h2>
+  <p class="section-sub">openHand is new — and that's an advantage for you. Early clients get white-glove setup, direct access to the founder, and pricing that won't last.</p>
+  <div class="reviews-grid">
+    <div class="review-card" style="border-color: var(--accent);">
+      <div style="font-size:36px;margin-bottom:16px;">🚀</div>
+      <div class="review-text" style="font-size:18px;font-weight:600;">Founding Member Pricing</div>
+      <p style="color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:8px;">Lock in $199/mo for life. When we raise prices (and we will), your rate stays the same. First 10 clients only.</p>
+    </div>
+    <div class="review-card" style="border-color: var(--accent);">
+      <div style="font-size:36px;margin-bottom:16px;">🤝</div>
+      <div class="review-text" style="font-size:18px;font-weight:600;">Direct Founder Access</div>
+      <p style="color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:8px;">You're not talking to a support team. You're working directly with the person who built it. We'll customize openHand to your exact workflow.</p>
+    </div>
+    <div class="review-card" style="border-color: var(--accent);">
+      <div style="font-size:36px;margin-bottom:16px;">💰</div>
+      <div class="review-text" style="font-size:18px;font-weight:600;">100% Money-Back Guarantee</div>
+      <p style="color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:8px;">If openHand doesn't save you time and money in the first 30 days, we refund everything. Setup fee included. No questions asked.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-label">Common Questions</div>
+  <h2 class="section-title" style="margin-bottom:48px;">Yeah but...</h2>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do I need to be techy?</div>
+    <div class="faq-a">Not even a little. If you can text, you can use openHand. There's no app to download, no dashboard to learn, no software to install. You literally just text it what you need — "send the invoice," "book the estimate," "what's my schedule" — and it handles it.</div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if it says something wrong to my customer?</div>
+    <div class="faq-a">During the first 14 days, we tune openHand to your voice, your business, and your rules. You set the boundaries — what it can say, what it should check with you first, how it talks to people. It sounds like you, not a robot. And you can always override it.</div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is this going to spam my customers?</div>
+    <div class="faq-a">No. openHand only reaches out when you tell it to, or when a lead contacts you first. It doesn't mass-blast anyone. Follow-ups are personalized and timed — like a good assistant would do, not like a marketing robot.</div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why not just hire a virtual assistant?</div>
+    <div class="faq-a">A decent VA costs $500-1,500/mo and works business hours. openHand is $199/mo and works 24/7 — nights, weekends, holidays. It never calls in sick, never forgets a follow-up, and responds to leads in seconds instead of hours. Plus there's nothing to manage — no training, no scheduling, no HR.</div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I actually cancel my other apps?</div>
+    <div class="faq-a">That's the goal. Most solo operators can cancel their CRM, scheduling tool, answering service, and invoicing software within the first month. We'll walk you through exactly which ones to drop during setup. Some clients keep QuickBooks for tax purposes — that's fine, openHand works alongside it too.</div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What happens if I cancel?</div>
+    <div class="faq-a">Nothing weird. No contracts, no cancellation fee. You stop paying, the service stops. We'll export your data if you want it. We'd rather earn your business every month than lock you into something you don't want.</div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How is this only $199/mo?</div>
+    <div class="faq-a">We're a small operation and we plan to stay that way. No bloated sales team, no VC money to burn, no enterprise features you'll never use. We built openHand for one-person shops because that's who we care about. The price will go up eventually — founding members keep their rate forever.</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Stop managing apps.<br>Start running your business.</h2>
+    <p>15-minute demo. We'll run openHand on your actual workflow. No commitment, no credit card.</p>
+    <a href="#demo-form" class="cta-btn">Book My Demo →</a>
+    <p style="font-size:13px;color:var(--text-dim);margin-top:16px;">Only 10 founding member spots available · Pricing locks in for life</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 openHand. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Support</a>
+  </div>
+</footer>
+
+<script>
+const conversations = [
+  [
+    { type: 'user', text: 'Hey, someone just called about a roof estimate on Bayshore' },
+    { type: 'status', text: '⏳ Checking your calendar...' },
+    { type: 'ai', text: 'Got it. I texted them back — got the address (4821 Bayshore Blvd), roof type (tile), and photos. Booked you for Thursday 10am. Confirmation sent.' },
+  ],
+  [
+    { type: 'user', text: 'Send Lynda the invoice for the kitchen remodel' },
+    { type: 'status', text: '⏳ Generating invoice...' },
+    { type: 'ai', text: 'Done — 38 labor hours + $4,200 materials. Total: $11,640. Invoice emailed to lynda.marks@gmail.com with payment link. Follow up if unpaid in 7 days?' },
+    { type: 'user', text: 'Yeah do that' },
+    { type: 'ai', text: 'Reminder set for March 18th. 👍' },
+  ],
+  [
+    { type: 'user', text: 'What\'s my week look like?' },
+    { type: 'ai', text: 'Mon — 8am Permit inspection (Elm St)\nTue — 9am Estimate: Rivera kitchen\nTue — 2pm Supply pickup\nWed — Full day: Johnson bathroom\nThu — 10am Bayshore roof est.\nFri — Open. Want me to fill it?' },
+  ],
+  [
+    { type: 'user', text: 'Order 40 bags of Quikrete from BuildPro' },
+    { type: 'status', text: '⏳ Checking prices...' },
+    { type: 'ai', text: '40x Quikrete 80lb — $7.98/ea ($319.20)\nDelivery available Wednesday AM.\nPlace it?' },
+    { type: 'user', text: 'Do it' },
+    { type: 'ai', text: 'Order #BP-41283 placed. Delivery Wed 7-11am. Receipt in your email. ✓' },
+  ],
+  [
+    { type: 'user', text: 'Did that new lead from yesterday ever respond?' },
+    { type: 'ai', text: 'Yep — Maria Torres, 3BR condo, full bathroom reno. Budget ~$15k. She\'s free Tuesday or Thursday for an estimate.' },
+    { type: 'user', text: 'Thursday afternoon' },
+    { type: 'ai', text: 'Booked Thu 1pm. Sent her confirmation with your info. Added to calendar. ✓' },
+  ],
+];
+
+const chatEl = document.getElementById('hero-chat');
+let convIndex = 0;
+
+async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function showTypingDots() {
+  const dots = document.createElement('div');
+  dots.className = 'typing-dots';
+  dots.innerHTML = '<span></span><span></span><span></span>';
+  chatEl.appendChild(dots);
+  chatEl.scrollTop = chatEl.scrollHeight;
+  return dots;
+}
+
+async function playConversation(conv) {
+  for (const msg of conv) {
+    if (msg.type === 'user') {
+      const bubble = document.createElement('div');
+      bubble.className = 'msg user';
+      bubble.textContent = msg.text;
+      chatEl.appendChild(bubble);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      await sleep(800);
+    } else if (msg.type === 'status') {
+      const dots = showTypingDots();
+      await sleep(1200);
+      dots.remove();
+      const status = document.createElement('div');
+      status.className = 'msg status';
+      status.textContent = msg.text;
+      chatEl.appendChild(status);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      await sleep(600);
+    } else {
+      const dots = showTypingDots();
+      await sleep(800 + msg.text.length * 8);
+      dots.remove();
+      const bubble = document.createElement('div');
+      bubble.className = 'msg ai';
+      bubble.innerHTML = msg.text.replace(/\n/g, '<br>');
+      chatEl.appendChild(bubble);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      await sleep(600);
+    }
+  }
+}
+
+async function runDemo() {
+  while (true) {
+    chatEl.innerHTML = '';
+    await playConversation(conversations[convIndex % conversations.length]);
+    await sleep(3500);
+    convIndex++;
+  }
+}
+runDemo();
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const form = e.target;
+  const data = {
+    name: document.getElementById('f-name').value,
+    phone: document.getElementById('f-phone').value,
+    industry: document.getElementById('f-industry').value,
+    painpoint: document.getElementById('f-painpoint').value
+  };
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  fetch('https://script.google.com/macros/s/AKfycbzXIhkWP3JxTXVTq4u8btG-xvVK1NM1X0phCSTiMw0VJZpo7y2k4mnZXodGtyqX84BdXQ/exec', {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(() => {
+    btn.textContent = '✓ We\'ll be in touch!';
+    btn.style.background = 'var(--accent)';
+    form.reset();
+    setTimeout(() => { btn.textContent = 'Book My Demo →'; btn.style.background = ''; btn.disabled = false; }, 3000);
+  }).catch(() => {
+    btn.textContent = '✓ We\'ll be in touch!';
+    btn.style.background = 'var(--accent)';
+    form.reset();
+    setTimeout(() => { btn.textContent = 'Book My Demo →'; btn.style.background = ''; btn.disabled = false; }, 3000);
+  });
+}
+
+// Trade demo interactive section
+const tradeData = {
+  plumber: {
+    title: 'Plumbers', desc: 'Lead capture, dispatch, invoicing — handled by text.',
+    features: ['Instant lead response when a customer texts','Auto-schedule estimates based on your availability','Generate and send invoices from the job site','Follow up on unpaid invoices automatically'],
+    chat: [
+      {t:'ai',m:'New lead: Sarah Mitchell needs a water heater replaced at 142 Oak St. Want me to respond?'},
+      {t:'user',m:'Yeah book her for Thursday morning'},
+      {t:'ai',m:'Done. Sent Sarah a confirmation for Thursday 9 AM. I also pulled up the 50-gal Rheem from your last 3 installs — want me to order one from Ferguson?'},
+      {t:'user',m:'Do it. And send her a quote for $2,800'},
+      {t:'ai',m:'Quote sent. Ferguson order placed — pickup Wednesday. I\'ll remind you Thursday at 8 AM.'}
+    ]
+  },
+  electrician: {
+    title: 'Electricians', desc: 'Estimates, scheduling, follow-ups — all from your phone.',
+    features: ['Auto-respond to new service requests','Build and send estimates by text','Track permits and inspection dates','Chase outstanding payments automatically'],
+    chat: [
+      {t:'ai',m:'Mike Torres just texted asking about a panel upgrade. 200-amp, older home. Want me to send the standard estimate?'},
+      {t:'user',m:'Send the 200 amp package, $4,200'},
+      {t:'ai',m:'Estimate sent. He replied — "Looks good, when can you come?" Next opening is Tuesday 10 AM.'},
+      {t:'user',m:'Book it'},
+      {t:'ai',m:'Booked. I\'ll pull the permit application and send Mike a confirmation with the deposit link.'}
+    ]
+  },
+  contractor: {
+    title: 'Contractors', desc: 'Supply ordering, crew coordination, bids — one text thread.',
+    features: ['Coordinate subs and crew schedules','Track material orders and deliveries','Generate change orders on the fly','Keep clients updated automatically'],
+    chat: [
+      {t:'user',m:'Need 40 sheets of 5/8 drywall and 10 boxes of mud at Elm St by Friday'},
+      {t:'ai',m:'ABC Supply has it — $1,847 total. Want me to place the order for Friday AM delivery?'},
+      {t:'user',m:'Yeah and tell Carlos his crew needs to be there at 7'},
+      {t:'ai',m:'Order placed. Texted Carlos — crew confirmed Friday 7 AM. Client updated on timeline.'}
+    ]
+  },
+  handyman: {
+    title: 'Handymen', desc: 'Booking, quotes, customer follow-up — on autopilot.',
+    features: ['Respond to leads within seconds','Send quick quotes for common jobs','Manage your week\'s schedule by text','Auto follow-up after every job'],
+    chat: [
+      {t:'ai',m:'New request from Dave: leaky faucet + ceiling fan install at 88 Pine Rd. Flexible this week.'},
+      {t:'user',m:'Quote him $175 faucet, $225 fan. Wednesday works'},
+      {t:'ai',m:'Sent. Dave accepted — Wednesday 1 PM confirmed. I\'ll send a reminder tomorrow and a review request after.'}
+    ]
+  },
+  landscaper: {
+    title: 'Landscapers', desc: 'Seasonal quotes, recurring schedules — managed by text.',
+    features: ['Send seasonal reminders automatically','Manage recurring mow schedules','Quote new jobs from customer photos','Track weekly route and client list'],
+    chat: [
+      {t:'ai',m:'Spring cleanup season — 23 recurring clients haven\'t booked yet. Want me to send the annual cleanup offer?'},
+      {t:'user',m:'Send it. $350 for cleanup + first mow'},
+      {t:'ai',m:'Sent to all 23. Already got 4 replies — Linda, Tom, the Garcias, and Pete all want to book. Slotted them into next week.'}
+    ]
+  },
+  painter: {
+    title: 'Painters', desc: 'Estimates, material tracking, booking — from the ladder.',
+    features: ['Calculate paint quantities from dimensions','Send detailed estimates by text','Track material costs per job','Schedule follow-up touch-ups'],
+    chat: [
+      {t:'user',m:'Just measured Henderson job. 4 rooms, 1,800 sqft. Benjamin Moore Revere Pewter.'},
+      {t:'ai',m:'~14 gallons at $72/gal — $1,008 materials. Labor at $3.50/sqft — total estimate $7,308. Send it?'},
+      {t:'user',m:'Send it'},
+      {t:'ai',m:'Estimate sent. I\'ll follow up in 48 hours if we don\'t hear back.'}
+    ]
+  },
+  detailer: {
+    title: 'Auto Detailers', desc: 'Mobile booking, reminders, upsells — while you work.',
+    features: ['Book from Instagram DMs','Send pre-appointment reminders','Upsell ceramic coating and add-ons','Request reviews after every detail'],
+    chat: [
+      {t:'ai',m:'Jason from Instagram wants a full detail on his Model Y this weekend. Asked about ceramic too.'},
+      {t:'user',m:'Book Saturday 10am. $250 detail + $800 ceramic'},
+      {t:'ai',m:'Booked — $1,050 total. Sent prep instructions and a $200 deposit link. Jason confirmed.'}
+    ]
+  },
+  cleaner: {
+    title: 'Cleaning Services', desc: 'Recurring schedules, client comms — completely automated.',
+    features: ['Manage weekly/biweekly clients','Handle reschedules and cancellations','Send arrival notifications','Invoice on autopilot'],
+    chat: [
+      {t:'user',m:'Mrs. Patterson wants to switch from biweekly to weekly starting next month'},
+      {t:'ai',m:'Updated — every Tuesday 9 AM. New monthly: $600 (was $300). Sent her the updated schedule and adjusted auto-invoice.'}
+    ]
+  },
+  trainer: {
+    title: 'Personal Trainers', desc: 'Session booking, payment tracking — hands-free.',
+    features: ['Clients book sessions by text','Auto-charge for no-shows','Send workout reminders','Track package sessions remaining'],
+    chat: [
+      {t:'ai',m:'Alex wants to book 3x/week starting Monday. 4 sessions left on his 10-pack.'},
+      {t:'user',m:'Book Mon Wed Fri 6am. Sell him another 10 pack when he\'s down to 1'},
+      {t:'ai',m:'Locked in. I\'ll auto-send the renewal offer at 1 session remaining. Alex confirmed for Monday.'}
+    ]
+  },
+  pest: {
+    title: 'Pest Control', desc: 'Seasonal outreach, scheduling — on repeat.',
+    features: ['Trigger seasonal campaigns automatically','Route new leads to your calendar','Send treatment reminders','Follow up for quarterly service'],
+    chat: [
+      {t:'ai',m:'Ant season — 47 past clients haven\'t booked spring treatment. Send the quarterly offer?'},
+      {t:'user',m:'Send it. $149 interior + exterior'},
+      {t:'ai',m:'Sent. 12 bookings already — spread across next 2 weeks. Tuesday and Thursday are full.'}
+    ]
+  },
+  roofer: {
+    title: 'Roofers', desc: 'Storm leads, estimates, materials — managed fast.',
+    features: ['Capture storm damage leads instantly','Send inspection scheduling links','Generate estimates with materials','Coordinate with insurance adjusters'],
+    chat: [
+      {t:'ai',m:'Storm warning tonight. 200+ homes in your lead list. Send the free inspection offer tomorrow AM?'},
+      {t:'user',m:'Send it at 8am'},
+      {t:'ai',m:'Scheduled for 8 AM. Last campaign: 34 inspections, 11 jobs. I\'ll auto-book anyone who replies.'}
+    ]
+  },
+  pressure: {
+    title: 'Pressure Washers', desc: 'Lead response, quote generation — instant.',
+    features: ['Quote by sqft instantly','Respond to leads in under 60 seconds','Send before/after photo requests','Upsell sealing and soft wash add-ons'],
+    chat: [
+      {t:'ai',m:'New lead: Karen at 55 Maple wants driveway + patio done. ~1,200 sqft.'},
+      {t:'user',m:'Quote $0.25/sqft, $300. This Saturday'},
+      {t:'ai',m:'Sent — Karen accepted. Saturday 9 AM confirmed. Offered deck soft wash for $175 — she said maybe. I\'ll follow up in 2 weeks.'}
+    ]
+  }
+};
+
+document.getElementById('tradeTabs').addEventListener('click', function(e) {
+  if (!e.target.classList.contains('trade-tab')) return;
+  document.querySelectorAll('.trade-tab').forEach(function(t){ t.classList.remove('active'); });
+  e.target.classList.add('active');
+  var trade = e.target.dataset.trade;
+  var d = tradeData[trade];
+  if (!d) return;
+  document.getElementById('tradeTitle').textContent = d.title;
+  document.getElementById('tradeDesc').textContent = d.desc;
+  document.getElementById('tradeFeatures').innerHTML = d.features.map(function(f){ return '<li>'+f+'</li>'; }).join('');
+  var body = document.getElementById('tradeChatBody');
+  body.innerHTML = '';
+  d.chat.forEach(function(msg, i) {
+    setTimeout(function() {
+      var div = document.createElement('div');
+      div.className = 'msg ' + (msg.t === 'user' ? 'user' : 'ai');
+      div.textContent = msg.m;
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
+    }, i * 700);
+  });
+});
+
+document.querySelector('.trade-tab[data-trade="plumber"]').click();
+</script>
+
+</body>
+</html>
