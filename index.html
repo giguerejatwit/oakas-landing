@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <title>OAKAS — Get Rooted. Branch Out.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1281,29 +1281,6 @@ document.getElementById('tradeTabs').addEventListener('click', function(e) {
 document.querySelector('.trade-tab[data-trade="plumber"]').click();
 </script>
 
-<!-- FONT PREVIEW (remove before deploy) -->
-<div id="fontSwitcher" style="position:fixed;top:0;left:0;right:0;z-index:10000;background:#111;border-bottom:2px solid #333;padding:10px 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-  <span style="color:#888;font-size:13px;margin-right:8px;">Font:</span>
-  <button onclick="setFont('Inter')" class="fs-btn">Inter (current)</button>
-  <button onclick="setFont('Space Grotesk')" class="fs-btn">Space Grotesk</button>
-  <button onclick="setFont('DM Sans')" class="fs-btn">DM Sans</button>
-  <button onclick="setFont('Plus Jakarta Sans')" class="fs-btn">Plus Jakarta Sans</button>
-  <button onclick="setFont('Outfit')" class="fs-btn">Outfit</button>
-  <button onclick="setFont('Syne')" class="fs-btn">Syne</button>
-  <button onclick="setFont('Bricolage Grotesque')" class="fs-btn">Bricolage Grotesque</button>
-</div>
-<style>
-.fs-btn { background:#222;color:#fff;border:1px solid #444;padding:6px 14px;border-radius:100px;font-size:12px;cursor:pointer;transition:all 0.2s; }
-.fs-btn:hover,.fs-btn.active { background:#fff;color:#000; }
-body { padding-top: 52px !important; }
-</style>
-<script>
-function setFont(f) {
-  document.body.style.fontFamily = "'" + f + "', sans-serif";
-  document.querySelectorAll('.hero-title, .section-title, h1, h2, h3').forEach(el => el.style.fontFamily = "'" + f + "', sans-serif");
-  document.querySelectorAll('.fs-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-}
-</script>
+
 </body>
 </html>
