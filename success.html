@@ -15,7 +15,7 @@
   }
   .container {
     text-align: center;
-    max-width: 440px;
+    max-width: 480px;
   }
   .logo {
     height: 80px;
@@ -26,21 +26,65 @@
     font-size: 32px;
     font-weight: 800;
     color: #fff;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
   .subtitle {
     font-size: 18px;
     color: #22c55e;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    margin-bottom: 40px;
   }
+  .steps {
+    text-align: left;
+    margin-bottom: 32px;
+  }
+  .step {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #22c55e;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .step-text {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+  .step-text strong { color: #fff; }
 </style>
 </head>
 <body>
 <div class="container">
   <img src="logo_bw.png" alt="OAKAS" class="logo">
   <h1>Welcome to OAKAS</h1>
-  <p class="subtitle">Check your WhatsApp 🌳</p>
+  <p class="subtitle">Check your WhatsApp</p>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-text"><strong>Open WhatsApp</strong> — you'll have a message from your new AI assistant.</span>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-text"><strong>Tell it about your business</strong> — what you do, your services, your rates.</span>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-text"><strong>Start using it</strong> — send invoices, schedule jobs, track expenses. Just text like you're talking to a real assistant.</span>
+    </div>
+  </div>
 </div>
 </body>
 </html>
