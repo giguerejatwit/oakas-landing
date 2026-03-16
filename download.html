@@ -35,6 +35,8 @@ h1 { font-size: 42px; font-weight: 800; letter-spacing: -2px; margin-bottom: 12p
 .step-text h4 { font-size: 16px; margin-bottom: 4px; }
 .step-text p { color: var(--text-dim); font-size: 14px; line-height: 1.5; }
 .back-link { margin-top: 40px; color: var(--text-dim); font-size: 14px; text-decoration: none; }
+.download-btn { display: inline-block; background: var(--text); color: var(--bg); padding: 14px 32px; border-radius: 100px; font-size: 16px; font-weight: 700; text-decoration: none; transition: opacity 0.2s; }
+.download-btn:hover { opacity: 0.8; }
 .back-link:hover { color: var(--text); }
 </style>
 </head>
@@ -45,20 +47,18 @@ h1 { font-size: 42px; font-weight: 800; letter-spacing: -2px; margin-bottom: 12p
 <p class="sub">One command. Everything you need — AI model, assistant, WhatsApp connection — installed on your machine in minutes.</p>
 
 <div class="install-box">
-  <h3>Mac / Linux</h3>
-  <p>Open Terminal and paste this command:</p>
-  <div class="cmd-box" onclick="copyCmd()">
-    <code>curl -fsSL https://oakas.ai/install.sh | bash</code>
-    <button class="copy-btn" id="copyBtn">Copy</button>
-  </div>
+  <h3>Mac</h3>
+  <p>Download and double-click to install. That's it.</p>
+  <a href="install.command" download class="download-btn">Download OAKAS Installer</a>
+  <p style="color:var(--text-dim);font-size:12px;margin-top:12px;">If macOS blocks it: right-click → Open. Or use Terminal: <code style="font-size:11px;">curl -fsSL https://oakas.ai/install.sh | bash</code></p>
 </div>
 
 <div class="steps">
   <div class="step">
     <div class="step-num">1</div>
     <div class="step-text">
-      <h4>Run the command above</h4>
-      <p>It installs Ollama, Node.js, OpenClaw, and pulls the AI model. Takes 3-5 minutes depending on your internet.</p>
+      <h4>Double-click the downloaded file</h4>
+      <p>Terminal opens automatically and installs everything — AI model, assistant, all dependencies. Takes 3-5 minutes.</p>
     </div>
   </div>
   <div class="step">
