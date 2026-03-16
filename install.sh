@@ -71,12 +71,12 @@ fi
 
 # Step 4: Pull local model
 echo -e "${CYAN}[4/4]${RESET} Pulling AI model (this may take a few minutes)..."
-ollama pull llama3.1:8b
+ollama pull nemotron-mini
 echo "  ✓ Model ready"
 
 # Generate default config
 cat > "$OAKAS_DIR/config.yaml" << 'EOF'
-model: ollama/llama3.1:8b
+model: ollama/nemotron-mini
 channels:
   whatsapp:
     enabled: true
