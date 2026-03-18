@@ -483,9 +483,10 @@ nav {
 .trade-chat-header .phone-name { color: #e9edef; }
 .trade-chat-header .phone-status { color: #00a884; font-size: 12px; }
 .trade-chat-body {
-  padding: 16px 12px; min-height: 360px;
+  padding: 16px 12px; height: 380px; max-height: 380px;
   display: flex; flex-direction: column; gap: 6px;
   font-size: 13.5px; line-height: 1.45;
+  overflow-y: auto;
   background-color: #0b141a;
   background-image: url("wa_bg.jpg");
   background-size: cover;
@@ -815,27 +816,21 @@ function toggleTheme(){
   </div>
 </section>
 
-<!-- HOW IT ACTUALLY WORKS (TRADE SELECTOR) -->
-<section class="usecases" id="how-it-works">
+<!-- HOW IT ACTUALLY WORKS (TOOLS DEMO) -->
+<section class="usecases reveal" id="how-it-works">
   <div class="section-label">How It Actually Works</div>
   <h2 class="section-title">You text. It handles everything.</h2>
   <p class="section-sub">No apps. No logins. No learning curve. Just talk to it like you'd talk to a real assistant.</p>
-  <p class="section-sub" style="margin-bottom:40px;font-size:15px;">Click a trade to see OAKAS in action.</p>
+  <p class="section-sub" style="margin-bottom:40px;font-size:15px;">Built for plumbers, electricians, contractors, and 50+ other trades.</p>
 
   <div class="trade-selector">
     <div class="trade-tabs" id="tradeTabs">
-      <button class="trade-tab active" data-trade="plumber">Plumbers</button>
-      <button class="trade-tab" data-trade="electrician">Electricians</button>
-      <button class="trade-tab" data-trade="contractor">Contractors</button>
-      <button class="trade-tab" data-trade="realtor">Real Estate Agents</button>
-      <button class="trade-tab" data-trade="landscaper">Landscapers</button>
-      <button class="trade-tab" data-trade="painter">Painters</button>
-      <button class="trade-tab" data-trade="detailer">Auto Detailers</button>
-      <button class="trade-tab" data-trade="cleaner">Cleaning Services</button>
-      <button class="trade-tab" data-trade="trainer">Personal Trainers</button>
-      <button class="trade-tab" data-trade="pest">Pest Control</button>
-      <button class="trade-tab" data-trade="roofer">Roofers</button>
-      <button class="trade-tab" data-trade="pressure">Pressure Washers</button>
+      <button class="trade-tab active" data-trade="leads">💬 Lead Capture</button>
+      <button class="trade-tab" data-trade="invoicing">📄 Invoicing</button>
+      <button class="trade-tab" data-trade="scheduling">📅 Scheduling</button>
+      <button class="trade-tab" data-trade="followups">🔔 Follow-ups</button>
+      <button class="trade-tab" data-trade="email">📧 Email & Messaging</button>
+      <button class="trade-tab" data-trade="insights">📊 Insights</button>
     </div>
     <div class="trade-demo">
       <div class="trade-demo-chat" id="tradeChat">
@@ -848,13 +843,13 @@ function toggleTheme(){
         <div class="trade-chat-body" id="tradeChatBody"></div>
       </div>
       <div class="trade-demo-info" id="tradeInfo">
-        <h3 id="tradeTitle">Plumbers</h3>
-        <p id="tradeDesc">Lead capture, dispatch, invoicing — handled by text.</p>
+        <h3 id="tradeTitle">Lead Capture</h3>
+        <p id="tradeDesc">Never miss a lead again — even at 2 AM.</p>
         <ul id="tradeFeatures">
-          <li>Instant lead response when a customer texts</li>
-          <li>Auto-schedule estimates based on your availability</li>
-          <li>Generate and send invoices from the job site</li>
-          <li>Follow up on unpaid invoices automatically</li>
+          <li>Instant auto-response to new inquiries</li>
+          <li>Captures name, address, job details</li>
+          <li>Books the next step on your calendar</li>
+          <li>Works 24/7 — nights, weekends, holidays</li>
         </ul>
       </div>
     </div>
@@ -927,43 +922,43 @@ function toggleTheme(){
 <!-- TOOLS / FEATURES -->
 <section class="features reveal" id="features">
   <div class="section-label">Your Toolbox</div>
-  <h2 class="section-title">13 tools. One text thread.</h2>
+  <h2 class="section-title">38 tools. One text thread.</h2>
   <p class="section-sub">Everything you need to run your business — no apps, no dashboards, no learning curve.</p>
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-icon">⚡</div>
-      <h3>Lead Capture & Auto-Response</h3>
-      <p>New customer texts you? OAKAS responds instantly — even at 2 AM. Captures their info and books the next step.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📄</div>
-      <h3>Invoices</h3>
-      <p>Generate professional branded PDF invoices by text. Itemized lines, tax calculations, sent straight to your customer's phone.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📝</div>
-      <h3>Estimates</h3>
-      <p>Build and send detailed estimates from the job site. Valid-for dates, line items, and your branding — all via text.</p>
-    </div>
-    <div class="feature-card">
       <div class="feature-icon">📇</div>
-      <h3>CRM & Contacts</h3>
-      <p>Every customer, every lead — organized automatically. Search, tag, and track who you've worked with and who's next.</p>
+      <h3>CRM & Pipeline</h3>
+      <p>7 tools — add contacts, track leads through stages, log activity, manage follow-ups. Your entire pipeline in one text thread.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔧</div>
       <h3>Job Management</h3>
-      <p>Create jobs, track status, and update progress by text. Know what's scheduled, in progress, and completed at a glance.</p>
+      <p>Create jobs, update status, track what's in progress. Know exactly where every project stands without opening an app.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>Invoicing & Estimates</h3>
+      <p>Generate branded PDF invoices and detailed estimates by text. Itemized lines, tax calculations, payment links — sent instantly.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📅</div>
       <h3>Scheduling & Calendar</h3>
-      <p>Book appointments, manage your availability, and send reminders — all without touching a calendar app.</p>
+      <p>Book, reschedule, and cancel appointments. Sync with your calendar. Automatic reminders so nobody forgets.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">💰</div>
       <h3>Expense Tracking</h3>
-      <p>Log expenses on the go. Get weekly or monthly summaries by category so you know where your money's going.</p>
+      <p>Log expenses on the go. Get summaries by category, week, or month. Know exactly where your money's going.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📧</div>
+      <h3>Email & Messaging</h3>
+      <p>5 tools — send emails, read your inbox, search conversations, text customers via iMessage. All without leaving the chat.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Google Workspace</h3>
+      <p>Create and read spreadsheets, docs, and Excel files. Append data to sheets. Your back office, managed by text.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📣</div>
@@ -973,22 +968,22 @@ function toggleTheme(){
     <div class="feature-card">
       <div class="feature-icon">🔔</div>
       <h3>Automatic Follow-Ups</h3>
-      <p>Unpaid invoice? Missed appointment? OAKAS follows up so you don't have to. No more chasing people down.</p>
+      <p>Unpaid invoice? Cold lead? OAKAS follows up on your behalf — politely, persistently, and on schedule.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">💬</div>
-      <h3>Customer Communication</h3>
-      <p>Arrival notifications, appointment confirmations, thank-you messages — all sent automatically on your behalf.</p>
+      <div class="feature-icon">🔍</div>
+      <h3>Web Search</h3>
+      <p>Need a price, a supplier, or a code requirement? Ask OAKAS — it searches the web and gives you the answer.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <h3>Memory & Learning</h3>
+      <p>OAKAS remembers your rates, your customers, your preferences. The more you use it, the less you have to explain.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📊</div>
       <h3>Business Insights</h3>
-      <p>Ask "how much did I make this month?" and get an answer. Revenue, expenses, job counts — by text.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🤖</div>
-      <h3>AI That Learns Your Business</h3>
-      <p>The more you use it, the smarter it gets. Your rates, your services, your style — OAKAS adapts to how you work.</p>
+      <p>Ask "how did March go?" and get revenue, job counts, lead conversion, and trends — instantly. No spreadsheets needed.</p>
     </div>
   </div>
 </section>
@@ -1292,128 +1287,67 @@ function handleSubmit(e) {
 
 // Trade demo interactive section
 const tradeData = {
-  plumber: {
-    title: 'Plumbers', desc: 'Lead capture, dispatch, invoicing — handled by text.',
-    features: ['Instant lead response when a customer texts','Auto-schedule estimates based on your availability','Generate and send invoices from the job site','Follow up on unpaid invoices automatically'],
+  leads: {
+    title: 'Lead Capture', desc: 'Never miss a lead again — even at 2 AM.',
+    features: ['Instant auto-response to new inquiries','Captures name, address, job details','Books the next step on your calendar','Works 24/7 — nights, weekends, holidays'],
     chat: [
       {t:'ai',m:'New lead: Sarah Mitchell needs a water heater replaced at 142 Oak St. Want me to respond?'},
       {t:'user',m:'Yeah book her for Thursday morning'},
-      {t:'ai',m:'Done. Sent Sarah a confirmation for Thursday 9 AM. I also pulled up the 50-gal Rheem from your last 3 installs — want me to order one from Ferguson?'},
-      {t:'user',m:'Do it. And send her a quote for $2,800'},
-      {t:'ai',m:'Quote sent. Ferguson order placed — pickup Wednesday. I\'ll remind you Thursday at 8 AM.'}
+      {t:'ai',m:'Done. Sent Sarah a confirmation for Thursday 9 AM with your business info and address. She replied "Perfect, see you then." ✓'},
+      {t:'ai',m:'Also — 2 more leads came in overnight. Dave needs an AC quote, Maria asked about a kitchen faucet. Want me to book them too?'}
     ]
   },
-  electrician: {
-    title: 'Electricians', desc: 'Estimates, scheduling, follow-ups — all from your phone.',
-    features: ['Auto-respond to new service requests','Build and send estimates by text','Track permits and inspection dates','Chase outstanding payments automatically'],
+  invoicing: {
+    title: 'Invoicing', desc: 'Generate and send professional invoices by text.',
+    features: ['Branded PDF invoices with your logo','Itemized lines, tax, and totals','Payment links sent to your customer','Auto follow-up on unpaid invoices'],
     chat: [
-      {t:'ai',m:'Mike Torres just texted asking about a panel upgrade. 200-amp, older home. Want me to send the standard estimate?'},
-      {t:'user',m:'Send the 200 amp package, $4,200'},
-      {t:'ai',m:'Estimate sent. He replied — "Looks good, when can you come?" Next opening is Tuesday 10 AM.'},
-      {t:'user',m:'Book it'},
-      {t:'ai',m:'Booked. I\'ll pull the permit application and send Mike a confirmation with the deposit link.'}
+      {t:'user',m:'Send Lynda the invoice for the kitchen remodel'},
+      {t:'ai',m:'Got it. 38 labor hours + $4,200 materials. Total: $11,640. Generating PDF with your branding...'},
+      {t:'ai',m:'Invoice #1047 sent to lynda.marks@gmail.com with a payment link. Want me to follow up if unpaid in 7 days?'},
+      {t:'user',m:'Yeah do that'},
+      {t:'ai',m:'Reminder set for March 25th. I\'ll text you if she pays before then. ✓'}
     ]
   },
-  contractor: {
-    title: 'Contractors', desc: 'Supply ordering, crew coordination, bids — one text thread.',
-    features: ['Coordinate subs and crew schedules','Track material orders and deliveries','Generate change orders on the fly','Keep clients updated automatically'],
+  scheduling: {
+    title: 'Scheduling', desc: 'Your calendar, managed by text.',
+    features: ['Book appointments by text','See your full week at a glance','Automatic customer reminders','Reschedule and cancel without the back-and-forth'],
     chat: [
-      {t:'user',m:'Need 40 sheets of 5/8 drywall and 10 boxes of mud at Elm St by Friday'},
-      {t:'ai',m:'ABC Supply has it — $1,847 total. Want me to place the order for Friday AM delivery?'},
-      {t:'user',m:'Yeah and tell Carlos his crew needs to be there at 7'},
-      {t:'ai',m:'Order placed. Texted Carlos — crew confirmed Friday 7 AM. Client updated on timeline.'}
+      {t:'user',m:'What\'s my week look like?'},
+      {t:'ai',m:'Mon — 8am Permit inspection (Elm St)\nTue — 9am Estimate: Rivera kitchen\nTue — 2pm Supply pickup\nWed — Full day: Johnson bathroom\nThu — 10am Bayshore roof estimate\nFri — Open'},
+      {t:'user',m:'Move the Rivera estimate to Wednesday and fill Friday with that new lead'},
+      {t:'ai',m:'Done. Rivera moved to Wed 9 AM (sent her an update). Friday 9 AM booked with Dave for the AC quote. Both confirmed. ✓'}
     ]
   },
-  handyman: {
-    title: 'Handymen', desc: 'Booking, quotes, customer follow-up — on autopilot.',
-    features: ['Respond to leads within seconds','Send quick quotes for common jobs','Manage your week\'s schedule by text','Auto follow-up after every job'],
+  followups: {
+    title: 'Follow-ups', desc: 'Stop chasing people. Let OAKAS do it.',
+    features: ['Auto-remind on unpaid invoices','Follow up with cold leads','Post-job review requests','Seasonal re-engagement campaigns'],
     chat: [
-      {t:'ai',m:'New request from Dave: leaky faucet + ceiling fan install at 88 Pine Rd. Flexible this week.'},
-      {t:'user',m:'Quote him $175 faucet, $225 fan. Wednesday works'},
-      {t:'ai',m:'Sent. Dave accepted — Wednesday 1 PM confirmed. I\'ll send a reminder tomorrow and a review request after.'}
+      {t:'ai',m:'3 invoices are overdue:\n• Tom Bradley — $2,400 (12 days)\n• Greenfield HOA — $8,100 (7 days)\n• Lisa Park — $650 (5 days)\nWant me to send reminders?'},
+      {t:'user',m:'Send them all. Be polite but firm'},
+      {t:'ai',m:'Sent. Friendly reminder with payment links to all three. I\'ll escalate to a second reminder in 5 days if still unpaid.'},
+      {t:'ai',m:'Update: Lisa just paid $650. Two remaining. ✓'}
     ]
   },
-  landscaper: {
-    title: 'Landscapers', desc: 'Seasonal quotes, recurring schedules — managed by text.',
-    features: ['Send seasonal reminders automatically','Manage recurring mow schedules','Quote new jobs from customer photos','Track weekly route and client list'],
+  email: {
+    title: 'Email & Messaging', desc: 'Read, send, and search — without opening an app.',
+    features: ['Send emails and texts on your behalf','Read and summarize your inbox','Search past conversations instantly','iMessage and email from one thread'],
     chat: [
-      {t:'ai',m:'Spring cleanup season — 23 recurring clients haven\'t booked yet. Want me to send the annual cleanup offer?'},
-      {t:'user',m:'Send it. $350 for cleanup + first mow'},
-      {t:'ai',m:'Sent to all 23. Already got 4 replies — Linda, Tom, the Garcias, and Pete all want to book. Slotted them into next week.'}
+      {t:'user',m:'Any important emails today?'},
+      {t:'ai',m:'3 worth reading:\n1. Tom Bradley replied to your estimate — wants to move forward\n2. Ferguson Supply: your order ships tomorrow\n3. City permits office: inspection approved for Elm St'},
+      {t:'user',m:'Reply to Tom. Tell him we can start Monday and send the contract'},
+      {t:'ai',m:'Email sent to Tom with your standard contract PDF and a Monday start date. Want me to also text him a heads-up?'},
+      {t:'user',m:'Yeah text him too'},
+      {t:'ai',m:'iMessage sent: "Hey Tom, just emailed over the contract. We\'re good for Monday — looking forward to it." ✓'}
     ]
   },
-  painter: {
-    title: 'Painters', desc: 'Estimates, material tracking, booking — from the ladder.',
-    features: ['Calculate paint quantities from dimensions','Send detailed estimates by text','Track material costs per job','Schedule follow-up touch-ups'],
+  insights: {
+    title: 'Business Insights', desc: 'Ask a question, get an answer. No spreadsheets.',
+    features: ['Revenue and expense summaries on demand','Job counts and completion rates','Customer acquisition trends','Compare months or quarters instantly'],
     chat: [
-      {t:'user',m:'Just measured Henderson job. 4 rooms, 1,800 sqft. Benjamin Moore Revere Pewter.'},
-      {t:'ai',m:'~14 gallons at $72/gal — $1,008 materials. Labor at $3.50/sqft — total estimate $7,308. Send it?'},
-      {t:'user',m:'Send it'},
-      {t:'ai',m:'Estimate sent. I\'ll follow up in 48 hours if we don\'t hear back.'}
-    ]
-  },
-  detailer: {
-    title: 'Auto Detailers', desc: 'Mobile booking, reminders, upsells — while you work.',
-    features: ['Book from Instagram DMs','Send pre-appointment reminders','Upsell ceramic coating and add-ons','Request reviews after every detail'],
-    chat: [
-      {t:'ai',m:'Jason from Instagram wants a full detail on his Model Y this weekend. Asked about ceramic too.'},
-      {t:'user',m:'Book Saturday 10am. $250 detail + $800 ceramic'},
-      {t:'ai',m:'Booked — $1,050 total. Sent prep instructions and a $200 deposit link. Jason confirmed.'}
-    ]
-  },
-  cleaner: {
-    title: 'Cleaning Services', desc: 'Recurring schedules, client comms — completely automated.',
-    features: ['Manage weekly/biweekly clients','Handle reschedules and cancellations','Send arrival notifications','Invoice on autopilot'],
-    chat: [
-      {t:'user',m:'Mrs. Patterson wants to switch from biweekly to weekly starting next month'},
-      {t:'ai',m:'Updated — every Tuesday 9 AM. New monthly: $600 (was $300). Sent her the updated schedule and adjusted auto-invoice.'}
-    ]
-  },
-  trainer: {
-    title: 'Personal Trainers', desc: 'Session booking, payment tracking — hands-free.',
-    features: ['Clients book sessions by text','Auto-charge for no-shows','Send workout reminders','Track package sessions remaining'],
-    chat: [
-      {t:'ai',m:'Alex wants to book 3x/week starting Monday. 4 sessions left on his 10-pack.'},
-      {t:'user',m:'Book Mon Wed Fri 6am. Sell him another 10 pack when he\'s down to 1'},
-      {t:'ai',m:'Locked in. I\'ll auto-send the renewal offer at 1 session remaining. Alex confirmed for Monday.'}
-    ]
-  },
-  pest: {
-    title: 'Pest Control', desc: 'Seasonal outreach, scheduling — on repeat.',
-    features: ['Trigger seasonal campaigns automatically','Route new leads to your calendar','Send treatment reminders','Follow up for quarterly service'],
-    chat: [
-      {t:'ai',m:'Ant season — 47 past clients haven\'t booked spring treatment. Send the quarterly offer?'},
-      {t:'user',m:'Send it. $149 interior + exterior'},
-      {t:'ai',m:'Sent. 12 bookings already — spread across next 2 weeks. Tuesday and Thursday are full.'}
-    ]
-  },
-  roofer: {
-    title: 'Roofers', desc: 'Storm leads, estimates, materials — managed fast.',
-    features: ['Capture storm damage leads instantly','Send inspection scheduling links','Generate estimates with materials','Coordinate with insurance adjusters'],
-    chat: [
-      {t:'ai',m:'Storm warning tonight. 200+ homes in your lead list. Send the free inspection offer tomorrow AM?'},
-      {t:'user',m:'Send it at 8am'},
-      {t:'ai',m:'Scheduled for 8 AM. Last campaign: 34 inspections, 11 jobs. I\'ll auto-book anyone who replies.'}
-    ]
-  },
-  realtor: {
-    title: 'Real Estate Agents', desc: 'Lead follow-up, showings, client nurture — on autopilot.',
-    features: ['Respond to new leads instantly — even at 2 AM','Schedule showings and open houses by text','Auto-nurture cold leads with market updates','Track closings, deadlines, and follow-ups'],
-    chat: [
-      {t:'ai',m:'New Zillow lead: Jessica & Mark, pre-approved $450K, looking in Riverview. Want me to respond?'},
-      {t:'user',m:'Yeah send them the 3 new listings on Tranquility Lake'},
-      {t:'ai',m:'Sent with photos and details. Jessica replied — loves the 3-bed on Oak Circle. Wants to see it Saturday.'},
-      {t:'user',m:'Book it for 11am'},
-      {t:'ai',m:'Showing booked Saturday 11 AM. Sent confirmation to Jessica and notified the listing agent. I\'ll remind you Friday night.'}
-    ]
-  },
-  pressure: {
-    title: 'Pressure Washers', desc: 'Lead response, quote generation — instant.',
-    features: ['Quote by sqft instantly','Respond to leads in under 60 seconds','Send before/after photo requests','Upsell sealing and soft wash add-ons'],
-    chat: [
-      {t:'ai',m:'New lead: Karen at 55 Maple wants driveway + patio done. ~1,200 sqft.'},
-      {t:'user',m:'Quote $0.25/sqft, $300. This Saturday'},
-      {t:'ai',m:'Sent — Karen accepted. Saturday 9 AM confirmed. Offered deck soft wash for $175 — she said maybe. I\'ll follow up in 2 weeks.'}
+      {t:'user',m:'How did March go?'},
+      {t:'ai',m:'March summary:\n• Revenue: $34,200 (+18% vs Feb)\n• Jobs completed: 22\n• New leads: 41 (29 converted)\n• Outstanding invoices: $4,800\n• Top service: Bathroom remodels ($14,600)'},
+      {t:'user',m:'How does Q1 compare to last year?'},
+      {t:'ai',m:'Q1 2026: $89,400 revenue, 58 jobs\nQ1 2025: $61,200 revenue, 43 jobs\n\nThat\'s a 46% increase in revenue and 35% more jobs. Your average ticket also went up — $1,541 vs $1,423. 📈'}
     ]
   }
 };
@@ -1434,14 +1368,14 @@ document.getElementById('tradeTabs').addEventListener('click', function(e) {
     setTimeout(function() {
       var div = document.createElement('div');
       div.className = 'msg ' + (msg.t === 'user' ? 'user' : 'ai');
-      div.textContent = msg.m;
+      div.innerHTML = msg.m.replace(/\n/g, '<br>');
       body.appendChild(div);
       body.scrollTop = body.scrollHeight;
     }, i * 700);
   });
 });
 
-document.querySelector('.trade-tab[data-trade="plumber"]').click();
+document.querySelector('.trade-tab[data-trade="leads"]').click();
 
 // Scroll reveal
 const revealObserver = new IntersectionObserver((entries) => {
