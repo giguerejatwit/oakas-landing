@@ -569,7 +569,13 @@ footer a:hover { color: var(--text); }
   .phone-frame { flex: 0 0 auto; width: 90%; max-width: 340px; align-self: center; }
   .chat-overlay { flex: none; width: 100%; max-width: 380px; }
   .hero { flex-direction: column; padding: 60px 20px; gap: 40px; }
-  .features-grid, .reviews-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .feature-card { padding: 20px 16px; }
+  .feature-card h3 { font-size: 15px; }
+  .feature-card p { font-size: 13px; }
+  .feature-icon { margin-bottom: 12px; }
+  .feature-icon svg { width: 24px; height: 24px; }
+  .reviews-grid { grid-template-columns: 1fr; }
   .kill-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
   .trade-demo { flex-direction: column; align-items: center; }
