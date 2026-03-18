@@ -86,34 +86,18 @@ nav {
 }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 24px var(--accent-glow); }
 
-/* --- VIDEO HERO --- */
+/* --- SPLIT HERO --- */
 .video-hero {
-  position: relative;
-  min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-.video-hero video {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover; z-index: 0;
-}
-.video-overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(0,0,0,0.75) 0%,
-    rgba(0,0,0,0.5) 40%,
-    rgba(0,0,0,0.65) 100%
-  );
-  z-index: 1;
+  min-height: 100vh;
+  background: var(--bg);
 }
 .video-hero-content {
-  position: relative; z-index: 2;
   display: flex; align-items: center; gap: 60px;
-  max-width: 1280px; width: 100%;
+  max-width: 1400px; width: 100%;
   padding: 120px 40px 80px;
 }
-.video-hero-text { flex: 1; }
+.video-hero-text { flex: 1; min-width: 0; }
 .video-hero-text .hero-badge { margin-bottom: 20px; }
 .video-hero-text .hero-title { font-size: 60px; letter-spacing: -3px; }
 .video-hero-text .hero-sub { max-width: 520px; }
@@ -125,36 +109,37 @@ nav {
 }
 .video-hero-text .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
 
-/* FLOATING CHAT OVERLAY */
-.chat-overlay {
-  flex: 0 0 380px;
-  background: var(--surface);
-  border-radius: 28px;
+/* PHONE FRAME VIDEO */
+.phone-frame {
+  flex: 0 0 420px;
+  background: #000;
+  border-radius: 44px;
+  padding: 14px;
+  max-height: 85vh;
   overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.3), 0 0 60px var(--accent-glow);
-  border: 1px solid var(--border);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.03);
+  border: 2.5px solid #222;
+  position: relative;
 }
-.chat-overlay .phone-header {
-  padding: 16px 20px;
-  background: var(--surface2);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 12px;
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 28px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 2;
+  border: 1px solid #1a1a1a;
 }
-.chat-overlay .phone-name { color: var(--text); }
-.chat-overlay .phone-body {
-  padding: 20px 16px;
-  min-height: 380px;
-  display: flex; flex-direction: column; gap: 8px;
-  font-size: 14.5px; line-height: 1.5;
-  overflow: hidden;
-  background: #ffffff;
+.phone-frame video {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 32px;
+  display: block;
 }
-.chat-overlay .msg.user { background: #3b82f6; color: #fff; }
-.chat-overlay .msg.ai { background: var(--surface2); color: var(--text); }
-.chat-overlay .msg.ai .msg-time { color: var(--text-dim); }
-.chat-overlay .msg.status { color: var(--text-dim); }
-.chat-overlay .typing-dots { background: var(--surface2); }
-.chat-overlay .typing-dots span { background: var(--text-dim); }
 
 /* --- COMPARE SECTION (moved from hero) --- */
 .hero {
@@ -558,6 +543,7 @@ footer a:hover { color: var(--text); }
 @media (max-width: 900px) {
   .video-hero-content { flex-direction: column; padding: 100px 20px 60px; gap: 30px; }
   .video-hero-text .hero-title { font-size: 36px; }
+  .phone-frame { flex: 0 0 auto; width: 90%; max-width: 340px; align-self: center; }
   .chat-overlay { flex: none; width: 100%; max-width: 380px; }
   .hero { flex-direction: column; padding: 60px 20px; gap: 40px; }
   .features-grid, .reviews-grid { grid-template-columns: 1fr; }
@@ -576,7 +562,6 @@ footer a:hover { color: var(--text); }
 [data-theme="light"] nav { background: rgba(255,255,255,0.7); border-bottom-color: rgba(0,0,0,0.06); }
 [data-theme="light"] .nav-links a { color: var(--text-dim); }
 [data-theme="light"] .nav-links a:hover { color: var(--text); }
-[data-theme="light"] .video-overlay { background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.7) 100%); }
 [data-theme="light"] .chat-overlay { box-shadow: 0 24px 80px rgba(0,0,0,0.1); }
 [data-theme="light"] .app-graveyard { box-shadow: 0 24px 80px rgba(0,0,0,0.08); }
 [data-theme="light"] .feature-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
@@ -651,23 +636,9 @@ function toggleTheme(){
   </div>
 </nav>
 
-<!-- VIDEO HERO -->
+<!-- SPLIT HERO -->
 <section class="video-hero">
-  <video autoplay muted loop playsinline>
-    <source src="hero_video.mp4" type="video/mp4">
-  </video>
-  <div class="video-overlay"></div>
   <div class="video-hero-content">
-    <div class="chat-overlay">
-      <div class="phone-header">
-        <div class="phone-avatar">O</div>
-        <div>
-          <div class="phone-name">OAKAS</div>
-          <div class="phone-status">● Online</div>
-        </div>
-      </div>
-      <div class="phone-body" id="hero-chat"></div>
-    </div>
     <div class="video-hero-text">
       <h1 class="hero-title">Stay rooted in your craft.<br><em>We'll branch into everything else.</em></h1>
       <p class="hero-sub">OAKAS is an AI assistant that handles your leads, invoices, scheduling, and follow-ups — <strong>all from one text conversation.</strong> Built for trades, contractors, small business owners, and entrepreneurs.</p>
@@ -693,6 +664,11 @@ function toggleTheme(){
         </ul>
         <a href="#demo-form" class="hero-cta">Book a Demo →</a>
       </div>
+    </div>
+    <div class="phone-frame">
+      <video autoplay muted loop playsinline>
+        <source src="hero_video.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
