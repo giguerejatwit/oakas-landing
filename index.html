@@ -111,8 +111,9 @@ nav {
 
 /* PHONE FRAME VIDEO */
 .phone-frame {
-  flex: 1;
-  max-width: 640px;
+  flex: 0 0 auto;
+  width: 320px;
+  height: 693px; /* iPhone 15 Pro ratio: 2556/1179 ≈ 2.17:1 */
   background: #000;
   border-radius: 44px;
   padding: 14px;
@@ -136,7 +137,9 @@ nav {
 }
 .phone-frame video {
   width: 100%;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
   border-radius: 32px;
   display: block;
 }
@@ -543,7 +546,7 @@ footer a:hover { color: var(--text); }
 @media (max-width: 900px) {
   .video-hero-content { flex-direction: column; padding: 100px 20px 60px; gap: 30px; }
   .video-hero-text .hero-title { font-size: 36px; }
-  .phone-frame { flex: 0 0 auto; width: 95%; max-width: 480px; align-self: center; }
+  .phone-frame { flex: 0 0 auto; width: 280px; height: 607px; align-self: center; }
   .chat-overlay { flex: none; width: 100%; max-width: 380px; }
   .hero { flex-direction: column; padding: 60px 20px; gap: 40px; }
   .features-grid, .reviews-grid { grid-template-columns: 1fr; }
