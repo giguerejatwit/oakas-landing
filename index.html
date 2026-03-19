@@ -157,7 +157,6 @@ nav {
   padding: 14px 0;
   border-bottom: 1px solid var(--border);
   opacity: 0;
-  animation: fadeSlash 0.5s forwards;
 }
 .app-row:last-child { border-bottom: none; }
 .app-info { display: flex; align-items: center; gap: 12px; }
@@ -697,16 +696,109 @@ footer a:hover { color: var(--text); }
 /* --- SCROLL REVEAL --- */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(50px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+
+/* --- HERO ENTRANCE ANIMATIONS --- */
+.hero-anim {
+  opacity: 0;
+  transform: translateY(36px);
+  animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-anim-0 { animation-delay: 0.1s; }
+.hero-anim-1 { animation-delay: 0.25s; }
+.hero-anim-2 { animation-delay: 0.4s; }
+.hero-anim-3 { animation-delay: 0.55s; }
+.hero-anim-4 { animation-delay: 0.7s; }
+
+@keyframes heroFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Phone frame entrance */
+.phone-frame {
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  animation: phoneIn 1.2s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes phoneIn {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Nav shrink */
+nav { transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s; }
+nav.scrolled { padding: 10px 40px; }
+@media (max-width: 900px) { nav.scrolled { padding: 10px 20px; } }
+
+/* Staggered children for grids */
+.stagger-grid .feature-card,
+.stagger-grid .review-card,
+.stagger-grid .step,
+.stagger-grid .pricing-card,
+.stagger-grid .kill-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
+}
+.stagger-grid.visible .feature-card,
+.stagger-grid.visible .review-card,
+.stagger-grid.visible .step,
+.stagger-grid.visible .pricing-card,
+.stagger-grid.visible .kill-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stagger-grid.visible > :nth-child(1) { transition-delay: 0s; }
+.stagger-grid.visible > :nth-child(2) { transition-delay: 0.08s; }
+.stagger-grid.visible > :nth-child(3) { transition-delay: 0.16s; }
+.stagger-grid.visible > :nth-child(4) { transition-delay: 0.24s; }
+.stagger-grid.visible > :nth-child(5) { transition-delay: 0.32s; }
+.stagger-grid.visible > :nth-child(6) { transition-delay: 0.4s; }
+.stagger-grid.visible > :nth-child(7) { transition-delay: 0.48s; }
+.stagger-grid.visible > :nth-child(8) { transition-delay: 0.56s; }
+.stagger-grid.visible > :nth-child(9) { transition-delay: 0.64s; }
+.stagger-grid.visible > :nth-child(10) { transition-delay: 0.72s; }
+.stagger-grid.visible > :nth-child(11) { transition-delay: 0.8s; }
+.stagger-grid.visible > :nth-child(12) { transition-delay: 0.88s; }
+
+/* Counter number animation */
+.count-up { display: inline-block; }
+
+/* Section glow accents */
+.section-glow { position: relative; }
+.section-glow::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(64,145,108,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* FAQ smooth expand */
+.faq-a { transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* App row stagger (cost comparison) */
+.app-graveyard.visible .app-row {
+  animation: fadeSlash 0.5s forwards;
+}
+.app-graveyard.visible .app-row:nth-child(2) { animation-delay: 0.08s; }
+.app-graveyard.visible .app-row:nth-child(3) { animation-delay: 0.16s; }
+.app-graveyard.visible .app-row:nth-child(4) { animation-delay: 0.24s; }
+.app-graveyard.visible .app-row:nth-child(5) { animation-delay: 0.32s; }
+.app-graveyard.visible .app-row:nth-child(6) { animation-delay: 0.40s; }
+.app-graveyard.visible .app-row:nth-child(7) { animation-delay: 0.48s; }
+
+/* Smooth hover transitions for cards */
+.feature-card, .pricing-card, .review-card, .step, .kill-card {
+  transition: border-color 0.3s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s !important;
+}
 
 /* --- GRADIENT ACCENTS --- */
 .gradient-text {
@@ -804,13 +896,13 @@ function toggleTheme(){
 <section class="video-hero">
   <div class="video-hero-content">
     <div class="video-hero-text">
-      <h1 class="hero-title">Stay <span class="gradient-text">rooted</span> in your craft.<br>We'll <span class="gradient-text">branch</span> into everything else.</h1>
-      <p class="hero-sub">OAKAS is an AI assistant that handles your leads, invoices, scheduling, and follow-ups — <strong>all from one text conversation.</strong> Built for trades, contractors, small business owners, and entrepreneurs.</p>
-      <div class="audience-tabs">
+      <h1 class="hero-title hero-anim hero-anim-0">Stay <span class="gradient-text">rooted</span> in your craft.<br>We'll <span class="gradient-text">branch</span> into everything else.</h1>
+      <p class="hero-sub hero-anim hero-anim-1">OAKAS is an AI assistant that handles your leads, invoices, scheduling, and follow-ups — <strong>all from one text conversation.</strong> Built for trades, contractors, small business owners, and entrepreneurs.</p>
+      <div class="audience-tabs hero-anim hero-anim-2">
         <button class="aud-tab active" onclick="switchTab('solo')">Individual</button>
         <button class="aud-tab" onclick="switchTab('biz')">Small Business</button>
       </div>
-      <div id="tab-solo" class="tab-content active">
+      <div id="tab-solo" class="tab-content active hero-anim hero-anim-3">
         <p style="color:var(--text);margin:0 0 12px;font-size:.95rem;">One-person shop? Sign up and we'll have your AI assistant running in hours. No installs, no setup — we handle everything.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <a href="https://buy.stripe.com/test_bJe7sL79j3iy2BXbPN77O00" class="hero-cta">Start Free Trial</a>
@@ -914,7 +1006,7 @@ function toggleTheme(){
     </div>
     <div class="graveyard-total">
       <div class="graveyard-total-label">You're spending</div>
-      <div class="graveyard-total-price">$651/mo</div>
+      <div class="graveyard-total-price"><span class="count-up" data-target="651" data-prefix="$" data-suffix="/mo">$0/mo</span></div>
     </div>
   </div>
 
@@ -941,11 +1033,11 @@ function toggleTheme(){
 </section>
 
 <!-- TOOLS / FEATURES -->
-<section class="features reveal" id="features">
+<section class="features reveal section-glow" id="features">
   <div class="section-label">Your Toolbox</div>
   <h2 class="section-title">38 tools. One text thread.</h2>
   <p class="section-sub">Everything you need to run your business — no apps, no dashboards, no learning curve.</p>
-  <div class="features-grid">
+  <div class="features-grid stagger-grid">
     <div class="feature-card">
       <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
       <h3>CRM & Pipeline</h3>
@@ -1014,7 +1106,7 @@ function toggleTheme(){
   <div class="section-label">Setup</div>
   <h2 class="section-title">Up and running in hours. Not days.</h2>
   <p class="section-sub">No downloads. No installs. We set everything up for you.</p>
-  <div class="steps">
+  <div class="steps stagger-grid">
     <div class="step">
       <div class="step-num">1</div>
       <h3>Sign Up</h3>
@@ -1036,11 +1128,11 @@ function toggleTheme(){
 <!-- (demo chat moved to video hero) -->
 
 <!-- PRICING -->
-<section class="pricing reveal" id="pricing">
+<section class="pricing reveal section-glow" id="pricing">
   <div class="section-label">Pricing</div>
   <h2 class="section-title">Less than what you're already paying for apps you hate</h2>
   <p class="section-sub">One-time setup + simple monthly. No contracts. No surprises.</p>
-  <div class="pricing-grid">
+  <div class="pricing-grid stagger-grid">
     <div class="pricing-card">
       <div class="pricing-tier">Individual</div>
       <div class="pricing-name">OakasOne</div>
@@ -1090,7 +1182,7 @@ function toggleTheme(){
   <div class="section-label">Early Access</div>
   <h2 class="section-title">We're onboarding our first 100 businesses now.</h2>
   <p class="section-sub">OAKAS is new — and that's an advantage for you. Early clients get white-glove setup, direct access to the founder, and pricing that won't last.</p>
-  <div class="reviews-grid">
+  <div class="reviews-grid stagger-grid">
     <div class="review-card" style="border-color: var(--accent);">
       <div class="review-text" style="font-size:18px;font-weight:600;">Founding Member Pricing</div>
       <p style="color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:8px;">$199/mo — locked in as long as you're subscribed. As we grow, your rate stays the same. Limited to the first 25 businesses.</p>
@@ -1389,7 +1481,12 @@ document.getElementById('tradeTabs').addEventListener('click', function(e) {
 
 document.querySelector('.trade-tab[data-trade="leads"]').click();
 
-// Scroll reveal
+// Nav shrink on scroll
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Scroll reveal (elements + stagger grids)
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1399,7 +1496,33 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.reveal, .stagger-grid, .app-graveyard').forEach(el => revealObserver.observe(el));
+
+// Counter animation for cost numbers
+function animateCounters() {
+  document.querySelectorAll('.count-up').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1200;
+    const start = performance.now();
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = prefix + Math.round(target * eased).toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+// Trigger counters when cost section is visible
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { animateCounters(); counterObserver.unobserve(entry.target); }
+  });
+}, { threshold: 0.3 });
+const graveyardEl = document.querySelector('.app-graveyard');
+if (graveyardEl) counterObserver.observe(graveyardEl);
 </script>
 
 
