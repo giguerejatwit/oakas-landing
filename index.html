@@ -393,7 +393,7 @@ nav {
 
 /* --- PRICING --- */
 .pricing { max-width: 1000px; margin: 0 auto; padding: 80px 40px; }
-.pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; align-items: start; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
 .pricing-card {
   background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
   padding: 36px 32px; position: relative; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
@@ -578,7 +578,7 @@ footer a:hover { color: var(--text); }
   .feature-icon svg { width: 24px; height: 24px; }
   .reviews-grid { grid-template-columns: 1fr; }
   .kill-grid { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr !important; }
   .trade-demo { flex-direction: column; align-items: center; }
   .trade-demo-chat { flex: none; width: 100%; max-width: 380px; }
   .trade-demo-info { text-align: center; padding: 0 20px; }
@@ -903,9 +903,9 @@ function toggleTheme(){
         <button class="aud-tab" onclick="switchTab('biz')">Small Business</button>
       </div>
       <div id="tab-solo" class="tab-content active hero-anim hero-anim-3">
-        <p style="color:var(--text);margin:0 0 12px;font-size:.95rem;">One-person shop? Sign up and we'll have your AI assistant running in hours. No installs, no setup. We handle everything.</p>
+        <p style="color:var(--text);margin:0 0 12px;font-size:.95rem;">One-person shop? Start at just $50/mo with OakasOne for email, calendar, and scheduling — or go all-in with OakasNode at $199/mo for the full business agent.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="https://buy.stripe.com/test_bJe7sL79j3iy2BXbPN77O00" class="hero-cta">Start Free Trial</a>
+          <a href="#pricing" class="hero-cta">See Plans</a>
           <a href="javascript:void(0)" onclick="toggleDemoForm()" class="hero-cta" style="background:transparent;border:2px solid var(--accent);color:var(--text);">Book a Demo →</a>
         </div>
       </div>
@@ -1021,8 +1021,8 @@ function toggleTheme(){
       </div>
     </div>
     <div class="oakas-replace-price">
-      <div class="price" style="color:var(--green);">$199<span style="font-size:16px;color:var(--text-dim);font-weight:500">/mo</span></div>
-      <div class="save" style="color:var(--green);">↓ Save $452/mo ($5,424/yr)</div>
+      <div class="price" style="color:var(--green);">From $50<span style="font-size:16px;color:var(--text-dim);font-weight:500">/mo</span></div>
+      <div class="save" style="color:var(--green);">↓ Save up to $452/mo ($5,424/yr)</div>
     </div>
   </div>
 
@@ -1130,48 +1130,70 @@ function toggleTheme(){
 <!-- PRICING -->
 <section class="pricing reveal section-glow" id="pricing">
   <div class="section-label">Pricing</div>
-  <h2 class="section-title">Less than what you're already paying for apps you hate</h2>
-  <p class="section-sub">One-time setup + simple monthly. No contracts. No surprises.</p>
+  <h2 class="section-title">Plans that grow with your business</h2>
+  <p class="section-sub">Start simple. Scale when you're ready. No contracts. No surprises.</p>
   <div class="pricing-grid stagger-grid">
     <div class="pricing-card">
-      <div class="pricing-tier">Individual</div>
+      <div class="pricing-tier">Personal</div>
       <div class="pricing-name">OakasOne</div>
+      <div class="pricing-price">$50<span>/mo</span></div>
+      <div class="pricing-note">30-day free trial · Cancel anytime</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-desc">Your AI personal assistant. Manages your email, calendar, and follow-ups so you can focus on the work.</div>
+      <ul class="pricing-features">
+        <li>✓ Email management (Gmail & Outlook)</li>
+        <li>✓ Google Workspace (Docs, Sheets, Drive)</li>
+        <li>✓ Calendar sync & scheduling</li>
+        <li>✓ Appointment setting</li>
+        <li>✓ Follow-up sequencing</li>
+        <li>✓ Reminders & task tracking</li>
+        <li>✓ Unlimited messages</li>
+        <li class="dim">✗ Invoicing & estimates</li>
+        <li class="dim">✗ Lead capture & auto-response</li>
+        <li class="dim">✗ Social media management</li>
+      </ul>
+      <a href="#" class="pricing-btn outline" data-tier="one">Start Free Trial →</a>
+    </div>
+    <div class="pricing-card popular">
+      <div class="popular-badge">Most Popular</div>
+      <div class="pricing-tier">Business</div>
+      <div class="pricing-name">OakasNode</div>
       <div class="pricing-price">$199<span>/mo</span></div>
       <div class="pricing-note">30-day free trial · Cancel anytime</div>
       <div class="pricing-divider"></div>
-      <div class="pricing-desc">Your AI assistant, up and running within minutes. Just text it. No installs, no tech skills needed.</div>
-      <ul class="pricing-features">
-        <li>✓ Fully managed. We handle everything</li>
-        <li>✓ WhatsApp connected</li>
-        <li>✓ Lead capture & auto-response</li>
-        <li>✓ Invoicing & estimates</li>
-        <li>✓ Scheduling & calendar</li>
-        <li>✓ Automatic follow-ups</li>
-        <li>✓ Unlimited messages</li>
-        <li>✓ 1 AI agent</li>
-      </ul>
-      <a href="https://buy.stripe.com/test_bJe7sL79j3iy2BXbPN77O00" class="pricing-btn outline">Start Free Trial →</a>
-    </div>
-    <div class="pricing-card popular">
-      <div class="popular-badge">Small Business</div>
-      <div class="pricing-tier">Team</div>
-      <div class="pricing-name">OakasTeam</div>
-      <div class="pricing-price">$500</div>
-      <div class="pricing-note">One-time setup · then $199/mo</div>
-      <div class="pricing-divider"></div>
-      <div class="pricing-desc">Built for your crew. Custom workflows, integrations, and multi-user access tailored to how your business actually runs.</div>
+      <div class="pricing-desc">Your full business agent. Handles leads, invoices, social media, and customer communication — 24/7.</div>
       <ul class="pricing-features">
         <li>✓ Everything in OakasOne</li>
-        <li>✓ Custom workflows for your operations</li>
-        <li>✓ Multi-user access</li>
+        <li>✓ iMessage or WhatsApp integration</li>
+        <li>✓ Invoicing & estimates (branded PDFs)</li>
+        <li>✓ Lead capture & auto-response</li>
+        <li>✓ Meta integrations (posting, DMs, image gen)</li>
+        <li>✓ Automatic SMS & email replies</li>
+        <li>✓ 24/7 AI tech support</li>
+        <li>✓ 1 AI agent</li>
+      </ul>
+      <a href="#" class="pricing-btn solid" data-tier="node">Start Free Trial →</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Team</div>
+      <div class="pricing-name">OakasTeam</div>
+      <div class="pricing-price">$299<span>/mo</span></div>
+      <div class="pricing-note">$500 one-time setup · then $299/mo</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-desc">Built for your crew. Multiple AI agents, integrations, and multi-user access tailored to how your business runs.</div>
+      <ul class="pricing-features">
+        <li>✓ Everything in OakasNode</li>
+        <li>✓ 1:1 onboarding call with custom setup</li>
+        <li>✓ Microsoft 365 & Adobe Creative Cloud</li>
+        <li>✓ Multi-agent infrastructure (admin, billing, lead gen)</li>
+        <li>✓ Multi-user access — 3 seats included</li>
         <li>✓ CRM & accounting integrations</li>
-        <li>✓ Dedicated onboarding call</li>
         <li>✓ 14-day hands-on tuning</li>
-        <li>✓ Multiple AI agents for different roles</li>
-        <li>✓ Priority support</li>
+        <li>✓ Priority support (phone & email)</li>
         <li>✓ Same-day go-live</li>
       </ul>
-      <a href="https://buy.stripe.com/test_5kQ9AT1OZ4mCekF3jh77O01" class="pricing-btn solid">Get Started →</a>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">Additional seats: $50/mo each</p>
+      <a href="#" class="pricing-btn outline" data-tier="team">Get Started →</a>
     </div>
   </div>
   <div class="guarantee"><strong>30-day money-back guarantee.</strong> If OAKAS doesn't save you time and money, we refund everything, including the setup fee.</div>
@@ -1185,7 +1207,7 @@ function toggleTheme(){
   <div class="reviews-grid stagger-grid">
     <div class="review-card" style="border-color: var(--accent);">
       <div class="review-text" style="font-size:18px;font-weight:600;">Founding Member Pricing</div>
-      <p style="color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:8px;">$199/mo, locked in as long as you're subscribed. As we grow, your rate stays the same. Limited to the first 25 businesses.</p>
+      <p style="color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:8px;">Starting at $50/mo, locked in as long as you're subscribed. As we grow, your rate stays the same. Limited to the first 25 businesses.</p>
     </div>
     <div class="review-card" style="border-color: var(--accent);">
       <div class="review-text" style="font-size:18px;font-weight:600;">Direct Founder Access</div>
@@ -1220,12 +1242,12 @@ function toggleTheme(){
   
   <div class="faq-item">
     <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why not just hire a virtual assistant?</div>
-    <div class="faq-a">A decent VA costs $500-1,500/mo and works business hours. OAKAS is $199/mo and works 24/7. Nights, weekends, holidays. It never calls in sick, never forgets a follow-up, and responds to leads in seconds instead of hours. Plus there's nothing to manage. No training, no scheduling, no HR.</div>
+    <div class="faq-a">A decent VA costs $500-1,500/mo and works business hours. OAKAS starts at $50/mo and works 24/7. Nights, weekends, holidays. It never calls in sick, never forgets a follow-up, and responds to leads in seconds instead of hours. Plus there's nothing to manage. No training, no scheduling, no HR.</div>
   </div>
   
   <div class="faq-item">
     <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I actually cancel my other apps?</div>
-    <div class="faq-a">That's the goal. Most solo operators can cancel their CRM, scheduling tool, answering service, and invoicing software within the first month. We'll walk you through exactly which ones to drop during setup. Some clients keep QuickBooks for tax purposes, and that's fine, OAKAS works alongside it too.</div>
+    <div class="faq-a">That's the goal. With OakasNode ($199/mo), most solo operators can cancel their CRM, scheduling tool, answering service, and invoicing software within the first month. Even OakasOne ($50/mo) can replace your calendar app, email client, and scheduling tool. We'll walk you through exactly which ones to drop during setup. Some clients keep QuickBooks for tax purposes, and that's fine — OAKAS integrates with it on our Team plan.</div>
   </div>
   
   <div class="faq-item">
@@ -1234,8 +1256,8 @@ function toggleTheme(){
   </div>
   
   <div class="faq-item">
-    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How is this only $199/mo?</div>
-    <div class="faq-a">We're a small operation and we plan to stay that way. No bloated sales team, no VC money to burn, no enterprise features you'll never use. We built OAKAS for one-person shops because that's who we care about. The price will go up eventually. Founding members keep their rate forever.</div>
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How is this so affordable?</div>
+    <div class="faq-a">We're a small operation and we plan to stay that way. No bloated sales team, no VC money to burn, no enterprise features you'll never use. OakasOne starts at $50/mo because a personal assistant shouldn't cost a fortune. OakasNode at $199/mo replaces $600+ in software. The price will go up eventually. Founding members keep their rate forever.</div>
   </div>
 </section>
 
