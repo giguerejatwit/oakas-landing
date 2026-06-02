@@ -1,6 +1,8 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/download", "destination": "/api/download" }
+    { "source": "/download", "destination": "/api/download" },
+    { "source": "/course", "destination": "/crash-course.html" },
+    { "source": "/course-success", "destination": "/course-success.html" }
   ]
 }
