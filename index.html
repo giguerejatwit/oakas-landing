@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OAKAS | Custom AI Software That Runs Your Busywork</title>
-<meta name="description" content="OAKAS designs and builds custom software: custom CRMs, speed-to-lead engines, back-office automation. Hours back every week. You own all of it." />
+<title>OAKAS | AI Consulting That Ends in Working Software</title>
+<meta name="description" content="OAKAS is an AI consulting firm for small and medium businesses. We find where your team loses hours to manual work, then build the custom AI systems that run it. You own all of it." />
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -114,6 +114,14 @@
   .btn--ghost{ background:transparent; color:currentColor; border-color:currentColor; box-shadow:none; }
   @media (hover:hover){ .btn--ghost:hover{ background:color-mix(in srgb, currentColor 10%, transparent); } }
   .btn--nav{ padding:.6em 1.1em; white-space:nowrap; }
+  .masthead nav{ display:flex; align-items:center; gap:clamp(1.1rem,2.4vw,2.1rem); }
+  .navlink{
+    font-size:var(--s--1); font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+    color:inherit; text-decoration:none; opacity:.82; white-space:nowrap;
+    transition:opacity .2s ease;
+  }
+  @media (hover:hover){ .navlink:hover{ opacity:1; text-decoration:underline; text-underline-offset:.35em; text-decoration-thickness:1px; } }
+  @media (max-width:900px){ .navlink{ display:none; } }
   .btn--nav .l-short{ display:none; }
   @media (max-width:520px){
     .btn--nav .l-long{ display:none; }
@@ -311,12 +319,200 @@
   }
   .ownstrip .mk{ font-family:"Fraunces",serif; font-style:italic; font-size:var(--s-1); color:var(--ink); }
 
+  /* ---------- portfolio ---------- */
+  .folio{ margin-top:clamp(1.6rem,4vh,2.6rem); border-top:1px solid var(--ink); }
+  .folio__group{
+    display:grid; gap:.9rem 3rem; padding:clamp(1.4rem,3.2vw,2.2rem) 0;
+    border-bottom:1px solid var(--rule); grid-template-columns:1fr;
+  }
+  @media (min-width:820px){
+    .folio__group{ grid-template-columns:minmax(0,3fr) minmax(0,9fr); align-items:start; }
+  }
+  .folio__cat{
+    font-family:"Hanken Grotesk", sans-serif; font-size:var(--s--1); letter-spacing:.24em; margin:.2em 0 0;
+    text-transform:uppercase; color:var(--accent); font-weight:600;
+  }
+  .folio__cards{ list-style:none; margin:0; padding:0; display:grid; gap:1.1rem 2.2rem; grid-template-columns:1fr; }
+  @media (min-width:600px){ .folio__cards{ grid-template-columns:1fr 1fr; } }
+  .folio__cards li{ max-width:44ch; }
+  .folio__title{
+    font-family:"Fraunces", serif; font-variation-settings:"opsz" 54; margin:0;
+    font-weight:520; font-size:var(--s-1); line-height:1.1; color:var(--ink); letter-spacing:-.01em; text-wrap:balance;
+  }
+  .folio__desc{ margin:.35rem 0 0; color:var(--ink-dim); font-size:var(--s--1); line-height:1.5; }
+  .live{
+    display:inline-block; vertical-align:middle; margin-left:.55em; white-space:nowrap;
+    font-family:"Hanken Grotesk", sans-serif; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink); background:#EEF1EC; border:1px solid var(--rule); border-radius:2px; padding:.22em .55em; font-weight:600;
+  }
+
+  /* ---------- portfolio theater: rail + one category on stage ---------- */
+  .js .folio{ display:grid; gap:1.4rem 3rem; grid-template-columns:1fr; padding-top:clamp(1.2rem,2.5vh,1.8rem); }
+  @media (min-width:820px){ .js .folio{ grid-template-columns:minmax(0,3fr) minmax(0,9fr); align-items:start; } }
+  .folio__rail{ display:none; }
+  .js .folio__rail{ display:flex; flex-direction:row; flex-wrap:nowrap; gap:.15rem; overflow-x:auto; padding-bottom:.4rem; -webkit-overflow-scrolling:touch; }
+  @media (min-width:820px){ .js .folio__rail{ flex-direction:column; overflow:visible; padding-bottom:0; position:sticky; top:5.5rem; } }
+  .folio__tab{
+    appearance:none; background:none; border:0; border-left:2px solid transparent; cursor:pointer;
+    text-align:left; padding:.5rem .75rem; white-space:nowrap;
+    font-family:"Hanken Grotesk",sans-serif; font-size:var(--s--1); letter-spacing:.18em;
+    text-transform:uppercase; font-weight:600; color:var(--ink-dim);
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .folio__tab:hover{ color:var(--ink); }
+  .folio__tab.active{ color:var(--accent); border-left-color:var(--accent); }
+  .folio__tab.active .prog{ display:block; height:2px; background:var(--accent); margin-top:.4rem; transform-origin:left; animation:tabprog 12s linear; }
+  .folio__tab .prog{ display:none; }
+  @media (max-width:819px){ .folio__tab{ border-left:0; border-bottom:2px solid transparent; } .folio__tab.active{ border-bottom-color:var(--accent); } .folio__tab .prog{ display:none !important; } }
+  @keyframes tabprog{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+  .js .folio__group{ display:none; border-bottom:0; padding:0; }
+  .js .folio__group.active{ display:block; animation:groupIn .45s var(--ease-out); }
+  .js .folio__group .folio__cat{ display:none; }
+  .js .folio__group .folio__cards{ border-top:0; }
+  @keyframes groupIn{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){
+    .js .folio__group.active{ animation:none; }
+    .folio__tab.active .prog{ animation:none; }
+  }
+
+  /* ---------- scripted demos ---------- */
+  .demo{ margin-top:1.5rem; background:#fff; border:1px solid var(--rule); border-radius:3px; overflow:hidden; }
+  @media (min-width:820px){ .folio__group .demo{ grid-column:2; } }
+  .demo__bar{
+    display:flex; align-items:center; gap:.6rem; padding:.55rem .9rem;
+    border-bottom:1px solid var(--rule-soft); background:#FBFCFA;
+  }
+  .demo__dot{ width:.5rem; height:.5rem; border-radius:50%; background:var(--accent); flex:none; }
+  .demo__bar .t{ font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; font-weight:600; color:var(--ink-dim); }
+  .demo__bar .tag{ margin-left:auto; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-dim); border:1px solid var(--rule); border-radius:2px; padding:.18em .5em; white-space:nowrap; }
+  .demo__stage{ padding:1rem; animation:demo-cycle 14s linear infinite; }
+  @keyframes demo-cycle{ 0%{opacity:0} 3%{opacity:1} 91%{opacity:1} 97%{opacity:0} 100%{opacity:0} }
+
+  .pane{ border:1px solid var(--rule-soft); border-radius:3px; padding:.85rem; background:#FBFCFA; min-height:9rem; }
+  .pane h5{ margin:0 0 .75rem; font-family:"Hanken Grotesk",sans-serif; font-weight:600; font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-dim); }
+  .demo--panes .demo__stage{ display:grid; gap:.9rem; grid-template-columns:1fr; }
+  @media (min-width:640px){ .demo--panes .demo__stage{ grid-template-columns:1fr 1fr 1fr; } }
+  .bar{ height:.45rem; background:var(--rule-soft); border-radius:2px; transform-origin:left; margin-top:.5rem; }
+  .mini-btn{ display:inline-block; margin-top:.75rem; font-size:.62rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:var(--accent); border-radius:2px; padding:.45em .8em; }
+  .line-note{ margin:0 0 .55rem; font-size:var(--s--1); color:var(--ink-dim); }
+  .mailrow{ display:grid; gap:.25rem; border:1px solid var(--rule-soft); background:#fff; border-radius:3px; padding:.6rem .7rem; font-size:var(--s--1); }
+  .mailrow strong{ color:var(--ink); }
+  .mailrow span{ color:var(--ink-dim); }
+  .stamp{ display:inline-block; margin-top:.65rem; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+
+  .demo--chat .demo__stage{ display:grid; gap:.55rem; }
+  .msg{ margin:0; padding:.55rem .85rem; border-radius:8px; font-size:var(--s--1); line-height:1.45; max-width:min(85%,30rem); }
+  .msg--you{ justify-self:end; background:var(--accent); color:#fff; border-bottom-right-radius:2px; }
+  .msg--ai{ justify-self:start; background:#EEF1EC; border:1px solid var(--rule-soft); color:var(--ink); border-bottom-left-radius:2px; }
+
+  .demo--docs .demo__stage{ display:grid; gap:.6rem; }
+  .doc{ display:flex; align-items:center; gap:.7rem; flex-wrap:wrap; border:1px solid var(--rule-soft); background:#FBFCFA; border-radius:3px; padding:.55rem .85rem; font-size:var(--s--1); }
+  .doc .thumb{
+    flex:none; width:42px; height:42px; overflow:hidden;
+    background:#fff; border:1px solid var(--rule-soft); border-radius:3px;
+  }
+  .doc .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .doc .name{ font-weight:600; color:var(--ink); }
+  .doc .steps{ margin-left:auto; display:flex; gap:.6rem; font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-dim); }
+  .doc .steps .ok{ color:var(--accent); font-weight:700; font-style:normal; }
+
+  .cite{
+    display:inline-flex; align-items:center; gap:.35rem; margin:.5rem 0 0; width:fit-content;
+    font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; font-weight:600;
+    color:var(--accent); background:#fff; border:1px solid var(--rule); border-radius:2px; padding:.25em .55em;
+  }
+  .msg .cite{ display:table; }
+  /* computer-vision demo: a live camera viewport with detections */
+  .vision{
+    position:relative; overflow:hidden; border-radius:3px;
+    background:
+      repeating-linear-gradient(0deg, rgba(127,233,180,.045) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, rgba(127,233,180,.045) 0 1px, transparent 1px 28px),
+      linear-gradient(180deg, #0A100D, #050807);
+    height:clamp(190px, 26vw, 250px);
+  }
+  .vision::after{ /* the belt */
+    content:""; position:absolute; left:0; right:0; bottom:16%;
+    border-top:1px solid rgba(242,245,241,.22);
+  }
+  .v-hud{
+    position:absolute; top:.6rem; left:.75rem; right:.75rem; z-index:3;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; font-weight:600;
+    color:rgba(242,245,241,.65);
+  }
+  .v-hud .rec{ display:inline-flex; align-items:center; gap:.4rem; }
+  .v-hud .rec i{ width:.45rem; height:.45rem; border-radius:50%; background:#7FE9B4; animation:blink 1.4s infinite; }
+  .v-scan{
+    position:absolute; top:0; bottom:0; width:54px; z-index:1; pointer-events:none;
+    background:linear-gradient(90deg, transparent, rgba(127,233,180,.14), rgba(127,233,180,.32));
+    border-right:1px solid rgba(127,233,180,.5);
+    animation:vscan 3.6s linear infinite;
+  }
+  @keyframes vscan{ from{ left:-60px; } to{ left:100%; } }
+  .v-scene{ position:absolute; inset:0; width:100%; height:100%; }
+  .v-box{
+    position:absolute; bottom:13.5%; width:19%; height:53%; z-index:2;
+    border:1.5px solid #7FE9B4; border-radius:3px;
+    box-shadow:0 0 0 1px rgba(127,233,180,.15), 0 0 18px rgba(127,233,180,.12);
+  }
+  .v-box .v-lbl{
+    position:absolute; left:-1.5px; top:-1.5px; transform:translateY(-100%);
+    white-space:nowrap; padding:.22em .5em;
+    font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; font-weight:600;
+    background:rgba(5,8,7,.85); color:#7FE9B4; border:1px solid rgba(127,233,180,.5);
+    border-radius:2px 2px 0 0;
+  }
+  .v-box.bad{ border-color:#FFB4A2; box-shadow:0 0 0 1px rgba(255,180,162,.18), 0 0 18px rgba(255,180,162,.14); }
+  .v-box.bad .v-lbl{ color:#FFB4A2; border-color:rgba(255,180,162,.55); }
+  .demo--vision .line-note{ padding:.75rem 1rem 0; margin:0; }
+  .demo--vision .demo__stage{ padding:0 0 .9rem; }
+  .demo--vision .vision{ border-radius:0; }
+
+  .dots{ display:inline-flex; gap:.28rem; padding:.3rem .15rem; }
+  .dots i{ width:.32rem; height:.32rem; border-radius:50%; background:var(--ink-dim); animation:blink 1s infinite; }
+  .dots i:nth-child(2){ animation-delay:.15s; } .dots i:nth-child(3){ animation-delay:.3s; }
+  @keyframes blink{ 0%,100%{opacity:.25} 50%{opacity:1} }
+
+  @keyframes p6 {0%,6%{opacity:0;transform:translateY(5px)}10%,100%{opacity:1;transform:none}}
+  @keyframes p12{0%,12%{opacity:0;transform:translateY(5px)}16%,100%{opacity:1;transform:none}}
+  @keyframes p18{0%,18%{opacity:0;transform:translateY(5px)}22%,100%{opacity:1;transform:none}}
+  @keyframes p24{0%,24%{opacity:0;transform:translateY(5px)}28%,100%{opacity:1;transform:none}}
+  @keyframes p30{0%,30%{opacity:0;transform:translateY(5px)}34%,100%{opacity:1;transform:none}}
+  @keyframes p36{0%,36%{opacity:0;transform:translateY(5px)}40%,100%{opacity:1;transform:none}}
+  @keyframes p42{0%,42%{opacity:0;transform:translateY(5px)}46%,100%{opacity:1;transform:none}}
+  @keyframes p48{0%,48%{opacity:0;transform:translateY(5px)}52%,100%{opacity:1;transform:none}}
+  @keyframes p54{0%,54%{opacity:0;transform:translateY(5px)}58%,100%{opacity:1;transform:none}}
+  @keyframes p60{0%,60%{opacity:0;transform:translateY(5px)}64%,100%{opacity:1;transform:none}}
+  @keyframes p66{0%,66%{opacity:0;transform:translateY(5px)}70%,100%{opacity:1;transform:none}}
+  .p6{animation:p6 14s linear infinite}.p12{animation:p12 14s linear infinite}.p18{animation:p18 14s linear infinite}
+  .p24{animation:p24 14s linear infinite}.p30{animation:p30 14s linear infinite}.p36{animation:p36 14s linear infinite}
+  .p42{animation:p42 14s linear infinite}.p48{animation:p48 14s linear infinite}.p54{animation:p54 14s linear infinite}
+  .p60{animation:p60 14s linear infinite}.p66{animation:p66 14s linear infinite}
+  @keyframes g6 {0%,6%{transform:scaleX(0)}12%,100%{transform:scaleX(1)}}
+  @keyframes g12{0%,12%{transform:scaleX(0)}18%,100%{transform:scaleX(1)}}
+  @keyframes g18{0%,18%{transform:scaleX(0)}24%,100%{transform:scaleX(1)}}
+  @keyframes g30{0%,30%{transform:scaleX(0)}36%,100%{transform:scaleX(1)}}
+  @keyframes g36{0%,36%{transform:scaleX(0)}42%,100%{transform:scaleX(1)}}
+  @keyframes g42{0%,42%{transform:scaleX(0)}48%,100%{transform:scaleX(1)}}
+  .g6{animation:g6 14s linear infinite}.g12{animation:g12 14s linear infinite}.g18{animation:g18 14s linear infinite}
+  .g30{animation:g30 14s linear infinite}.g36{animation:g36 14s linear infinite}.g42{animation:g42 14s linear infinite}
+  @keyframes w12{0%,12%{opacity:0}14%,22%{opacity:1}25%,100%{opacity:0}}
+  @keyframes w26{0%,26%{opacity:0}28%,36%{opacity:1}39%,100%{opacity:0}}
+  @keyframes w42{0%,42%{opacity:0}44%,52%{opacity:1}55%,100%{opacity:0}}
+  .w12{animation:w12 14s linear infinite}.w26{animation:w26 14s linear infinite}.w42{animation:w42 14s linear infinite}
+  @media (prefers-reduced-motion: reduce){
+    .demo__stage, .demo__stage *{ animation:none !important; opacity:1 !important; transform:none !important; }
+    .dots{ display:none; }
+  }
+
   /* ---------- founders ---------- */
   .founders{
     display:grid; gap:clamp(1.8rem,4vw,3rem); grid-template-columns:1fr;
     margin-top:clamp(1.8rem,4.5vh,2.8rem);
   }
   @media (min-width:600px){ .founders{ grid-template-columns:1fr 1fr; } }
+  @media (min-width:900px){ .founders{ grid-template-columns:1fr 1fr 1fr; } }
   .founder{ margin:0; max-width:340px; }
   /* square, gently softened corner to match the site's cards — deliberately not round */
   .founder__photo{
@@ -337,7 +533,8 @@
   .founder figcaption{ margin-top:1.15rem; }
   .founder__name{
     font-family:"Fraunces", serif; font-variation-settings:"opsz" 54;
-    font-weight:520; font-size:var(--s-2); color:var(--ink); line-height:1.1;
+    font-weight:520; font-size:clamp(1.25rem, 1rem + 1vw, 1.7rem); color:var(--ink); line-height:1.1;
+    white-space:nowrap;
   }
   .founder__role{
     margin:.35rem 0 0; color:var(--accent); font-size:var(--s--1);
@@ -362,22 +559,52 @@
   @media (min-width:560px){ .form-grid.two{ grid-template-columns:1fr 1fr; } }
   .field{ display:grid; gap:.45rem; }
   .field label{ font-size:var(--s--1); letter-spacing:.18em; text-transform:uppercase; font-weight:600; color:var(--accent); }
-  .field input, .field textarea{
+  .field input, .field textarea, .field select{
     font-family:inherit; font-size:var(--s-0); color:var(--ink);
     background:#EEF1EC; border:1px solid var(--rule); border-radius:2px;
     padding:.8em .9em; width:100%; min-height:44px;
     transition:border-color .25s ease, box-shadow .25s ease, background .25s ease;
   }
+  .field select{
+    appearance:none; -webkit-appearance:none; cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%2355625A' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right .9em center; padding-right:2.4em;
+  }
   .field textarea{ resize:vertical; min-height:120px; line-height:1.5; }
   .field input::placeholder, .field textarea::placeholder{ color:var(--ink-dim); }
-  .field input:focus, .field textarea:focus{
-    outline:none; border-color:var(--accent); background:var(--paper);
+  .field input:focus, .field textarea:focus, .field select:focus{
+    outline:none; border-color:var(--accent); background-color:var(--paper);
     box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
   }
   .form-actions{ display:flex; flex-wrap:wrap; align-items:center; gap:1rem 1.4rem; }
-  .form-actions .btn{ width:100%; }
-  @media (min-width:560px){ .form-actions .btn{ width:auto; } }
+  .form-actions .btn{ width:100%; justify-content:center; }
   .form-card .assure{ font-size:var(--s--1); color:var(--ink-dim); max-width:none; }
+  /* the begin form: wider card, tighter vertical rhythm */
+  @media (min-width:900px){ #begin .grid2{ grid-template-columns:minmax(0,2fr) minmax(0,3fr); } }
+  @media (min-width:900px){ .form-grid.compact{ grid-template-columns:repeat(4,1fr); } }
+  .form-card textarea{ min-height:96px; }
+  .form-sep{
+    display:flex; align-items:baseline; gap:.7rem; margin:1.3rem 0 1rem;
+    border-top:1px solid var(--rule-soft); padding-top:1rem;
+  }
+  .form-sep .lbl{
+    font-size:.64rem; letter-spacing:.22em; text-transform:uppercase;
+    font-weight:600; color:var(--ink-dim);
+  }
+  .form-sep .opt{
+    font-family:"Fraunces",serif; font-style:italic; font-size:.82rem; color:var(--ink-dim); opacity:.8;
+  }
+  .form-grid.compact{ gap:.95rem 1rem; }
+  .form-grid.compact .field{ gap:.35rem; }
+  .form-grid.compact .field label{
+    color:var(--ink-dim); letter-spacing:.12em; font-size:.64rem;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .form-grid.compact .field input, .form-grid.compact .field select{
+    font-size:var(--s--1); padding:0 .8em; height:42px; min-height:42px; line-height:40px;
+  }
+  .form-grid.compact .field select{ background-position:right .7em center; padding-right:2.1em; }
+  .assure--links{ margin-top:.6rem; opacity:.85; }
   .form-success{ display:none; }
   .form-success.show{ display:block; }
   .form-success .tick{
@@ -419,13 +646,17 @@
 <a class="skip" href="#paper">Skip to content</a>
 
 <header class="masthead" id="masthead">
-  <a class="brandlock focusline" href="#top" aria-label="OAKAS home">
+  <a class="brandlock focusline" href="/" aria-label="OAKAS home">
     <img class="mark-light" src="logo_bw.png" width="26" height="26" alt="" />
     <img class="mark-dark" src="logo_dark.png" width="26" height="26" alt="" />
     <span class="word">Oakas</span>
   </a>
   <nav aria-label="Primary">
-    <a class="btn btn--ghost btn--nav focusline" href="#begin"><span class="l-long">Book a Discovery Call</span><span class="l-short">Book a Call</span></a>
+    <a class="navlink focusline" href="/work">The Work</a>
+    <a class="navlink focusline" href="/portfolio">Portfolio</a>
+    <a class="navlink focusline" href="/process">Process</a>
+    <a class="navlink focusline" href="/team">Team</a>
+    <a class="btn btn--ghost btn--nav focusline" href="/book"><span class="l-long">Book a Discovery Call</span><span class="l-short">Book a Call</span></a>
   </nav>
 </header>
 
@@ -442,24 +673,24 @@
       <img src="logo_bw.png" alt="" width="64" height="64" decoding="async" />
       <p class="opening__word">Oakas</p>
     </div>
-    <p class="opening__tag">Custom AI software<br />that runs your busywork.</p>
-    <a class="btn focusline" href="#begin">Book a Discovery Call <span class="arrow" aria-hidden="true">→</span></a>
+    <p class="opening__tag">AI Consulting to keep you<br />rooted in your craft.</p>
+    <a class="btn focusline" href="/book">Book a Discovery Call <span class="arrow" aria-hidden="true">→</span></a>
   </div>
 
   <div class="stage stage-1" aria-hidden="true">
-    <p class="line t1">Some work needs you.</p>
+    <p class="line t1">Get rooted.</p>
   </div>
   <div class="stage stage-2" aria-hidden="true">
-    <p class="line t2">The rest shouldn&rsquo;t.</p>
+    <p class="line t2">Branch out.</p>
   </div>
 
   <div class="wrap intro__inner">
     <div class="lockup" id="lockup">
-      <p class="kicker">OAKAS · Custom AI Software</p>
+      <p class="kicker">OAKAS · AI Consulting</p>
       <h1>Let the busywork <em>run itself.</em></h1>
-      <p class="sub">We design and build custom software for companies drowning in recurring manual work: custom CRMs, speed-to-lead engines, back-office automation. Hours back every week. You own all of it.</p>
+      <p class="sub">We&rsquo;re an AI consulting firm for small and medium businesses. We find where your team loses hours to recurring manual work, then design and build the custom AI systems that take it over. You own all of it.</p>
       <div class="cta">
-        <a class="btn focusline" href="#begin">Book a Discovery Call <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn focusline" href="/book">Book a Discovery Call <span class="arrow" aria-hidden="true">→</span></a>
         <span class="note">A free 30-minute call with the person who builds every system.<br />No cost, no obligation.</span>
       </div>
     </div>
@@ -497,8 +728,9 @@
       <li class="index__item"><span class="index__no">05</span><h3 class="index__title">Company Knowledge Search</h3><p class="index__desc">Ask your own documents a question and get a straight answer with its source. No more digging through drives and old threads.</p></li>
       <li class="index__item"><span class="index__no">06</span><h3 class="index__title">AI Search Visibility</h3><p class="index__desc">When customers ask ChatGPT or Google&rsquo;s AI for a recommendation, your business should be the answer. We structure your site and content so AI search can read you, cite you and send work your way.</p></li>
       <li class="index__item"><span class="index__no">07</span><h3 class="index__title">Operations Automation</h3><p class="index__desc">The recurring workflow that eats every Monday, rebuilt to run on its own, and to tell you the moment something needs you.</p></li>
+      <li class="index__item"><span class="index__no">08</span><h3 class="index__title">Computer Vision</h3><p class="index__desc">The cameras, photos and drawings your business already has, turned into data that works: counts, defect catches, measurements and alerts.</p></li>
     </ol>
-    <p class="foot" style="margin-top:1.4rem; max-width:60ch;">And if it isn&rsquo;t on this list, ask anyway. We work like contractors: websites, integrations, software that plugs into the tools you use or replaces the ones you&rsquo;re renting. <a href="#begin">That&rsquo;s what the discovery call is for.</a></p>
+    <p class="foot" style="margin-top:1.4rem; max-width:60ch;">And if it isn&rsquo;t on this list, ask anyway. We work like contractors: websites, integrations, software that plugs into the tools you use or replaces the ones you&rsquo;re renting. <a href="/book">That&rsquo;s what the discovery call is for.</a></p>
   </div>
 </section>
 
@@ -518,24 +750,259 @@
   </div>
 </section>
 
-<section class="band" id="founders" aria-labelledby="founders-h" style="border-top:1px solid var(--rule);">
+<section class="band" id="portfolio" aria-labelledby="portfolio-h" style="border-top:1px solid var(--rule);">
   <div class="wrap">
-    <p class="kicker">The Founders</p>
-    <h2 class="statement" id="founders-h" style="font-size:var(--s-3); max-width:20ch;">You work with the people who build it.</h2>
+    <p class="kicker">The Portfolio</p>
+    <h2 class="statement" id="portfolio-h" style="font-size:var(--s-3); max-width:22ch;">What a build with us <em>looks like.</em></h2>
+    <p class="lede" style="margin-top:1.2rem; max-width:58ch;">The systems below are the shape of the work — scoped to your business and priced fixed before a line of code is written.</p>
+
+    <div class="folio">
+      <div class="folio__rail" role="tablist" aria-label="Portfolio categories">
+        <button class="folio__tab" type="button">Lead Engine<span class="prog"></span></button>
+        <button class="folio__tab" type="button">Web &amp; Growth<span class="prog"></span></button>
+        <button class="folio__tab" type="button">Back Office<span class="prog"></span></button>
+        <button class="folio__tab" type="button">Knowledge<span class="prog"></span></button>
+        <button class="folio__tab" type="button">Operations<span class="prog"></span></button>
+        <button class="folio__tab" type="button">Retail &amp; E-commerce<span class="prog"></span></button>
+        <button class="folio__tab" type="button">Storefronts<span class="prog"></span></button>
+        <button class="folio__tab" type="button">Computer Vision<span class="prog"></span></button>
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Lead Engine</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Speed-to-lead response</h4><p class="folio__desc">Every inquiry from ads, web forms or email answered in seconds — nights and weekends included — before a competitor picks up the phone.</p></li>
+          <li><h4 class="folio__title">AI phone agent</h4><p class="folio__desc">Answers your line in your business&rsquo;s voice, handles the common questions and books the appointment on your calendar.</p></li>
+          <li><h4 class="folio__title">Website support chat</h4><p class="folio__desc">Instant, accurate answers for visitors on your site, with the conversations that need a human routed to one.</p></li>
+          <li><h4 class="folio__title">Review engine</h4><p class="folio__desc">Every customer review answered promptly and in your tone — and the unhappy ones flagged to you first.</p></li>
+        </ul>
+        <div class="demo demo--panes" aria-hidden="true">
+          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Speed to lead</span></div>
+          <div class="demo__stage">
+            <div class="pane">
+              <h5>Your website · 11:42 pm</h5>
+              <div class="bar g6" style="width:55%"></div>
+              <div class="bar g12" style="width:82%"></div>
+              <div class="bar g18" style="width:68%"></div>
+              <span class="mini-btn p24">Request a quote</span>
+            </div>
+            <div class="pane">
+              <h5>Your Oakas system</h5>
+              <p class="line-note p24">New lead — Jordan E.</p>
+              <span class="dots w26"><i></i><i></i><i></i></span>
+              <div class="bar g30" style="width:85%"></div>
+              <div class="bar g36" style="width:74%"></div>
+              <div class="bar g42" style="width:58%"></div>
+            </div>
+            <div class="pane">
+              <h5>The lead&rsquo;s inbox</h5>
+              <div class="mailrow p54">
+                <strong>Re: Your quote request</strong>
+                <span>Hi Jordan — yes, we can help with that. Two quick questions so we can price it right&hellip;</span>
+              </div>
+              <span class="stamp p60">Answered in seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Web &amp; Growth</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">A site AI can recommend</h4><p class="folio__desc">A fast, clean website structured so ChatGPT and Google&rsquo;s AI can read you, cite you and send customers your way.</p></li>
+        </ul>
+        <div class="demo demo--panes" aria-hidden="true">
+          <div class="demo__bar"><span class="demo__dot"></span><span class="t">AI search visibility</span></div>
+          <div class="demo__stage">
+            <div class="pane">
+              <h5>Someone asks AI</h5>
+              <p class="line-note p6">&ldquo;Who&rsquo;s the best kitchen remodeler near me?&rdquo;</p>
+              <span class="dots w12"><i></i><i></i><i></i></span>
+            </div>
+            <div class="pane">
+              <h5>It reads your site</h5>
+              <p class="line-note p18"><i class="ok">✓</i>&nbsp; Services laid out plainly</p>
+              <p class="line-note p24"><i class="ok">✓</i>&nbsp; Real reviews, real work</p>
+              <p class="line-note p30"><i class="ok">✓</i>&nbsp; Structured so AI can cite it</p>
+            </div>
+            <div class="pane">
+              <h5>You&rsquo;re the answer</h5>
+              <div class="mailrow p42">
+                <strong>Your business</strong>
+                <span>&ldquo;A well-reviewed local remodeler with clear pricing and a strong portfolio&hellip;&rdquo;</span>
+              </div>
+              <span class="stamp p54">Cited and recommended</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Back Office</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Document intake</h4><p class="folio__desc">Invoices, contracts and forms read, sorted, routed and filed the moment they arrive — a person only where judgement is needed.</p></li>
+          <li><h4 class="folio__title">Books that close themselves</h4><p class="folio__desc">Transactions matched and reconciled overnight, so month-end stops being a project.</p></li>
+          <li><h4 class="folio__title">Invoices that send themselves</h4><p class="folio__desc">The job closes, the invoice goes out, and the polite chasing continues until it&rsquo;s paid — without you writing a word.</p></li>
+        </ul>
+        <div class="demo demo--docs" aria-hidden="true">
+          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Document intake</span></div>
+          <div class="demo__stage">
+            <div class="doc p6"><span class="name">invoice_4417.pdf</span><span class="steps"><span class="p12"><i class="ok">✓</i> read</span><span class="p18"><i class="ok">✓</i> routed</span><span class="p24"><i class="ok">✓</i> filed</span></span></div>
+            <div class="doc p30"><span class="name">contract_hale.pdf</span><span class="steps"><span class="p36"><i class="ok">✓</i> read</span><span class="p42"><i class="ok">✓</i> routed</span><span class="p48"><i class="ok">✓</i> filed</span></span></div>
+            <div class="doc p54"><span class="name">w9_martinez.pdf</span><span class="steps"><span class="p60"><i class="ok">✓</i> read</span><span class="p60"><i class="ok">✓</i> routed</span><span class="p66"><i class="ok">✓</i> filed</span></span></div>
+            <p class="line-note p66" style="margin:.2rem 0 0;">Three documents handled. Nobody opened a folder.</p>
+          </div>
+        </div>
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Knowledge</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Ask your own documents</h4><p class="folio__desc">A straight answer from your files, contracts and old threads — with the source attached to every claim.</p></li>
+          <li><h4 class="folio__title">Conversation review</h4><p class="folio__desc">Every customer conversation checked automatically for the misses you&rsquo;d catch yourself if you had the time.</p></li>
+        </ul>
+        <div class="demo demo--chat" aria-hidden="true">
+          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Ask your documents</span></div>
+          <div class="demo__stage">
+            <p class="msg msg--you p6">What did we agree with Hale about late payments?</p>
+            <span class="dots w12"><i></i><i></i><i></i></span>
+            <p class="msg msg--ai p24">Late invoices accrue a 2% monthly charge after a 15-day grace period.<span class="cite p30">contract_hale.pdf · page 4</span></p>
+            <p class="msg msg--you p36">And who signed that version?</p>
+            <span class="dots w42"><i></i><i></i><i></i></span>
+            <p class="msg msg--ai p54">R. Hale, on October 14, 2025.<span class="cite p60">contract_hale.pdf · page 12</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Operations</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">An assistant that runs the office</h4><p class="folio__desc">An AI assistant the owner messages like an employee — email, calendar, files and follow-ups handled from one chat thread.</p></li>
+          <li><h4 class="folio__title">Ask your data</h4><p class="folio__desc">Plain-English questions against your real numbers — sales, jobs, stock — answered instantly, no report request queue.</p></li>
+          <li><h4 class="folio__title">Always-on agents</h4><p class="folio__desc">A fleet of agents working the queue around the clock: assigning, chasing, updating, and telling you when something needs you.</p></li>
+        </ul>
+        <div class="demo demo--chat" aria-hidden="true">
+          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Office assistant</span></div>
+          <div class="demo__stage">
+            <p class="msg msg--you p6">Did the Henderson invoice ever go out?</p>
+            <span class="dots w12"><i></i><i></i><i></i></span>
+            <p class="msg msg--ai p24">Sent Tuesday at 9:04 am. They&rsquo;ve opened it twice but haven&rsquo;t paid — want me to send a friendly nudge?</p>
+            <p class="msg msg--you p36">Yes, do it.</p>
+            <span class="dots w42"><i></i><i></i><i></i></span>
+            <p class="msg msg--ai p54">Done. Follow-up sent, and I&rsquo;ll remind you Friday if it&rsquo;s still unpaid.</p>
+          </div>
+        </div>
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Retail &amp; E-commerce</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Pricing &amp; inventory autopilot</h4><p class="folio__desc">Round-the-clock monitoring of prices and stock across marketplaces, flagging the moves worth making.</p></li>
+          <li><h4 class="folio__title">Vendor sheet to storefront</h4><p class="folio__desc">A supplier&rsquo;s messy spreadsheet turned into clean, ready-to-sell product listings — hundreds at a time.</p></li>
+        </ul>
+        <div class="demo demo--docs" aria-hidden="true">
+          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Marketplace watch</span></div>
+          <div class="demo__stage">
+            <div class="doc p6">
+              <span class="thumb"><img src="product-earbuds.jpg" width="42" height="42" loading="lazy" decoding="async" alt="" /></span>
+              <span class="name">Wireless earbuds · SKU 8841</span><span class="steps"><span class="p12">watching</span><span class="p18">price ↓ 36%</span><span class="p24"><i class="ok">✓</i> buy flagged</span></span>
+            </div>
+            <div class="doc p30">
+              <span class="thumb"><img src="product-mixer.jpg" width="42" height="42" loading="lazy" decoding="async" alt="" /></span>
+              <span class="name">Stand mixer · SKU 2210</span><span class="steps"><span class="p36">watching</span><span class="p42">stock low</span><span class="p48"><i class="ok">✓</i> reorder queued</span></span>
+            </div>
+            <div class="doc p54">
+              <span class="thumb"><img src="product-lamp.jpg" width="42" height="42" loading="lazy" decoding="async" alt="" /></span>
+              <span class="name">Desk lamp · SKU 977</span><span class="steps"><span class="p60">watching</span><span class="p66"><i class="ok">✓</i> no action needed</span></span>
+            </div>
+            <p class="line-note p66" style="margin:.2rem 0 0;">Two moves flagged overnight. Approved over coffee.</p>
+          </div>
+        </div>
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Storefronts</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Storefront assistant</h4><p class="folio__desc">An assistant that knows everything you carry, answers real customer questions honestly, and brings them through the door.</p></li>
+        </ul>
+        <div class="demo demo--chat" aria-hidden="true">
+          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Storefront assistant</span></div>
+          <div class="demo__stage">
+            <p class="msg msg--you p6">Do you have the trail bike in a large?</p>
+            <span class="dots w12"><i></i><i></i><i></i></span>
+            <p class="msg msg--ai p24">Two in stock — a large in matte black and one in green. Want me to hold one for you?</p>
+            <p class="msg msg--you p36">Hold the black one till noon.</p>
+            <span class="dots w42"><i></i><i></i><i></i></span>
+            <p class="msg msg--ai p54">Done — it&rsquo;ll be at the counter under your name.</p>
+          </div>
+        </div>
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Computer Vision</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Count what the camera sees</h4><p class="folio__desc">Shelves, yards, lots and lines counted continuously from the cameras you already have — no more clipboard walks.</p></li>
+          <li><h4 class="folio__title">Catch it before it ships</h4><p class="folio__desc">Photos and video of your product or your crew&rsquo;s work checked automatically, with the exceptions flagged to a human.</p></li>
+          <li><h4 class="folio__title">Read plans and photos</h4><p class="folio__desc">Drawings, site photos and job documentation turned into structured data: measurements, materials, takeoffs.</p></li>
+        </ul>
+        <div class="demo demo--vision" aria-hidden="true">
+          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Visual inspection</span></div>
+          <div class="demo__stage">
+            <div class="vision">
+              <div class="v-hud"><span>Line Cam 2 · Bottling</span><span class="rec"><i></i>Live</span></div>
+              <div class="v-scan"></div>
+              <svg class="v-scene" viewBox="0 0 600 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+                <defs>
+                  <linearGradient id="vg-glass" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#232D27"/><stop offset=".42" stop-color="#39473F"/>
+                    <stop offset=".58" stop-color="#415148"/><stop offset="1" stop-color="#1F2823"/>
+                  </linearGradient>
+                  <g id="vg-bottle">
+                    <path d="M0,126 Q0,106 12,96 L17,88 L17,72 L31,72 L31,88 L36,96 Q48,106 48,126 L48,204 L0,204 Z" fill="url(#vg-glass)" stroke="rgba(242,245,241,.16)" stroke-width="1"/>
+                    <rect x="15" y="63" width="18" height="10" rx="2" fill="#55625A"/>
+                    <rect x="6" y="108" width="5" height="88" rx="2.5" fill="rgba(242,245,241,.13)"/>
+                    <rect x="8" y="146" width="32" height="34" rx="2" fill="rgba(242,245,241,.07)" stroke="rgba(242,245,241,.12)" stroke-width="1"/>
+                  </g>
+                </defs>
+                <rect x="0" y="204" width="600" height="3" fill="rgba(242,245,241,.2)"/>
+                <rect x="0" y="207" width="600" height="33" fill="rgba(5,8,7,.5)"/>
+                <use href="#vg-bottle" x="62" y="0"/>
+                <use href="#vg-bottle" x="262" y="0"/>
+                <g><use href="#vg-bottle" x="462" y="0"/>
+                  <polyline points="472,120 483,138 477,154 490,174" fill="none" stroke="rgba(255,180,162,.7)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </svg>
+              <div class="v-box p12" style="left:8%; width:11%; height:64%; bottom:15%;"><span class="v-lbl">Pass · 0.98</span></div>
+              <div class="v-box p30" style="left:41.3%; width:11%; height:64%; bottom:15%;"><span class="v-lbl">Pass · 0.97</span></div>
+              <div class="v-box bad p48" style="left:74.6%; width:11%; height:64%; bottom:15%;"><span class="v-lbl">Crack · held</span></div>
+            </div>
+            <p class="line-note p66">The cracked bottle never leaves the line. A person only sees the one that matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="foot" style="margin-top:1.4rem; max-width:60ch;">Your business isn&rsquo;t on this list? The list is where we start, not where we stop. <a href="/book">Bring us the busywork and we&rsquo;ll scope it.</a></p>
+  </div>
+</section>
+
+<section class="band" id="team" aria-labelledby="team-h" style="border-top:1px solid var(--rule);">
+  <div class="wrap">
+    <p class="kicker">The Team</p>
+    <h2 class="statement" id="team-h" style="font-size:var(--s-3); max-width:20ch;">You work with the people who build it.</h2>
     <p class="lede" style="margin-top:1.2rem; max-width:58ch;">No account managers and no handoffs. The engineers who scope your system are the same ones who build it and hand it over.</p>
     <div class="founders">
       <figure class="founder">
-        <div class="founder__photo"><img src="founder-hunter.jpg" width="400" height="400" loading="lazy" decoding="async" alt="Hunter Mimaroglu" /></div>
+        <div class="founder__photo is-placeholder"><span class="mono" aria-hidden="true">HM</span></div>
         <figcaption>
           <h3 class="founder__name">Hunter Mimaroglu</h3>
-          <p class="founder__role">Co-Founder · Software Engineering</p>
+          <p class="founder__role">Software Engineer</p>
         </figcaption>
       </figure>
       <figure class="founder">
-        <div class="founder__photo is-placeholder"><span class="mono" aria-hidden="true">JG</span></div>
+        <div class="founder__photo"><img src="founder-jake.jpg" width="400" height="400" loading="lazy" decoding="async" alt="Jake Giguere" /></div>
         <figcaption>
           <h3 class="founder__name">Jake Giguere</h3>
-          <p class="founder__role">Co-Founder · AI / ML Engineering</p>
+          <p class="founder__role">AI/ML Engineer · Lead Consultant</p>
+        </figcaption>
+      </figure>
+      <figure class="founder">
+        <div class="founder__photo is-placeholder"><span class="mono" aria-hidden="true">EM</span></div>
+        <figcaption>
+          <h3 class="founder__name">Eric Martino</h3>
+          <p class="founder__role">Head of Sales</p>
         </figcaption>
       </figure>
     </div>
@@ -547,7 +1014,7 @@
     <div class="grid2">
       <div>
         <h2 class="cta-head" id="begin-h">Book your free <em>30-minute</em> discovery&nbsp;call.</h2>
-        <p class="lede" style="margin-top:1.3rem;">Tell us where the hours go. We’ll tell you plainly, on the call, whether custom software can bring them back, and what the smallest first step would be.</p>
+        <p class="lede" style="margin-top:1.3rem;">Tell us where the hours go. We’ll tell you plainly, on the call, whether AI can bring them back, and what the smallest first build would be.</p>
         <ul class="foot" style="list-style:none; padding:0; margin:1.6rem 0 0; display:grid; gap:.6rem; max-width:44ch;">
           <li>No cost, no obligation, no slide deck.</li>
           <li>You talk to the person who scopes and builds every system, not a salesperson.</li>
@@ -560,16 +1027,41 @@
           <form id="callForm">
             <div class="form-grid two">
               <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Jordan Ellis" required /></div>
-              <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Ellis &amp; Co." /></div>
-            </div>
-            <div class="form-grid" style="margin-top:1.2rem;">
               <div class="field"><label for="f-email">Work Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="jordan@ellis.co" required /></div>
+            </div>
+            <div class="form-sep"><span class="lbl">About Your Business</span><span class="opt">all optional</span></div>
+            <div class="form-grid two compact">
+              <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Ellis &amp; Co." /></div>
+              <div class="field"><label for="f-location">Location</label><input id="f-location" name="location" type="text" autocomplete="address-level2" placeholder="Boston, MA" /></div>
+              <div class="field"><label for="f-revenue">Annual Revenue</label>
+                <select id="f-revenue" name="revenue">
+                  <option value="" selected>Prefer not to say</option>
+                  <option>Under $1M</option>
+                  <option>$1M–$5M</option>
+                  <option>$5M–$20M</option>
+                  <option>$20M+</option>
+                </select>
+              </div>
+              <div class="field"><label for="f-employees">Team Size</label>
+                <select id="f-employees" name="employees">
+                  <option value="" selected>Prefer not to say</option>
+                  <option>Just me</option>
+                  <option>2–10</option>
+                  <option>11–50</option>
+                  <option>51–200</option>
+                  <option>200+</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-sep"><span class="lbl">The Work</span></div>
+            <div class="form-grid">
               <div class="field"><label for="f-note">What eats your team’s week?</label><textarea id="f-note" name="note" placeholder="The recurring manual work you’d most like to hand off…"></textarea></div>
             </div>
-            <p class="assure" style="margin:1.2rem 0 .8rem;">Send this and you’ll have call times to pick from within one business day. In a hurry? <a href="mailto:support@oakas.ai">support@oakas.ai</a>.</p>
-            <div class="form-actions">
+            <div class="form-actions" style="margin-top:1.4rem;">
               <button class="btn focusline" type="submit" id="submitBtn">Book My Discovery Call <span class="arrow" aria-hidden="true">→</span></button>
             </div>
+            <p class="assure" style="margin:1rem 0 0;">One of the founders reads every message — you’ll have call times to pick from within one business day.</p>
+            <p class="assure assure--links">In a hurry? <a href="mailto:eric@oakas.ai">eric@oakas.ai</a> &nbsp;·&nbsp; Questions first? <a href="faq.html" target="_blank" rel="noopener">Read the FAQ</a></p>
           </form>
           <div class="form-success" id="formSuccess" role="status" aria-live="polite">
             <div class="tick" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
@@ -591,23 +1083,26 @@
       <div>
         <div class="mark"><img src="logo_bw.png" width="40" height="40" alt="" /><span class="word">Oakas</span></div>
         <p class="tag">Some work needs you. The rest shouldn’t.</p>
-        <p class="blurb">We design and ship custom software for companies ready to stop doing the recurring work by hand.</p>
+        <p class="blurb">An AI consulting firm for companies ready to stop doing the recurring work by hand. We scope it, build it, and hand it over.</p>
       </div>
       <div>
         <h4>The Work</h4>
         <ul>
-          <li><a class="focusline" href="#work">Custom CRMs</a></li>
-          <li><a class="focusline" href="#work">Speed-to-lead engine</a></li>
-          <li><a class="focusline" href="#work">Back-office workflows</a></li>
-          <li><a class="focusline" href="#work">AI search visibility</a></li>
+          <li><a class="focusline" href="/work">Custom CRMs</a></li>
+          <li><a class="focusline" href="/work">Speed-to-lead engine</a></li>
+          <li><a class="focusline" href="/work">Back-office workflows</a></li>
+          <li><a class="focusline" href="/work">AI search visibility</a></li>
         </ul>
       </div>
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a class="focusline" href="#method">The Process</a></li>
-          <li><a class="focusline" href="#founders">The Founders</a></li>
-          <li><a class="focusline" href="#begin">Book a call</a></li>
+          <li><a class="focusline" href="/process">The Process</a></li>
+          <li><a class="focusline" href="/portfolio">The Portfolio</a></li>
+          <li><a class="focusline" href="/team">The Team</a></li>
+          <li><a class="focusline" href="faq.html" target="_blank" rel="noopener">FAQ</a></li>
+          <li><a class="focusline" href="rd-tax-credits.html" target="_blank" rel="noopener">R&amp;D Tax Credits</a></li>
+          <li><a class="focusline" href="/book">Book a call</a></li>
           <li><a class="focusline" href="mailto:support@oakas.ai">support@oakas.ai</a></li>
         </ul>
       </div>
@@ -661,6 +1156,14 @@
     var email = document.getElementById("f-email").value;
     var company = document.getElementById("f-company").value;
     var note = document.getElementById("f-note").value;
+    var location = document.getElementById("f-location").value;
+    var revenue = document.getElementById("f-revenue").value;
+    var employees = document.getElementById("f-employees").value;
+    var extras = [];
+    if(location) extras.push("Location: " + location);
+    if(revenue) extras.push("Revenue: " + revenue);
+    if(employees) extras.push("Team size: " + employees);
+    if(extras.length) note = (note ? note + "\n\n" : "") + extras.join(" · ");
     var btnHTML = btn.innerHTML;
     btn.disabled = true;
     btn.textContent = "Sending…";
@@ -752,6 +1255,63 @@
     .fromTo(".stage-2", { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: .05, ease: "none" }, .52)
     .to(".stage-2", { autoAlpha: 0, y: -20, duration: .05, ease: "none" }, .72)
     .to(".lockup", { autoAlpha: 1, y: 0, duration: .06, ease: "none" }, .86);
+})();
+</script>
+<script>
+/* portfolio theater: cycle through each category, one on stage at a time */
+(function(){
+  var groups = [].slice.call(document.querySelectorAll('.folio__group'));
+  var tabs = [].slice.call(document.querySelectorAll('.folio__tab'));
+  if(!groups.length || groups.length !== tabs.length) return;
+  var i = 0, timer = null, inView = false;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n){
+    i = (n + groups.length) % groups.length;
+    groups.forEach(function(g, k){ g.classList.toggle('active', k === i); });
+    tabs.forEach(function(t, k){
+      t.classList.toggle('active', k === i);
+      t.setAttribute('aria-selected', k === i ? 'true' : 'false');
+      if(k === i){ var p = t.querySelector('.prog'); if(p){ p.style.animation = 'none'; void p.offsetWidth; p.style.animation = ''; } }
+    });
+  }
+  function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+  function start(){ if(reduced || timer || !inView) return; timer = setInterval(function(){ show(i + 1); }, 12000); }
+  tabs.forEach(function(t, k){
+    t.setAttribute('role', 'tab');
+    t.addEventListener('click', function(){ stop(); show(k); start(); });
+  });
+  show(0);
+  var section = document.getElementById('portfolio');
+  if('IntersectionObserver' in window && section){
+    new IntersectionObserver(function(entries){
+      inView = entries[0].isIntersecting;
+      if(inView) start(); else stop();
+    }, { threshold: 0.25 }).observe(section);
+  } else { inView = true; start(); }
+})();
+</script>
+<script>
+/* clean-path section routing: /founders etc. instead of /#founders */
+(function(){
+  var routes = { '/work':'work', '/portfolio':'portfolio', '/process':'method', '/team':'team', '/founders':'team', '/book':'begin', '/contact':'begin' };
+  function go(id, smooth){
+    var el = document.getElementById(id);
+    if(el) el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block:'start' });
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if(!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var href = a.getAttribute('href');
+    if(href === '/'){ e.preventDefault(); history.pushState(null,'','/'); window.scrollTo({ top:0, behavior:'smooth' }); }
+    else if(routes[href]){ e.preventDefault(); history.pushState(null,'',href); go(routes[href], true); }
+  });
+  window.addEventListener('popstate', function(){
+    if(routes[location.pathname]) go(routes[location.pathname], false);
+    else if(location.pathname === '/') window.scrollTo(0, 0);
+  });
+  window.addEventListener('load', function(){
+    if(routes[location.pathname]) setTimeout(function(){ go(routes[location.pathname], false); }, 80);
+  });
 })();
 </script>
 </body>

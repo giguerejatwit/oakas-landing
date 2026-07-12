@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OAKAS | FAQ</title>
+<meta name="description" content="Straight answers about working with OAKAS: what we build, what it costs, who owns the code, and what happens after hand-off." />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..520&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F7F8F5; --ink:#161D19; --ink-dim:#55625A; --accent:#0E6B44;
+    --rule:rgba(22,29,25,.16); --rule-soft:rgba(22,29,25,.09);
+    --s--1: clamp(.78rem, .74rem + .18vw, .875rem);
+    --s-0:  clamp(1.02rem, .98rem + .2vw, 1.15rem);
+    --s-1:  clamp(1.2rem, 1.08rem + .5vw, 1.5rem);
+    --s-3:  clamp(2rem, 1.5rem + 2.3vw, 3.15rem);
+    --edge: clamp(1.25rem, 5vw, 6rem);
+    --maxw: 860px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+    font-size:var(--s-0); line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  ::selection{ background:var(--accent); color:var(--paper); }
+  a{ color:var(--accent); text-underline-offset:.18em; text-decoration-thickness:1px; }
+  h1{ font-family:"Fraunces", Georgia, serif; font-weight:540; margin:0; }
+  .wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--edge); }
+  .masthead{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding:clamp(.7rem,1.6vw,1.1rem) var(--edge);
+    border-bottom:1px solid var(--rule);
+  }
+  .brandlock{ display:flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--ink); }
+  .brandlock img{ width:26px; height:auto; display:block; }
+  .brandlock .word{
+    font-family:"Fraunces", serif; font-weight:500;
+    font-size:1.12rem; letter-spacing:.34em; text-transform:uppercase; padding-left:.34em;
+  }
+  .backlink{
+    font-size:var(--s--1); font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink-dim); white-space:nowrap;
+  }
+  .backlink:hover{ color:var(--ink); }
+  .kicker{
+    font-size:var(--s--1); font-weight:600; text-transform:uppercase;
+    letter-spacing:.24em; color:var(--accent); margin:0;
+  }
+  .band{ padding-block:clamp(3.5rem, 8vh, 6rem); }
+  .statement{ font-size:var(--s-3); line-height:1.1; letter-spacing:-.015em; margin:.5em 0 0; text-wrap:balance; }
+  .statement em{ font-style:italic; }
+  .lede{ font-size:var(--s-1); line-height:1.5; color:var(--ink); max-width:50ch; margin-top:1.2rem; }
+  .faq{ margin-top:clamp(2rem,5vh,3rem); border-top:1px solid var(--ink); }
+  details{ border-bottom:1px solid var(--rule); }
+  summary{
+    cursor:pointer; list-style:none; display:flex; align-items:baseline; justify-content:space-between; gap:1.5rem;
+    padding:clamp(1.1rem,2.6vw,1.6rem) 0;
+    font-family:"Fraunces", serif; font-weight:520; font-size:var(--s-1); line-height:1.2; letter-spacing:-.01em;
+  }
+  summary::-webkit-details-marker{ display:none; }
+  summary::after{ content:"+"; font-family:"Hanken Grotesk",sans-serif; font-weight:400; color:var(--accent); font-size:1.3em; line-height:1; flex:none; transition:transform .2s ease; }
+  details[open] summary::after{ transform:rotate(45deg); }
+  summary:hover{ color:var(--accent); }
+  details p{ margin:0 0 1.4rem; max-width:62ch; color:var(--ink-dim); }
+  details p strong{ color:var(--ink); font-weight:600; }
+  .cta-band{ border-top:1px solid var(--rule); padding-block:clamp(2.5rem,6vh,4rem); }
+  .btn{
+    font-size:var(--s--1); font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+    padding:.85em 1.5em; border-radius:2px; min-height:44px;
+    display:inline-flex; align-items:center; gap:.6em; text-decoration:none;
+  }
+  .btn:hover{ background:#0B5737; }
+  .colophon{ border-top:1px solid var(--rule); padding-block:1.6rem; }
+  .colophon p{ margin:0; font-size:var(--s--1); color:var(--ink-dim); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="brandlock" href="/" aria-label="OAKAS home">
+    <img src="logo_bw.png" width="26" height="26" alt="" />
+    <span class="word">Oakas</span>
+  </a>
+  <a class="backlink" href="/">&larr; Back to the site</a>
+</header>
+
+<main>
+<section class="band">
+  <div class="wrap">
+    <p class="kicker">Frequently Asked Questions</p>
+    <h1 class="statement">Straight answers, <em>plainly.</em></h1>
+    <p class="lede">Everything people usually want to know before booking a call. If your question isn&rsquo;t here, <a href="mailto:support@oakas.ai">support@oakas.ai</a> reaches a human.</p>
+
+    <div class="faq">
+      <details>
+        <summary>What does OAKAS actually do?</summary>
+        <p>We&rsquo;re an AI consulting firm for small and medium businesses. We find where your team loses hours to recurring manual work — leads answered late, invoices chased by hand, the same report rebuilt every Monday — and then we design and build the custom AI systems that take that work over.</p>
+      </details>
+      <details>
+        <summary>What does it cost?</summary>
+        <p><strong>Every build is fixed-scope and priced before work starts.</strong> You know the number before we write a line of code. No retainers, no hourly meters, no surprises at the end.</p>
+      </details>
+      <details>
+        <summary>Who owns what you build?</summary>
+        <p><strong>You do — all of it.</strong> Source code, data, accounts and keys are handed over in full, engineered and documented to run without us. If you&rsquo;d rather we keep hosting and maintaining it, we can, for a simple monthly fee. Your call.</p>
+      </details>
+      <details>
+        <summary>We&rsquo;re not a technical company. Is that a problem?</summary>
+        <p>No — most of our clients aren&rsquo;t. You describe the work in plain language; we translate it into a system. Hand-off includes training your team, and the systems are built to be used by the people who run the business, not by engineers.</p>
+      </details>
+      <details>
+        <summary>Do we have to replace the tools we already use?</summary>
+        <p>No. We build around what already works — your calendar, your accounting software, your phone system. Where a rented subscription isn&rsquo;t earning its keep, we&rsquo;ll tell you, and many clients end up folding several subscriptions into one system they own outright. But nothing gets ripped out for the sake of it.</p>
+      </details>
+      <details>
+        <summary>How long does a build take?</summary>
+        <p>The timeline is scoped with the price, before work starts. We deliberately scope the <strong>smallest system that moves the needle</strong> first, and you see working software early and often — we don&rsquo;t disappear for a quarter and return with a slide deck.</p>
+      </details>
+      <details>
+        <summary>What happens on the discovery call?</summary>
+        <p>Thirty minutes, free, with the person who scopes and builds every system — not a salesperson. You tell us where the hours go; we tell you plainly whether AI can bring them back, and what the smallest first build would be. If the honest answer is that you don&rsquo;t need us, we&rsquo;ll say so.</p>
+      </details>
+      <details>
+        <summary>What happens after hand-off?</summary>
+        <p>The system is yours and runs without us. Many clients keep us on for hosting and maintenance at a flat monthly fee; others take it fully in-house. Either way, you&rsquo;re never locked in — the code and documentation are built so any competent engineer could pick it up.</p>
+      </details>
+      <details>
+        <summary>Can a project qualify for the R&amp;D tax credit?</summary>
+        <p>Often, yes. Custom software development frequently meets the IRS&rsquo;s four-part test for the federal research credit, and what you pay an outside firm to build on your behalf can generally count as contract research — provided you keep the rights and bear the risk, which is how our engagements are structured. We document every build (scope, iterations, broken-out invoices) so your CPA has what they need to evaluate a claim. <strong>We&rsquo;re engineers, not accountants — this isn&rsquo;t tax advice.</strong> Read the plain-English overview on our <a href="rd-tax-credits.html">R&amp;D tax credits page</a>, then talk to your CPA.</p>
+      </details>
+      <details>
+        <summary>Is our data safe?</summary>
+        <p>Your systems run on <strong>your accounts and your keys</strong>, not ours. Your customer data stays yours, and we don&rsquo;t reuse it, resell it, or train anything on it. When an engagement ends, our access ends with it.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <p class="kicker">Still Curious?</p>
+    <p class="lede" style="margin-top:.8rem;">The discovery call is the fastest way to a real answer about your business.</p>
+    <p style="margin-top:1.4rem;"><a class="btn" href="/book">Book a Discovery Call <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+</main>
+
+<footer class="colophon">
+  <div class="wrap">
+    <p>&copy; 2026 OAKAS &middot; <a href="/">oakas.ai</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="support.html">Support</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

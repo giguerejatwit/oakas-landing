@@ -1,6 +1,13 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/download", "destination": "/api/download" }
+    { "source": "/download", "destination": "/api/download" },
+    { "source": "/work", "destination": "/index.html" },
+    { "source": "/portfolio", "destination": "/index.html" },
+    { "source": "/process", "destination": "/index.html" },
+    { "source": "/founders", "destination": "/index.html" },
+    { "source": "/team", "destination": "/index.html" },
+    { "source": "/book", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" }
   ]
 }

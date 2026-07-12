@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OAKAS | R&amp;D Tax Credits</title>
+<meta name="description" content="Custom software builds often qualify for the federal R&D tax credit. An educational overview of how it works — and how OAKAS documents your build so your CPA can claim it." />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..520&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F7F8F5; --ink:#161D19; --ink-dim:#55625A; --accent:#0E6B44;
+    --rule:rgba(22,29,25,.16); --rule-soft:rgba(22,29,25,.09);
+    --s--1: clamp(.78rem, .74rem + .18vw, .875rem);
+    --s-0:  clamp(1.02rem, .98rem + .2vw, 1.15rem);
+    --s-1:  clamp(1.2rem, 1.08rem + .5vw, 1.5rem);
+    --s-2:  clamp(1.55rem, 1.28rem + 1.2vw, 2.2rem);
+    --s-3:  clamp(2rem, 1.5rem + 2.3vw, 3.15rem);
+    --edge: clamp(1.25rem, 5vw, 6rem);
+    --maxw: 860px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+    font-size:var(--s-0); line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  ::selection{ background:var(--accent); color:var(--paper); }
+  a{ color:var(--accent); text-underline-offset:.18em; text-decoration-thickness:1px; }
+  h1,h2,h3{ font-family:"Fraunces", Georgia, serif; font-weight:540; margin:0; }
+  p{ max-width:62ch; }
+  .wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--edge); }
+  .masthead{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding:clamp(.7rem,1.6vw,1.1rem) var(--edge);
+    border-bottom:1px solid var(--rule);
+  }
+  .brandlock{ display:flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--ink); }
+  .brandlock img{ width:26px; height:auto; display:block; }
+  .brandlock .word{
+    font-family:"Fraunces", serif; font-weight:500;
+    font-size:1.12rem; letter-spacing:.34em; text-transform:uppercase; padding-left:.34em;
+  }
+  .backlink{
+    font-size:var(--s--1); font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink-dim); white-space:nowrap;
+  }
+  .backlink:hover{ color:var(--ink); }
+  .kicker{
+    font-size:var(--s--1); font-weight:600; text-transform:uppercase;
+    letter-spacing:.24em; color:var(--accent); margin:0;
+  }
+  .band{ padding-block:clamp(3rem, 7vh, 5rem); }
+  .band + .band{ border-top:1px solid var(--rule); }
+  .statement{ font-size:var(--s-3); line-height:1.1; letter-spacing:-.015em; margin:.5em 0 0; text-wrap:balance; }
+  .statement em{ font-style:italic; }
+  h2.head{ font-size:var(--s-2); line-height:1.15; letter-spacing:-.01em; margin-bottom:1rem; text-wrap:balance; }
+  .lede{ font-size:var(--s-1); line-height:1.5; max-width:52ch; margin-top:1.2rem; }
+  .dim{ color:var(--ink-dim); }
+  .notice{
+    margin-top:2rem; padding:1rem 1.2rem; background:#EEF1EC; border:1px solid var(--rule);
+    border-radius:2px; font-size:var(--s--1); color:var(--ink-dim); max-width:62ch;
+  }
+  .notice strong{ color:var(--ink); }
+  ol.test{ list-style:none; padding:0; margin:1.5rem 0 0; border-top:1px solid var(--ink); }
+  ol.test li{ display:grid; gap:.3rem 2rem; padding:1.2rem 0; border-bottom:1px solid var(--rule); }
+  @media (min-width:700px){ ol.test li{ grid-template-columns:auto minmax(0,5fr) minmax(0,7fr); align-items:baseline; } }
+  ol.test .no{ font-family:"Fraunces",serif; color:var(--accent); font-weight:500; font-variant-numeric:tabular-nums; }
+  ol.test h3{ font-size:var(--s-1); font-weight:520; line-height:1.15; }
+  ol.test p{ margin:0; color:var(--ink-dim); font-size:var(--s-0); }
+  ul.plain{ list-style:none; padding:0; margin:1.2rem 0 0; display:grid; gap:.6rem; max-width:56ch; }
+  ul.plain li{ padding-left:1.2rem; position:relative; color:var(--ink-dim); }
+  ul.plain li::before{ content:"—"; position:absolute; left:0; color:var(--accent); }
+  ul.plain strong{ color:var(--ink); font-weight:600; }
+  .btn{
+    font-size:var(--s--1); font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+    padding:.85em 1.5em; border-radius:2px; min-height:44px;
+    display:inline-flex; align-items:center; gap:.6em; text-decoration:none;
+  }
+  .btn:hover{ background:#0B5737; }
+  .colophon{ border-top:1px solid var(--rule); padding-block:1.6rem; }
+  .colophon p{ margin:0; font-size:var(--s--1); color:var(--ink-dim); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="brandlock" href="/" aria-label="OAKAS home">
+    <img src="logo_bw.png" width="26" height="26" alt="" />
+    <span class="word">Oakas</span>
+  </a>
+  <a class="backlink" href="/">&larr; Back to the site</a>
+</header>
+
+<main>
+<section class="band">
+  <div class="wrap">
+    <p class="kicker">R&amp;D Tax Credits</p>
+    <h1 class="statement">Your build may pay <em>part of its own bill.</em></h1>
+    <p class="lede dim">Custom software development is exactly the kind of work the federal R&amp;D tax credit was written to reward. Many businesses that hire us qualify — and never claim it.</p>
+    <div class="notice"><strong>This page is educational — it is not tax, legal, or accounting advice.</strong> The rules change, the details matter, and whether your project qualifies depends on your specific facts and your contract terms. Please take this page to your CPA; we&rsquo;ll happily get on a call with them.</div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="kicker">What It Is</p>
+    <h2 class="head">A dollar-for-dollar credit, not a deduction.</h2>
+    <p class="dim">The federal research credit (Section 41 of the tax code) rewards businesses that spend money developing new or improved products, processes, or software. Unlike a deduction — which only reduces the income you&rsquo;re taxed on — a credit comes straight off the tax you owe, dollar for dollar. It commonly works out to a meaningful single-digit percentage of qualified research spend, and most states layer their own credit on top.</p>
+    <p class="dim">Early-stage companies without income tax to offset aren&rsquo;t left out: qualified small startups can apply the credit against payroll taxes instead, up to a cap set by law.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="kicker">Why Custom Software Qualifies</p>
+    <h2 class="head">The IRS asks four questions. Custom builds tend to answer all four.</h2>
+    <ol class="test">
+      <li><span class="no">01</span><h3>Permitted purpose</h3><p>The work must create or improve a product, process, or piece of software. A system built for your business that didn&rsquo;t exist before is the textbook case.</p></li>
+      <li><span class="no">02</span><h3>Technological in nature</h3><p>The work must rest on hard science — computer science and software engineering count. AI systems, integrations, and custom applications are squarely in bounds.</p></li>
+      <li><span class="no">03</span><h3>Elimination of uncertainty</h3><p>There must be real technical unknowns at the start. If an off-the-shelf tool couldn&rsquo;t do it — which is why you came to us — that uncertainty usually exists by definition.</p></li>
+      <li><span class="no">04</span><h3>Process of experimentation</h3><p>The work must proceed by designing, testing, and refining alternatives. That is literally our build phase: working software early and often, iterated against your real workflow.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="kicker">What Can Count</p>
+    <h2 class="head">Qualified expenses, in plain terms.</h2>
+    <ul class="plain">
+      <li><strong>Your team&rsquo;s wages</strong> for time spent on the qualifying work, including supervising and supporting it.</li>
+      <li><strong>Contract research</strong> — what you pay an outside firm like OAKAS to do development on your behalf generally counts at a reduced percentage, provided <em>you</em> keep the rights to the work and bear the economic risk. Our hand-everything-over, you-own-it engagement model is built that way — but your contract terms decide it, so have your CPA confirm.</li>
+      <li><strong>Supplies and cloud computing</strong> used in the development work.</li>
+    </ul>
+    <p class="dim" style="margin-top:1.4rem;">Worth knowing: the 2025 federal tax law restored immediate expensing for domestic R&amp;D costs and opened a limited window for smaller businesses to amend recent returns under the old capitalization rules. The window and eligibility details are exactly the kind of thing to confirm with your CPA promptly rather than read on a consultancy&rsquo;s website.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="kicker">Where We Come In</p>
+    <h2 class="head">We build. We document. Your CPA claims.</h2>
+    <p class="dim">We&rsquo;re engineers, not accountants — we will never prepare your claim. What we do is hand you a paper trail that makes your CPA&rsquo;s job easy:</p>
+    <ul class="plain">
+      <li>A <strong>fixed scope</strong> that states the technical problem and the uncertainty being resolved.</li>
+      <li><strong>Iteration records</strong> — what was tried, what changed, and why — from the build phase.</li>
+      <li><strong>Invoices broken out</strong> so development work is cleanly separated from anything that wouldn&rsquo;t qualify.</li>
+    </ul>
+    <p style="margin-top:2rem;"><a class="btn" href="/book">Book a Discovery Call <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="notice" style="margin-top:0;"><strong>Disclaimer, once more and in full:</strong> nothing on this page is tax, legal, or accounting advice, and OAKAS makes no representation that any particular project will qualify for any credit. Eligibility depends on your facts, your contract, and current law, all of which should be reviewed by a qualified tax professional before you rely on anything here.</div>
+  </div>
+</section>
+</main>
+
+<footer class="colophon">
+  <div class="wrap">
+    <p>&copy; 2026 OAKAS &middot; <a href="/">oakas.ai</a> &middot; <a href="faq.html">FAQ</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="support.html">Support</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
