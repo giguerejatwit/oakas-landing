@@ -760,7 +760,6 @@
   </a>
   <nav aria-label="Primary">
     <a class="navlink focusline" href="/portfolio">Portfolio</a>
-    <a class="navlink focusline" href="/process">Process</a>
     <a class="navlink focusline" href="/team">Team</a>
     <a class="btn btn--ghost btn--nav focusline" href="/book"><span class="l-long">Book a Discovery Call</span><span class="l-short">Book a Call</span></a>
   </nav>
@@ -810,6 +809,12 @@
   <div class="wrap">
     <p class="kicker">The Portfolio</p>
     <h2 class="statement" id="portfolio-h" style="font-size:var(--s-3); max-width:22ch;">What a build with us <em>looks like.</em></h2>
+    <div class="moves" style="margin-bottom:clamp(1.8rem,4.5vh,2.8rem);">
+      <div class="move"><span class="move__no">Step 01</span><h3 class="move__name">Discovery</h3><p class="move__body">A free 30-minute call where we digest your business: where the hours go, which processes hurt, what subscriptions you&rsquo;re paying for, and which tools you&rsquo;ve tried, kept, or abandoned, and why. <strong>You talk, we map.</strong></p></div>
+      <div class="move"><span class="move__no">Step 02</span><h3 class="move__name">Proposal</h3><p class="move__body">Within one to two weeks we come back with a <strong>fixed-price proposal</strong> on a follow-up call. We revise it until it fits, you sign, and the price never changes after that.</p></div>
+      <div class="move"><span class="move__no">Step 03</span><h3 class="move__name">Build</h3><p class="move__body">We design and ship custom software against your real workflow, not a template. You see <strong>working software early and often</strong>, refined against the way your team actually operates.</p></div>
+      <div class="move move--own"><span class="move__no">Step 04</span><h3 class="move__name">Release</h3><p class="move__body">Your software goes live inside your business, your team is trained, and you <strong>own everything</strong>: the code, the data, the accounts. Most clients then keep us on a monthly retainer to host, maintain, and keep improving the system as their business grows.</p></div>
+    </div>
     <p class="lede" style="margin-top:1.2rem; max-width:58ch;">Custom AI software tailored to your business.</p>
 
     <div class="okd okd--unified">
@@ -1153,19 +1158,7 @@
   </div>
 </section>
 
-<section class="band" id="method" aria-labelledby="method-h" style="border-top:1px solid var(--rule);">
-  <div class="wrap">
-    <p class="kicker">The Process</p>
-    <h2 class="statement" id="method-h" style="font-size:var(--s-3); max-width:18ch;">Four steps, then it’s yours.</h2>
-    <div class="moves">
-      <div class="move"><span class="move__no">Step 01</span><h3 class="move__name">Discovery</h3><p class="move__body">A free 30-minute call where we digest your business: where the hours go, which processes hurt, what subscriptions you&rsquo;re paying for, and which tools you&rsquo;ve tried, kept, or abandoned, and why. <strong>You talk, we map.</strong></p></div>
-      <div class="move"><span class="move__no">Step 02</span><h3 class="move__name">Proposal</h3><p class="move__body">Within one to two weeks we come back with a <strong>fixed-price proposal</strong> on a follow-up call. We revise it until it fits, you sign, and the price never changes after that.</p></div>
-      <div class="move"><span class="move__no">Step 03</span><h3 class="move__name">Build</h3><p class="move__body">We design and ship custom software against your real workflow, not a template. You see <strong>working software early and often</strong>, refined against the way your team actually operates.</p></div>
-      <div class="move move--own"><span class="move__no">Step 04</span><h3 class="move__name">Release</h3><p class="move__body">Your software goes live inside your business, your team is trained, and you <strong>own everything</strong>: the code, the data, the accounts. Most clients then keep us on a monthly retainer to host, maintain, and keep improving the system as their business grows.</p></div>
-    </div>
-    
-  </div>
-</section>
+
 
 <section class="band" id="team" aria-labelledby="team-h" style="border-top:1px solid var(--rule);">
   <div class="wrap">
@@ -1288,7 +1281,7 @@
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a class="focusline" href="/process">The Process</a></li>
+          <li><a class="focusline" href="/portfolio">The Process</a></li>
           <li><a class="focusline" href="/portfolio">The Portfolio</a></li>
           <li><a class="focusline" href="/team">The Team</a></li>
           <li><a class="focusline" href="faq.html" target="_blank" rel="noopener">FAQ</a></li>
@@ -1500,7 +1493,7 @@
 <script>
 /* process reveal: build the four steps in order on first view */
 (function(){
-  var moves = document.querySelector('#method .moves');
+  var moves = document.querySelector('#portfolio .moves');
   if(!moves) return;
   if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     moves.classList.add('play'); return;
@@ -1513,7 +1506,7 @@
 <script>
 /* clean-path section routing: /founders etc. instead of /#founders */
 (function(){
-  var routes = { '/work':'portfolio', '/portfolio':'portfolio', '/process':'method', '/team':'team', '/founders':'team', '/book':'begin', '/contact':'begin' };
+  var routes = { '/work':'portfolio', '/portfolio':'portfolio', '/process':'portfolio', '/team':'team', '/founders':'team', '/book':'begin', '/contact':'begin' };
   function go(id, smooth){
     var el = document.getElementById(id);
     if(el) el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block:'start' });
