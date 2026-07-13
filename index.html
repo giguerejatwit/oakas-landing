@@ -557,6 +557,8 @@
   }
   .form-grid{ display:grid; gap:1.2rem; grid-template-columns:1fr; }
   @media (min-width:560px){ .form-grid.two{ grid-template-columns:1fr 1fr; } }
+  @media (min-width:700px){ .form-grid.three{ grid-template-columns:1fr 1fr 1fr; } }
+  @media (min-width:560px) and (max-width:699px){ .form-grid.three{ grid-template-columns:1fr 1fr; } }
   .field{ display:grid; gap:.45rem; }
   .field label{ font-size:var(--s--1); letter-spacing:.18em; text-transform:uppercase; font-weight:600; color:var(--accent); }
   .field input, .field textarea, .field select{
@@ -1025,9 +1027,10 @@
       <div>
         <div class="form-card">
           <form id="callForm">
-            <div class="form-grid two">
+            <div class="form-grid three">
               <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Jordan Ellis" required /></div>
               <div class="field"><label for="f-email">Work Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="jordan@ellis.co" required /></div>
+              <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(617) 555-0134" /></div>
             </div>
             <div class="form-sep"><span class="lbl">About Your Business</span><span class="opt">all optional</span></div>
             <div class="form-grid two compact">
@@ -1082,7 +1085,7 @@
     <div class="top">
       <div>
         <div class="mark"><img src="logo_bw.png" width="40" height="40" alt="" /><span class="word">Oakas</span></div>
-        <p class="tag">Some work needs you. The rest shouldn’t.</p>
+        <p class="tag">Get rooted. Branch out.</p>
         <p class="blurb">An AI consulting firm for companies ready to stop doing the recurring work by hand. We scope it, build it, and hand it over.</p>
       </div>
       <div>
@@ -1091,6 +1094,7 @@
           <li><a class="focusline" href="/work">Custom CRMs</a></li>
           <li><a class="focusline" href="/work">Speed-to-lead engine</a></li>
           <li><a class="focusline" href="/work">Back-office workflows</a></li>
+          <li><a class="focusline" href="/work">Computer vision</a></li>
           <li><a class="focusline" href="/work">AI search visibility</a></li>
         </ul>
       </div>
@@ -1102,14 +1106,14 @@
           <li><a class="focusline" href="/team">The Team</a></li>
           <li><a class="focusline" href="faq.html" target="_blank" rel="noopener">FAQ</a></li>
           <li><a class="focusline" href="rd-tax-credits.html" target="_blank" rel="noopener">R&amp;D Tax Credits</a></li>
-          <li><a class="focusline" href="/book">Book a call</a></li>
+          <li><a class="focusline" href="/contact">Contact</a></li>
           <li><a class="focusline" href="mailto:support@oakas.ai">support@oakas.ai</a></li>
         </ul>
       </div>
     </div>
     <div class="base">
       <span>© <span id="yr">2026</span> OAKAS. All rights reserved.</span>
-      <span><a class="focusline" href="https://www.getoakas.com/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a class="focusline" href="https://www.getoakas.com/terms">Terms of Service</a></span>
+      <span><a class="focusline" href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a class="focusline" href="terms.html">Terms of Service</a></span>
     </div>
   </div>
 </footer>
@@ -1120,10 +1124,10 @@
 (function(){
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var wide = window.matchMedia && window.matchMedia("(min-width: 820px)").matches;
-  /* the scrub runs only with GSAP, motion allowed, and a wide screen —
-     everyone else gets the poster hero and a perfectly still page */
-  var G = !!(window.gsap && window.ScrollTrigger) && !reduce && wide;
+  var small = window.matchMedia && window.matchMedia("(max-width: 819px)").matches;
+  /* the scrub runs with GSAP and motion allowed; phones get a lighter
+     frame set (96 × 800px jpg ≈ 6MB) instead of the full 60MB film */
+  var G = !!(window.gsap && window.ScrollTrigger) && !reduce;
 
   /* masthead frost: transparent over the dark intro, paper afterwards */
   var mast = document.getElementById("masthead");
@@ -1138,13 +1142,14 @@
 
   document.getElementById("yr").textContent = new Date().getFullYear();
 
-  /* discovery-call form → the existing OAKAS Apps Script lead endpoint
-     (same URL + JSON keys as the live site: name/email/phone/industry/painpoint,
-     so the lead sheet keeps working; company → industry, note → painpoint).
+  /* discovery-call form → the OAKAS Apps Script lead endpoint.
+     JSON keys map 1:1 to sheet columns:
+     name/email/phone/company/location/revenue/employees/painpoint
+     (sheet: Timestamp·Name·Email·Phone·Company·Location·Revenue·Team size·Pain Point).
      With mode:'no-cors' a resolved promise means the request left the browser;
      a rejection means it didn't — then we fall back to a prefilled email so
      no lead is ever silently dropped. */
-  var LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbzXIhkWP3JxTXVTq4u8btG-xvVK1NM1X0phCSTiMw0VJZpo7y2k4mnZXodGtyqX84BdXQ/exec";
+  var LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbw5kvcw1iL8uH6UFEet5adbza4EleDISofr8zoFQZj75IKKrKYHKgVK2EHyTYSoEWWeNg/exec";
   var form = document.getElementById("callForm");
   var btn = document.getElementById("submitBtn");
   var success = document.getElementById("formSuccess");
@@ -1154,23 +1159,19 @@
     if(!form.checkValidity()){ form.reportValidity(); return; }
     var name = document.getElementById("f-name").value;
     var email = document.getElementById("f-email").value;
+    var phone = document.getElementById("f-phone").value;
     var company = document.getElementById("f-company").value;
     var note = document.getElementById("f-note").value;
     var location = document.getElementById("f-location").value;
     var revenue = document.getElementById("f-revenue").value;
     var employees = document.getElementById("f-employees").value;
-    var extras = [];
-    if(location) extras.push("Location: " + location);
-    if(revenue) extras.push("Revenue: " + revenue);
-    if(employees) extras.push("Team size: " + employees);
-    if(extras.length) note = (note ? note + "\n\n" : "") + extras.join(" · ");
     var btnHTML = btn.innerHTML;
     btn.disabled = true;
     btn.textContent = "Sending…";
     fetch(LEAD_ENDPOINT, {
       method: "POST", mode: "no-cors",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, email: email, phone: "", industry: company, painpoint: note })
+      body: JSON.stringify({ name: name, email: email, phone: phone, company: company, location: location, revenue: revenue, employees: employees, painpoint: note })
     }).then(function(){
       if(typeof fbq !== "undefined") fbq("track", "Lead");
       form.style.display = "none";
@@ -1182,7 +1183,7 @@
       btn.innerHTML = btnHTML;
       window.location.href = "mailto:support@oakas.ai?subject=" +
         encodeURIComponent("Discovery call: " + name) + "&body=" +
-        encodeURIComponent((company ? "Company: " + company + "\n" : "") + "Reply-to: " + email + "\n\n" + note);
+        encodeURIComponent((company ? "Company: " + company + "\n" : "") + (phone ? "Phone: " + phone + "\n" : "") + (location ? "Location: " + location + "\n" : "") + (revenue ? "Revenue: " + revenue + "\n" : "") + (employees ? "Team size: " + employees + "\n" : "") + "Reply-to: " + email + "\n\n" + note);
     });
   });
 
@@ -1190,13 +1191,17 @@
 
   document.documentElement.classList.add("scrub-on");
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true }); /* iOS URL-bar show/hide must not re-trigger layout */
 
-  /* ---- frames ---- */
-  var FRAME_COUNT = 286;
+  /* ---- frames: full 2560px webp set on desktop, 800px jpg set on phones ---- */
+  var FRAME_COUNT = small ? 96 : 286;
   var canvas = document.querySelector(".intro__canvas");
   var ctx = null, frames = [], errors = 0, ready = false, last = -1;
   var proxy = { f: 0 };
-  function src(i){ return "frames/f_" + String(i + 1).padStart(3, "0") + ".webp?v=kling4k"; }
+  function src(i){
+    var n = String(i + 1).padStart(3, "0");
+    return small ? "frames/m/f_" + n + ".jpg?v=kling4k" : "frames/f_" + n + ".webp?v=kling4k";
+  }
   function draw(f){
     if(!ready || !ctx) return;
     var i = Math.max(0, Math.min(FRAME_COUNT - 1, Math.round(f)));
@@ -1241,7 +1246,7 @@
   gsap.set(mast, { autoAlpha: 0 }); /* chrome-free opening; the timeline brings it back once the film starts */
   var tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".intro", start: "top top", end: "+=460%",
+      trigger: ".intro", start: "top top", end: small ? "+=110%" : "+=150%",
       pin: true, scrub: 0.6, refreshPriority: 1
     }
   });
