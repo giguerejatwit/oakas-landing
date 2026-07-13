@@ -830,8 +830,7 @@
             <button type="button" class="okd-nav" data-i="3">Search</button>
             <button type="button" class="okd-nav" data-i="4">Reports</button>
             <button type="button" class="okd-nav" data-i="5">Inventory Management</button>
-            <button type="button" class="okd-nav" data-i="6">Storefront</button>
-            <button type="button" class="okd-nav" data-i="7">Computer Vision</button>
+            <button type="button" class="okd-nav" data-i="6">Computer Vision</button>
             </nav>
             <div class="okd-acct">
               <span class="okd-avatar">HR</span>
@@ -1039,46 +1038,8 @@
             </div>
           </div>
           </div>
+          
           <div class="okd-screen" data-i="6">
-<div style="flex:1; background:#FCFCFB;">
-  <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
-    <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Storefront</span>
-    <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Saturday · 10:12 AM</span>
-  </div>
-  <div style="padding:14px 20px; display:flex; flex-direction:column; gap:10px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; border:1px solid #E2E5DF; border-radius:3px; padding:10px 12px; background:#FFFFFF;">
-      <span style="font-size:13px; font-weight:600;">Walnut Console <span style="font-weight:400; color:#8A948C;">· 60&quot; · natural</span></span>
-      <span style="display:flex; align-items:center; gap:8px;">
-        <span style="font-size:11px; color:#55625A;">3 in stock · Elm St</span>
-        <span data-rm-show style="animation:ok-s4 15s linear infinite; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0E6B44; border:1px solid #CFE3D8; border-radius:2px; padding:2px 7px; background:#EAF2ED;">Hold · Sam · until 4 PM</span>
-      </span>
-    </div>
-    <div style="display:flex; justify-content:space-between; align-items:center; border:1px solid #E2E5DF; border-radius:3px; padding:10px 12px; background:#FFFFFF;">
-      <span style="font-size:13px; font-weight:600;">Oak Dining Table <span style="font-weight:400; color:#8A948C;">· 72&quot; · smoked</span></span>
-      <span style="font-size:11px; color:#55625A;">2 in stock · Elm St</span>
-    </div>
-    <div style="display:flex; justify-content:space-between; align-items:center; border:1px solid #E2E5DF; border-radius:3px; padding:10px 12px; background:#FFFFFF;">
-      <span style="font-size:13px; font-weight:600;">Linen Armchair <span style="font-weight:400; color:#8A948C;">· oat</span></span>
-      <span style="font-size:11px; color:#B0783C;">Low stock · reorder queued</span>
-    </div>
-    <div data-rm-show style="animation:ok-s1 15s linear infinite; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF;">
-      <div style="display:flex; justify-content:space-between; align-items:baseline;">
-        <span style="font-size:13px; font-weight:600;">Sam K. <span style="font-weight:400; color:#8A948C;">· store chat</span></span>
-        <span style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#B0783C;">New</span>
-      </div>
-      <div style="font-size:13px; color:#55625A; line-height:1.5; margin-top:5px;">Do you have the walnut console in stock?</div>
-    </div>
-    <div data-rm-show style="animation:ok-s2 15s linear infinite; border:1px solid #CFE3D8; border-radius:3px; padding:12px 14px; background:#FFFFFF;">
-      <div style="display:flex; justify-content:space-between; align-items:baseline;">
-        <span style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#0E6B44;">Reply sent · inventory checked</span>
-        <span style="font-size:10px; color:#8A948C;">10:12:08 AM</span>
-      </div>
-      <div style="font-size:13px; line-height:1.5; margin-top:6px;">Yes, three in stock at Elm St. Want me to hold one at the counter until 4 PM?</div>
-    </div>
-  </div>
-</div>
-          </div>
-          <div class="okd-screen" data-i="7">
 <div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
               <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Cameras · Unit 2</span>
@@ -1176,13 +1137,7 @@
         </ul>
 
       </div>
-      <div class="folio__group">
-        <h3 class="folio__cat">Storefronts</h3>
-        <ul class="folio__cards">
-          <li><h4 class="folio__title">Storefront assistant</h4><p class="folio__desc">An assistant that knows everything you carry, answers real customer questions honestly, and brings them through the door.</p></li>
-        </ul>
-
-      </div>
+      
       <div class="folio__group">
         <h3 class="folio__cat">Computer Vision</h3>
         <ul class="folio__cards">
@@ -1502,14 +1457,13 @@
   var groups = [].slice.call(document.querySelectorAll('.folio__group'));
   if(!navs.length || navs.length !== screens.length) return;
   /* nav index -> category group index (Lead, BackOffice, AskDocs, Ops, Retail, Storefronts, CV) */
-  var GROUP = [0, 3, 1, 2, 3, 4, 5, 6];
+  var GROUP = [0, 3, 1, 2, 3, 4, 5];
   var CLIENT = [
     ['HR','Hale Roofing Co.','dana@haleroofing.com'],
     ['HR','Hale Roofing Co.','dana@haleroofing.com'],
     ['HR','Hale Roofing Co.','dana@haleroofing.com'],
     ['HR','Hale Roofing Co.','dana@haleroofing.com'],
     ['HR','Hale Roofing Co.','dana@haleroofing.com'],
-    ['BM','Birch & Main','kate@birchandmain.com'],
     ['BM','Birch & Main','kate@birchandmain.com'],
     ['AB','Alder Bottling Co.','sam@alderbottling.com']
   ];
