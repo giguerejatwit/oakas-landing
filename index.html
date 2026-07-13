@@ -523,6 +523,31 @@
     .dots{ display:none; }
   }
 
+  /* ---------- process reveal: steps build themselves in order ---------- */
+  .js .moves .move{
+    opacity:0; transform:translateY(14px); position:relative; border-top-color:transparent;
+    transition:opacity .6s var(--ease-out), transform .6s var(--ease-out);
+  }
+  .js .moves .move::before{
+    content:""; position:absolute; top:-1px; left:0; width:100%; height:1px;
+    background:var(--rule); transform:scaleX(0); transform-origin:left;
+    transition:transform .8s var(--ease-out);
+  }
+  .js .moves .move:first-child::before{ background:var(--ink); }
+  .js .moves .move .move__no{ color:var(--ink-dim); transition:color .5s ease; }
+  .js .moves.play .move{ opacity:1; transform:none; }
+  .js .moves.play .move::before{ transform:scaleX(1); }
+  .js .moves.play .move .move__no{ color:var(--accent); }
+  .js .moves.play .move:nth-child(1){ transition-delay:.05s; } .js .moves.play .move:nth-child(1)::before{ transition-delay:.05s; } .js .moves.play .move:nth-child(1) .move__no{ transition-delay:.35s; }
+  .js .moves.play .move:nth-child(2){ transition-delay:.35s; } .js .moves.play .move:nth-child(2)::before{ transition-delay:.35s; } .js .moves.play .move:nth-child(2) .move__no{ transition-delay:.65s; }
+  .js .moves.play .move:nth-child(3){ transition-delay:.65s; } .js .moves.play .move:nth-child(3)::before{ transition-delay:.65s; } .js .moves.play .move:nth-child(3) .move__no{ transition-delay:.95s; }
+  .js .moves.play .move:nth-child(4){ transition-delay:.95s; } .js .moves.play .move:nth-child(4)::before{ transition-delay:.95s; } .js .moves.play .move:nth-child(4) .move__no{ transition-delay:1.25s; }
+  @media (prefers-reduced-motion: reduce){
+    .js .moves .move{ opacity:1; transform:none; transition:none; border-top-color:var(--rule); }
+    .js .moves .move::before{ display:none; }
+    .js .moves .move .move__no{ color:var(--accent); transition:none; }
+  }
+
   /* ---------- platform demos (Claude Design "Workbench" panels) ---------- */
   .okd{ margin-top:1.5rem; max-width:660px; }
   @keyframes ok-pulse { 0%,100% { opacity:.35; } 50% { opacity:1; } }
@@ -1375,7 +1400,7 @@
     <h2 class="statement" id="method-h" style="font-size:var(--s-3); max-width:18ch;">Four steps, then it’s yours.</h2>
     <div class="moves">
       <div class="move"><span class="move__no">Step 01</span><h3 class="move__name">Discovery</h3><p class="move__body">A free 30-minute call where we digest your business: where the hours go, which processes hurt, what subscriptions you&rsquo;re paying for, and which tools you&rsquo;ve tried, kept, or abandoned, and why. <strong>You talk, we map.</strong></p></div>
-      <div class="move"><span class="move__no">Step 02</span><h3 class="move__name">Proposal</h3><p class="move__body">Within one to two weeks we come back with a <strong>fixed-price proposal</strong> on a follow-up call. We revise it until it fits, you sign, and the number never changes after that.</p></div>
+      <div class="move"><span class="move__no">Step 02</span><h3 class="move__name">Proposal</h3><p class="move__body">Within one to two weeks we come back with a <strong>fixed-price proposal</strong> on a follow-up call. We revise it until it fits, you sign, and the price never changes after that.</p></div>
       <div class="move"><span class="move__no">Step 03</span><h3 class="move__name">Build</h3><p class="move__body">We design and ship custom software against your real workflow, not a template. You see <strong>working software early and often</strong>, refined against the way your team actually operates.</p></div>
       <div class="move"><span class="move__no">Step 04</span><h3 class="move__name">Release</h3><p class="move__body">Your software goes live inside your business, your team is trained, and you <strong>own everything</strong>: the code, the data, the accounts. Most clients then keep us on a monthly retainer to host, maintain, and keep improving the system as their business grows.</p></div>
     </div>
@@ -1699,6 +1724,19 @@
       if(inView) start(); else stop();
     }, { threshold: 0.25 }).observe(section);
   } else { inView = true; start(); }
+})();
+</script>
+<script>
+/* process reveal: build the four steps in order on first view */
+(function(){
+  var moves = document.querySelector('#method .moves');
+  if(!moves) return;
+  if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    moves.classList.add('play'); return;
+  }
+  new IntersectionObserver(function(entries, obs){
+    if(entries[0].isIntersecting){ moves.classList.add('play'); obs.disconnect(); }
+  }, { threshold: 0.35 }).observe(moves);
 })();
 </script>
 <script>
