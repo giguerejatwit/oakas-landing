@@ -542,6 +542,49 @@
     .js .moves .move .move__no{ color:var(--accent); transition:none; }
   }
 
+  /* ---------- unified interactive demo ---------- */
+  .okd--unified{ max-width:900px; margin-top:clamp(1.6rem,4vh,2.4rem); }
+  .okd-side2{
+    width:164px; flex:none; display:flex; flex-direction:column;
+    border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0;
+    font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;
+  }
+  .okd-logo{ display:flex; align-items:center; gap:8px; padding:0 16px 14px; }
+  .okd-mark{
+    width:20px; height:20px; border-radius:50%; border:1px solid #161D19; flex:none;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:11px; color:#161D19;
+  }
+  .okd-word{ font-size:12px; font-weight:700; letter-spacing:.22em; color:#161D19; }
+  .okd-hr{ height:1px; background:#E7EAE4; margin:0 16px 10px; }
+  .okd-navs{ display:flex; flex-direction:column; gap:2px; padding:0 8px; }
+  .okd-nav{
+    appearance:none; background:none; border:0; text-align:left; cursor:pointer;
+    position:relative; padding:6px 10px; font-family:inherit; font-size:12.5px;
+    color:#8A948C; border-radius:2px; transition:color .15s ease, background .15s ease;
+  }
+  .okd-nav:hover{ color:#161D19; }
+  .okd-nav.active{ background:#EAF2ED; color:#161D19; font-weight:600; }
+  .okd-nav.active::before{ content:""; position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44; }
+  .okd-acct{ margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4; display:flex; align-items:center; gap:9px; }
+  .okd-avatar{
+    width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; flex:none;
+    display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700;
+  }
+  .okd-client{ font-size:12px; font-weight:600; color:#161D19; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .okd-mail{ font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .okd-screen{ display:none; flex:1; min-width:0; }
+  .okd-screen.active{ display:flex; }
+  .okd-screen.active > div{ flex:1; min-width:0; }
+  @media (max-width:700px){
+    .okd--unified .okd-body{ flex-direction:column; }
+    .okd-side2{ width:100%; flex-direction:row; align-items:center; overflow-x:auto; -webkit-overflow-scrolling:touch; border-right:0; border-bottom:1px solid #E7EAE4; padding:8px; }
+    .okd-logo, .okd-hr, .okd-acct{ display:none; }
+    .okd-navs{ flex-direction:row; padding:0; }
+    .okd-nav{ white-space:nowrap; }
+  }
+  .js .folio{ display:block; }
+
   /* ---------- platform demos (Claude Design "Workbench" panels) ---------- */
   .okd{ margin-top:1.5rem; max-width:660px; }
   @keyframes ok-pulse { 0%,100% { opacity:.35; } 50% { opacity:1; } }
@@ -769,59 +812,37 @@
     <h2 class="statement" id="portfolio-h" style="font-size:var(--s-3); max-width:22ch;">What a build with us <em>looks like.</em></h2>
     <p class="lede" style="margin-top:1.2rem; max-width:58ch;">The systems below are the shape of the work, scoped to your business and priced fixed before a line of code is written.</p>
 
-    <div class="folio">
-      <div class="folio__rail" role="tablist" aria-label="Portfolio categories">
-        <button class="folio__tab" type="button">Lead Engine<span class="prog"></span></button>
-        <button class="folio__tab" type="button">Back Office<span class="prog"></span></button>
-        <button class="folio__tab" type="button">Ask Your Documents<span class="prog"></span></button>
-        <button class="folio__tab" type="button">Operations<span class="prog"></span></button>
-        <button class="folio__tab" type="button">Retail &amp; E-commerce<span class="prog"></span></button>
-        <button class="folio__tab" type="button">Storefronts<span class="prog"></span></button>
-        <button class="folio__tab" type="button">Computer Vision<span class="prog"></span></button>
-      </div>
-      <div class="folio__group">
-        <h3 class="folio__cat">Lead Engine</h3>
-        <ul class="folio__cards">
-          <li><h4 class="folio__title">Speed-to-lead response</h4><p class="folio__desc">Every inquiry from ads, web forms or email answered in seconds, nights and weekends included, before a competitor picks up the phone.</p></li>
-          <li><h4 class="folio__title">AI phone agent</h4><p class="folio__desc">Answers your line in your business&rsquo;s voice, handles the common questions and books the appointment on your calendar.</p></li>
-          <li><h4 class="folio__title">Website support chat</h4><p class="folio__desc">Instant, accurate answers for visitors on your site, with the conversations that need a human routed to one.</p></li>
-          <li><h4 class="folio__title">Review engine</h4><p class="folio__desc">Every customer review answered promptly and in your tone, with the unhappy ones flagged to you first.</p></li>
-          <li><h4 class="folio__title">A site AI can recommend</h4><p class="folio__desc">A fast, clean website structured so ChatGPT and Google&rsquo;s AI can read you, cite you and send customers your way.</p></li>
-        </ul>
-<div class="okd" aria-hidden="true">
-<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
+    <div class="okd okd--unified">
+      <div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
         <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
           <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
           <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
           <span style="width:33px;"></span>
         </div>
         <div class="okd-body" style="display:flex; height:408px;">
-          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
-            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
-              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
-              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
-            </div>
-            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
-            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
-              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Leads</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
-            </div>
-            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
-              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
-                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
-                <div style="min-width:0;">
-                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
-                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
-                </div>
+          <div class="okd-side2">
+            <div class="okd-logo"><span class="okd-mark">O</span><span class="okd-word">OAKAS</span></div>
+            <div class="okd-hr"></div>
+            <nav class="okd-navs" aria-label="Demo screens">
+            <button type="button" class="okd-nav active" data-i="0">Leads</button>
+            <button type="button" class="okd-nav" data-i="1">Assistant</button>
+            <button type="button" class="okd-nav" data-i="2">Documents</button>
+            <button type="button" class="okd-nav" data-i="3">Search</button>
+            <button type="button" class="okd-nav" data-i="4">Reports</button>
+            <button type="button" class="okd-nav" data-i="5">Marketplace</button>
+            <button type="button" class="okd-nav" data-i="6">Storefront</button>
+            <button type="button" class="okd-nav" data-i="7">Cameras</button>
+            </nav>
+            <div class="okd-acct">
+              <span class="okd-avatar">HR</span>
+              <div style="min-width:0;">
+                <div class="okd-client">Hale Roofing Co.</div>
+                <div class="okd-mail">dana@haleroofing.com</div>
               </div>
             </div>
           </div>
-          <div style="flex:1; background:#FCFCFB;">
+          <div class="okd-screen active" data-i="0">
+<div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
               <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Leads</span>
               <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Tonight · 11:42 PM</span>
@@ -851,51 +872,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-</div>
-      </div>
-      <div class="folio__group">
-        <h3 class="folio__cat">Back Office</h3>
-        <ul class="folio__cards">
-          <li><h4 class="folio__title">Document intake</h4><p class="folio__desc">Invoices, contracts and forms read, sorted, routed and filed the moment they arrive, with a person only where judgement is needed.</p></li>
-          <li><h4 class="folio__title">Books that close themselves</h4><p class="folio__desc">Transactions matched and reconciled overnight, so month-end stops being a project.</p></li>
-          <li><h4 class="folio__title">Invoices that send themselves</h4><p class="folio__desc">The job closes, the invoice goes out, and the polite chasing continues until it&rsquo;s paid, without you writing a word.</p></li>
-        </ul>
-<div class="okd" aria-hidden="true">
-<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
-        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
-          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
-          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
-          <span style="width:33px;"></span>
-        </div>
-        <div class="okd-body" style="display:flex; height:408px;">
-          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
-            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
-              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
-              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
-            </div>
-            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
-            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
-              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Assistant</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
-            </div>
-            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
-              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
-                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
-                <div style="min-width:0;">
-                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
-                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
-                </div>
-              </div>
-            </div>
           </div>
-          <div style="flex:1; background:#FCFCFB;">
+          <div class="okd-screen" data-i="1">
+<div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
               <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Assistant</span>
               <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Handles email · calendar · follow-ups</span>
@@ -920,43 +899,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-</div>
-<div class="okd" aria-hidden="true">
-<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
-        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
-          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
-          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
-          <span style="width:33px;"></span>
-        </div>
-        <div class="okd-body" style="display:flex; height:408px;">
-          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
-            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
-              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
-              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
-            </div>
-            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
-            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
-              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Documents</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
-            </div>
-            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
-              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
-                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
-                <div style="min-width:0;">
-                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
-                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
-                </div>
-              </div>
-            </div>
           </div>
-          <div style="flex:1; background:#FCFCFB;">
+          <div class="okd-screen" data-i="2">
+<div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
               <div style="display:flex; gap:16px; align-items:baseline;">
                 <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Documents</span>
@@ -995,50 +940,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-</div>
-      </div>
-      <div class="folio__group">
-        <h3 class="folio__cat">Ask Your Documents</h3>
-        <ul class="folio__cards">
-          <li><h4 class="folio__title">Ask your own documents</h4><p class="folio__desc">A straight answer from your files, contracts and old threads, with the source attached to every claim.</p></li>
-          <li><h4 class="folio__title">Conversation review</h4><p class="folio__desc">Every customer conversation checked automatically for the misses you&rsquo;d catch yourself if you had the time.</p></li>
-        </ul>
-<div class="okd" aria-hidden="true">
-<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
-        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
-          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
-          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
-          <span style="width:33px;"></span>
-        </div>
-        <div class="okd-body" style="display:flex; height:408px;">
-          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
-            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
-              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
-              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
-            </div>
-            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
-            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
-              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Documents</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
-            </div>
-            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
-              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
-                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
-                <div style="min-width:0;">
-                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
-                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
-                </div>
-              </div>
-            </div>
           </div>
-          <div style="flex:1; background:#FCFCFB;">
+          <div class="okd-screen" data-i="3">
+<div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
               <div style="display:flex; gap:16px; align-items:baseline;">
                 <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Documents</span>
@@ -1063,51 +967,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-</div>
-      </div>
-      <div class="folio__group">
-        <h3 class="folio__cat">Operations</h3>
-        <ul class="folio__cards">
-          <li><h4 class="folio__title">An assistant that runs the office</h4><p class="folio__desc">An AI assistant the owner messages like an employee: email, calendar, files and follow-ups handled from one chat thread.</p></li>
-          <li><h4 class="folio__title">Ask your data</h4><p class="folio__desc">Plain-English questions against your real numbers (sales, jobs, stock), answered instantly with no report request queue.</p></li>
-          <li><h4 class="folio__title">Always-on agents</h4><p class="folio__desc">A fleet of agents working the queue around the clock: assigning, chasing, updating, and telling you when something needs you.</p></li>
-        </ul>
-<div class="okd" aria-hidden="true">
-<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
-        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
-          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
-          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
-          <span style="width:33px;"></span>
-        </div>
-        <div class="okd-body" style="display:flex; height:408px;">
-          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
-            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
-              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
-              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
-            </div>
-            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
-            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
-              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Operations</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
-            </div>
-            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
-              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
-                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
-                <div style="min-width:0;">
-                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
-                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
-                </div>
-              </div>
-            </div>
           </div>
-          <div style="flex:1; background:#FCFCFB;">
+          <div class="okd-screen" data-i="4">
+<div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
               <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Operations</span>
               <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">No spreadsheets needed</span>
@@ -1145,51 +1007,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-</div>
-      </div>
-      <div class="folio__group">
-        <h3 class="folio__cat">Retail &amp; E-commerce</h3>
-        <ul class="folio__cards">
-          <li><h4 class="folio__title">Inventory auditing</h4><p class="folio__desc">What&rsquo;s on the shelf, what the system says, and where they disagree, reconciled continuously instead of once a quarter.</p></li>
-          <li><h4 class="folio__title">Pricing &amp; inventory autopilot</h4><p class="folio__desc">24/7 monitoring of prices and stock across marketplaces, flagging the moves worth making.</p></li>
-          <li><h4 class="folio__title">Vendor sheet to storefront</h4><p class="folio__desc">A supplier&rsquo;s messy spreadsheet turned into clean, ready-to-sell product listings, hundreds at a time.</p></li>
-        </ul>
-<div class="okd" aria-hidden="true">
-<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
-        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
-          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
-          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
-          <span style="width:33px;"></span>
-        </div>
-        <div class="okd-body" style="display:flex; height:408px;">
-          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
-            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
-              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
-              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
-            </div>
-            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
-            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
-              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Marketplace</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
-            </div>
-            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
-              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
-                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">BM</span>
-                <div style="min-width:0;">
-                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Birch &amp; Main Goods</div>
-                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">sam@birchandmain.com</div>
-                </div>
-              </div>
-            </div>
           </div>
-          <div style="flex:1; background:#FCFCFB;">
+          <div class="okd-screen" data-i="5">
+<div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
               <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Marketplace</span>
               <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Watching 142 SKUs · round the clock</span>
@@ -1221,49 +1041,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-</div>
-      </div>
-      <div class="folio__group">
-        <h3 class="folio__cat">Storefronts</h3>
-        <ul class="folio__cards">
-          <li><h4 class="folio__title">Storefront assistant</h4><p class="folio__desc">An assistant that knows everything you carry, answers real customer questions honestly, and brings them through the door.</p></li>
-        </ul>
-<div class="okd" aria-hidden="true">
-<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
-        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
-          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
-          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
-          <span style="width:33px;"></span>
-        </div>
-        <div class="okd-body" style="display:flex; height:408px;">
-          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
-            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
-              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
-              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
-            </div>
-            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
-            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
-              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Storefront</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
-            </div>
-            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
-              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
-                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">BM</span>
-                <div style="min-width:0;">
-                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Birch &amp; Main Goods</div>
-                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">sam@birchandmain.com</div>
-                </div>
-              </div>
-            </div>
           </div>
-          <div style="flex:1; background:#FCFCFB;">
+          <div class="okd-screen" data-i="6">
+<div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
               <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Storefront</span>
               <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Answering customers 24/7</span>
@@ -1288,51 +1068,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-</div>
-      </div>
-      <div class="folio__group">
-        <h3 class="folio__cat">Computer Vision</h3>
-        <ul class="folio__cards">
-          <li><h4 class="folio__title">Count what the camera sees</h4><p class="folio__desc">Shelves, yards, lots and lines counted continuously from the cameras you already have. No more clipboard walks.</p></li>
-          <li><h4 class="folio__title">Catch it before it ships</h4><p class="folio__desc">Photos and video of your product or your crew&rsquo;s work checked automatically, with the exceptions flagged to a human.</p></li>
-          <li><h4 class="folio__title">Read plans and photos</h4><p class="folio__desc">Drawings, site photos and job documentation turned into structured data: measurements, materials, takeoffs.</p></li>
-        </ul>
-<div class="okd" aria-hidden="true">
-<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
-        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
-          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
-          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
-          <span style="width:33px;"></span>
-        </div>
-        <div class="okd-body" style="display:flex; height:408px;">
-          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
-            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
-              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
-              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
-            </div>
-            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
-            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
-              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
-              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Cameras</div>
-            </div>
-            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
-              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
-                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">AB</span>
-                <div style="min-width:0;">
-                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Alder Bottling Co.</div>
-                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">ops@alderbottling.com</div>
-                </div>
-              </div>
-            </div>
           </div>
-          <div style="flex:1; background:#FCFCFB;">
+          <div class="okd-screen" data-i="7">
+<div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
               <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Cameras · Unit 2</span>
               <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">3 held today · 0 escapes</span>
@@ -1373,9 +1111,77 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
-</div>
+      <p class="foot" style="margin:.7rem 0 0; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-dim);">Interactive demo · click the sidebar · example clients</p>
+    </div>
+
+
+    <div class="folio">
+      
+      <div class="folio__group">
+        <h3 class="folio__cat">Lead Engine</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Speed-to-lead response</h4><p class="folio__desc">Every inquiry from ads, web forms or email answered in seconds, nights and weekends included, before a competitor picks up the phone.</p></li>
+          <li><h4 class="folio__title">AI phone agent</h4><p class="folio__desc">Answers your line in your business&rsquo;s voice, handles the common questions and books the appointment on your calendar.</p></li>
+          <li><h4 class="folio__title">Website support chat</h4><p class="folio__desc">Instant, accurate answers for visitors on your site, with the conversations that need a human routed to one.</p></li>
+          <li><h4 class="folio__title">Review engine</h4><p class="folio__desc">Every customer review answered promptly and in your tone, with the unhappy ones flagged to you first.</p></li>
+          <li><h4 class="folio__title">A site AI can recommend</h4><p class="folio__desc">A fast, clean website structured so ChatGPT and Google&rsquo;s AI can read you, cite you and send customers your way.</p></li>
+        </ul>
+
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Back Office</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Document intake</h4><p class="folio__desc">Invoices, contracts and forms read, sorted, routed and filed the moment they arrive, with a person only where judgement is needed.</p></li>
+          <li><h4 class="folio__title">Books that close themselves</h4><p class="folio__desc">Transactions matched and reconciled overnight, so month-end stops being a project.</p></li>
+          <li><h4 class="folio__title">Invoices that send themselves</h4><p class="folio__desc">The job closes, the invoice goes out, and the polite chasing continues until it&rsquo;s paid, without you writing a word.</p></li>
+        </ul>
+
+
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Ask Your Documents</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Ask your own documents</h4><p class="folio__desc">A straight answer from your files, contracts and old threads, with the source attached to every claim.</p></li>
+          <li><h4 class="folio__title">Conversation review</h4><p class="folio__desc">Every customer conversation checked automatically for the misses you&rsquo;d catch yourself if you had the time.</p></li>
+        </ul>
+
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Operations</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">An assistant that runs the office</h4><p class="folio__desc">An AI assistant the owner messages like an employee: email, calendar, files and follow-ups handled from one chat thread.</p></li>
+          <li><h4 class="folio__title">Ask your data</h4><p class="folio__desc">Plain-English questions against your real numbers (sales, jobs, stock), answered instantly with no report request queue.</p></li>
+          <li><h4 class="folio__title">Always-on agents</h4><p class="folio__desc">A fleet of agents working the queue around the clock: assigning, chasing, updating, and telling you when something needs you.</p></li>
+        </ul>
+
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Retail &amp; E-commerce</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Inventory auditing</h4><p class="folio__desc">What&rsquo;s on the shelf, what the system says, and where they disagree, reconciled continuously instead of once a quarter.</p></li>
+          <li><h4 class="folio__title">Pricing &amp; inventory autopilot</h4><p class="folio__desc">24/7 monitoring of prices and stock across marketplaces, flagging the moves worth making.</p></li>
+          <li><h4 class="folio__title">Vendor sheet to storefront</h4><p class="folio__desc">A supplier&rsquo;s messy spreadsheet turned into clean, ready-to-sell product listings, hundreds at a time.</p></li>
+        </ul>
+
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Storefronts</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Storefront assistant</h4><p class="folio__desc">An assistant that knows everything you carry, answers real customer questions honestly, and brings them through the door.</p></li>
+        </ul>
+
+      </div>
+      <div class="folio__group">
+        <h3 class="folio__cat">Computer Vision</h3>
+        <ul class="folio__cards">
+          <li><h4 class="folio__title">Count what the camera sees</h4><p class="folio__desc">Shelves, yards, lots and lines counted continuously from the cameras you already have. No more clipboard walks.</p></li>
+          <li><h4 class="folio__title">Catch it before it ships</h4><p class="folio__desc">Photos and video of your product or your crew&rsquo;s work checked automatically, with the exceptions flagged to a human.</p></li>
+          <li><h4 class="folio__title">Read plans and photos</h4><p class="folio__desc">Drawings, site photos and job documentation turned into structured data: measurements, materials, takeoffs.</p></li>
+        </ul>
+
       </div>
     </div>
 
@@ -1680,27 +1486,43 @@
 })();
 </script>
 <script>
-/* portfolio theater: cycle through each category, one on stage at a time */
+/* unified interactive demo: the app sidebar drives screens + category cards */
 (function(){
+  var navs = [].slice.call(document.querySelectorAll('.okd-nav'));
+  var screens = [].slice.call(document.querySelectorAll('.okd-screen'));
   var groups = [].slice.call(document.querySelectorAll('.folio__group'));
-  var tabs = [].slice.call(document.querySelectorAll('.folio__tab'));
-  if(!groups.length || groups.length !== tabs.length) return;
-  var i = 0, timer = null, inView = false;
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!navs.length || navs.length !== screens.length) return;
+  /* nav index -> category group index (Lead, BackOffice, AskDocs, Ops, Retail, Storefronts, CV) */
+  var GROUP = [0, 3, 1, 2, 3, 4, 5, 6];
+  var CLIENT = [
+    ['HR','Hale Roofing Co.','dana@haleroofing.com'],
+    ['HR','Hale Roofing Co.','dana@haleroofing.com'],
+    ['HR','Hale Roofing Co.','dana@haleroofing.com'],
+    ['HR','Hale Roofing Co.','dana@haleroofing.com'],
+    ['HR','Hale Roofing Co.','dana@haleroofing.com'],
+    ['BM','Birch & Main','kate@birchandmain.com'],
+    ['BM','Birch & Main','kate@birchandmain.com'],
+    ['AB','Alder Bottling Co.','sam@alderbottling.com']
+  ];
+  var avatar = document.querySelector('.okd-avatar');
+  var client = document.querySelector('.okd-client');
+  var mail = document.querySelector('.okd-mail');
+  var i = 0, timer = null, inView = false, userTookOver = false;
   function show(n){
-    i = (n + groups.length) % groups.length;
-    groups.forEach(function(g, k){ g.classList.toggle('active', k === i); });
-    tabs.forEach(function(t, k){
-      t.classList.toggle('active', k === i);
-      t.setAttribute('aria-selected', k === i ? 'true' : 'false');
-      if(k === i){ var p = t.querySelector('.prog'); if(p){ p.style.animation = 'none'; void p.offsetWidth; p.style.animation = ''; } }
-    });
+    i = (n + navs.length) % navs.length;
+    navs.forEach(function(t,k){ t.classList.toggle('active', k===i); });
+    screens.forEach(function(s,k){ s.classList.toggle('active', k===i); });
+    groups.forEach(function(g,k){ g.classList.toggle('active', k===GROUP[i]); });
+    if(avatar){ avatar.textContent = CLIENT[i][0]; client.textContent = CLIENT[i][1]; mail.textContent = CLIENT[i][2]; }
   }
   function stop(){ if(timer){ clearInterval(timer); timer = null; } }
-  function start(){ if(reduced || timer || !inView) return; timer = setInterval(function(){ show(i + 1); }, 12000); }
-  tabs.forEach(function(t, k){
-    t.setAttribute('role', 'tab');
-    t.addEventListener('click', function(){ stop(); show(k); start(); });
+  function start(){
+    if(userTookOver || timer || !inView) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    timer = setInterval(function(){ show(i+1); }, 12000);
+  }
+  navs.forEach(function(t,k){
+    t.addEventListener('click', function(){ userTookOver = true; stop(); show(k); });
   });
   show(0);
   var section = document.getElementById('portfolio');
@@ -1708,7 +1530,7 @@
     new IntersectionObserver(function(entries){
       inView = entries[0].isIntersecting;
       if(inView) start(); else stop();
-    }, { threshold: 0.25 }).observe(section);
+    }, { threshold: 0.2 }).observe(section);
   } else { inView = true; start(); }
 })();
 </script>
