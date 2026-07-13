@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..520&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..520&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   /* ============================================================
      OAKAS v2 — one long scrubbed intro, then calm.
@@ -523,6 +523,32 @@
     .dots{ display:none; }
   }
 
+  /* ---------- platform demos (Claude Design "Workbench" panels) ---------- */
+  .okd{ margin-top:1.5rem; max-width:660px; }
+  @keyframes ok-pulse { 0%,100% { opacity:.35; } 50% { opacity:1; } }
+  @keyframes ok-dot { 0%,60%,100% { opacity:.2; } 30% { opacity:1; } }
+  @keyframes ok-type { 0%,2% { max-width:0; } 22% { max-width:100%; } 100% { max-width:100%; } }
+  @keyframes ok-s1 { 0%,4% { opacity:0; transform:translateY(5px); } 9% { opacity:1; transform:none; } 94% { opacity:1; } 98%,100% { opacity:0; } }
+  @keyframes ok-s2 { 0%,24% { opacity:0; transform:translateY(5px); } 30% { opacity:1; transform:none; } 94% { opacity:1; } 98%,100% { opacity:0; } }
+  @keyframes ok-s3 { 0%,48% { opacity:0; transform:translateY(5px); } 54% { opacity:1; transform:none; } 94% { opacity:1; } 98%,100% { opacity:0; } }
+  @keyframes ok-s4 { 0%,68% { opacity:0; transform:translateY(5px); } 74% { opacity:1; transform:none; } 94% { opacity:1; } 98%,100% { opacity:0; } }
+  @keyframes ok-swA { 0%,46% { opacity:1; } 52%,96% { opacity:0; } 100% { opacity:1; } }
+  @keyframes ok-swB { 0%,46% { opacity:0; } 52% { opacity:1; } 94% { opacity:1; } 98%,100% { opacity:0; } }
+  @keyframes ok-bar { 0%,30% { transform:scaleY(.05); } 42% { transform:scaleY(1); } 94% { transform:scaleY(1); } 98%,100% { transform:scaleY(.05); } }
+  @keyframes ok-scan { 0% { top:8%; } 50% { top:86%; } 100% { top:8%; } }
+  @keyframes ok-belt { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+  @keyframes ok-box { 0%,18% { opacity:0; } 22% { opacity:1; } 74% { opacity:1; } 80%,100% { opacity:0; } }
+  @keyframes ok-box2 { 0%,50% { opacity:0; } 54% { opacity:1; } 96% { opacity:1; } 100% { opacity:0; } }
+  @media (max-width:700px){
+    .okd .okd-side{ display:none; }
+    .okd .okd-body{ height:auto !important; min-height:300px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .okd *{ animation:none !important; }
+    .okd [data-rm-show]{ opacity:1 !important; transform:none !important; max-width:100% !important; }
+    .okd [data-rm-hide]{ opacity:0 !important; }
+  }
+
   /* ---------- founders ---------- */
   .founders{
     display:grid; gap:clamp(1.8rem,4vw,3rem); grid-template-columns:1fr;
@@ -779,64 +805,78 @@
           <li><h4 class="folio__title">Website support chat</h4><p class="folio__desc">Instant, accurate answers for visitors on your site, with the conversations that need a human routed to one.</p></li>
           <li><h4 class="folio__title">Review engine</h4><p class="folio__desc">Every customer review answered promptly and in your tone — and the unhappy ones flagged to you first.</p></li>
         </ul>
-        <div class="demo demo--panes" aria-hidden="true">
-          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Speed to lead</span></div>
-          <div class="demo__stage">
-            <div class="pane">
-              <h5>Your website · 11:42 pm</h5>
-              <div class="bar g6" style="width:55%"></div>
-              <div class="bar g12" style="width:82%"></div>
-              <div class="bar g18" style="width:68%"></div>
-              <span class="mini-btn p24">Request a quote</span>
+<div class="okd" aria-hidden="true">
+<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
+          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
+          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
+          <span style="width:33px;"></span>
+        </div>
+        <div class="okd-body" style="display:flex; height:408px;">
+          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
+              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
+              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
             </div>
-            <div class="pane">
-              <h5>Your Oakas system</h5>
-              <p class="line-note p24">New lead — Jordan E.</p>
-              <span class="dots w26"><i></i><i></i><i></i></span>
-              <div class="bar g30" style="width:85%"></div>
-              <div class="bar g36" style="width:74%"></div>
-              <div class="bar g42" style="width:58%"></div>
+            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
+            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
+              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Leads</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
             </div>
-            <div class="pane">
-              <h5>The lead&rsquo;s inbox</h5>
-              <div class="mailrow p54">
-                <strong>Re: Your quote request</strong>
-                <span>Hi Jordan — yes, we can help with that. Two quick questions so we can price it right&hellip;</span>
+            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
+              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
+                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
+                <div style="min-width:0;">
+                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
+                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
+                </div>
               </div>
-              <span class="stamp p60">Answered in seconds</span>
+            </div>
+          </div>
+          <div style="flex:1; background:#FCFCFB;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
+              <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Leads</span>
+              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Tonight · 11:42 PM</span>
+            </div>
+            <div style="padding:16px 20px; display:flex; flex-direction:column; gap:12px;">
+              <div style="border:1px solid #E2E5DF; border-radius:3px; padding:13px 14px; background:#FFFFFF; animation:ok-s1 15s linear infinite;" data-rm-show>
+                <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                  <span style="font-size:13px; font-weight:600;">Dana W. <span style="font-weight:400; color:#8A948C;">· web form</span></span>
+                  <span style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#B0783C;">New</span>
+                </div>
+                <div style="font-size:13px; color:#55625A; line-height:1.5; margin-top:5px;">Roof leak over the garage — can someone look this week?</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:9px; padding:0 2px; animation:ok-s2 15s linear infinite;" data-rm-show>
+                <span style="width:6px; height:6px; border-radius:50%; background:#0E6B44;"></span>
+                <span style="font-size:12px; color:#55625A;">Agent composing reply</span>
+                <span style="display:inline-flex; gap:4px;"><span style="width:4px; height:4px; border-radius:50%; background:#0E6B44; animation:ok-dot 1.1s ease-in-out infinite;"></span><span style="width:4px; height:4px; border-radius:50%; background:#0E6B44; animation:ok-dot 1.1s ease-in-out infinite .18s;"></span><span style="width:4px; height:4px; border-radius:50%; background:#0E6B44; animation:ok-dot 1.1s ease-in-out infinite .36s;"></span></span>
+              </div>
+              <div style="border:1px solid #CFE3D8; border-radius:3px; padding:13px 14px; background:#FFFFFF; animation:ok-s3 15s linear infinite;" data-rm-show>
+                <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                  <span style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#0E6B44;">Reply sent · SMS + email</span>
+                  <span style="font-size:10px; color:#8A948C;">11:42:11 PM</span>
+                </div>
+                <div style="font-size:13px; line-height:1.5; margin-top:6px;">Hi Dana — we can be there Thursday between 9–11. Photos of the leak help if you have them.</div>
+              </div>
+              <div style="animation:ok-s4 15s linear infinite; padding:0 2px;" data-rm-show>
+                <span style="font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:#0E6B44;">Answered in seconds.</span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+</div>
       </div>
       <div class="folio__group">
         <h3 class="folio__cat">Web &amp; Growth</h3>
         <ul class="folio__cards">
           <li><h4 class="folio__title">A site AI can recommend</h4><p class="folio__desc">A fast, clean website structured so ChatGPT and Google&rsquo;s AI can read you, cite you and send customers your way.</p></li>
         </ul>
-        <div class="demo demo--panes" aria-hidden="true">
-          <div class="demo__bar"><span class="demo__dot"></span><span class="t">AI search visibility</span></div>
-          <div class="demo__stage">
-            <div class="pane">
-              <h5>Someone asks AI</h5>
-              <p class="line-note p6">&ldquo;Who&rsquo;s the best kitchen remodeler near me?&rdquo;</p>
-              <span class="dots w12"><i></i><i></i><i></i></span>
-            </div>
-            <div class="pane">
-              <h5>It reads your site</h5>
-              <p class="line-note p18"><i class="ok">✓</i>&nbsp; Services laid out plainly</p>
-              <p class="line-note p24"><i class="ok">✓</i>&nbsp; Real reviews, real work</p>
-              <p class="line-note p30"><i class="ok">✓</i>&nbsp; Structured so AI can cite it</p>
-            </div>
-            <div class="pane">
-              <h5>You&rsquo;re the answer</h5>
-              <div class="mailrow p42">
-                <strong>Your business</strong>
-                <span>&ldquo;A well-reviewed local remodeler with clear pricing and a strong portfolio&hellip;&rdquo;</span>
-              </div>
-              <span class="stamp p54">Cited and recommended</span>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="folio__group">
         <h3 class="folio__cat">Back Office</h3>
@@ -845,15 +885,142 @@
           <li><h4 class="folio__title">Books that close themselves</h4><p class="folio__desc">Transactions matched and reconciled overnight, so month-end stops being a project.</p></li>
           <li><h4 class="folio__title">Invoices that send themselves</h4><p class="folio__desc">The job closes, the invoice goes out, and the polite chasing continues until it&rsquo;s paid — without you writing a word.</p></li>
         </ul>
-        <div class="demo demo--docs" aria-hidden="true">
-          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Document intake</span></div>
-          <div class="demo__stage">
-            <div class="doc p6"><span class="name">invoice_4417.pdf</span><span class="steps"><span class="p12"><i class="ok">✓</i> read</span><span class="p18"><i class="ok">✓</i> routed</span><span class="p24"><i class="ok">✓</i> filed</span></span></div>
-            <div class="doc p30"><span class="name">contract_hale.pdf</span><span class="steps"><span class="p36"><i class="ok">✓</i> read</span><span class="p42"><i class="ok">✓</i> routed</span><span class="p48"><i class="ok">✓</i> filed</span></span></div>
-            <div class="doc p54"><span class="name">w9_martinez.pdf</span><span class="steps"><span class="p60"><i class="ok">✓</i> read</span><span class="p60"><i class="ok">✓</i> routed</span><span class="p66"><i class="ok">✓</i> filed</span></span></div>
-            <p class="line-note p66" style="margin:.2rem 0 0;">Three documents handled. Nobody opened a folder.</p>
+<div class="okd" aria-hidden="true">
+<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
+          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
+          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
+          <span style="width:33px;"></span>
+        </div>
+        <div class="okd-body" style="display:flex; height:408px;">
+          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
+              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
+              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
+            </div>
+            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
+            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
+              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Assistant</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
+            </div>
+            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
+              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
+                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
+                <div style="min-width:0;">
+                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
+                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1; background:#FCFCFB;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
+              <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Assistant</span>
+              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Handles email · calendar · follow-ups</span>
+            </div>
+            <div style="padding:16px 20px; display:flex; flex-direction:column; gap:12px;">
+              <div style="align-self:flex-end; max-width:80%; background:#F0F2EE; border:1px solid #E2E5DF; border-radius:3px 3px 1px 3px; padding:10px 13px; animation:ok-s1 15s linear infinite;" data-rm-show>
+                <div style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#8A948C; margin-bottom:4px;">Customer · SMS</div>
+                <div style="font-size:13px; line-height:1.5;">Any chance we can move my estimate to Friday instead?</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:9px; padding:0 2px; animation:ok-s2 15s linear infinite;" data-rm-show>
+                <span style="width:6px; height:6px; border-radius:50%; background:#0E6B44;"></span>
+                <span style="font-size:12px; color:#55625A;">Assistant checking the calendar</span>
+                <span style="display:inline-flex; gap:4px;"><span style="width:4px; height:4px; border-radius:50%; background:#0E6B44; animation:ok-dot 1.1s ease-in-out infinite;"></span><span style="width:4px; height:4px; border-radius:50%; background:#0E6B44; animation:ok-dot 1.1s ease-in-out infinite .18s;"></span><span style="width:4px; height:4px; border-radius:50%; background:#0E6B44; animation:ok-dot 1.1s ease-in-out infinite .36s;"></span></span>
+              </div>
+              <div style="align-self:flex-start; max-width:84%; background:#FFFFFF; border:1px solid #CFE3D8; border-radius:3px 3px 3px 1px; padding:10px 13px; animation:ok-s3 15s linear infinite;" data-rm-show>
+                <div style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#0E6B44; margin-bottom:4px;">OAKAS · replied for you</div>
+                <div style="font-size:13px; line-height:1.5;">Of course — Friday at 2 PM is open. You're rebooked, and I've sent a confirmation.</div>
+              </div>
+              <div style="display:flex; gap:8px; animation:ok-s4 15s linear infinite;" data-rm-show>
+                <span style="border:1px solid #DCE0DA; border-radius:2px; padding:4px 9px; font-size:11px; color:#55625A; background:#F7F8F5;">Calendar updated</span>
+                <span style="border:1px solid #DCE0DA; border-radius:2px; padding:4px 9px; font-size:11px; color:#55625A; background:#F7F8F5;">Reminder set · Fri 2 PM</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+</div>
+<div class="okd" aria-hidden="true">
+<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
+          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
+          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
+          <span style="width:33px;"></span>
+        </div>
+        <div class="okd-body" style="display:flex; height:408px;">
+          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
+              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
+              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
+            </div>
+            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
+            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
+              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Documents</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
+            </div>
+            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
+              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
+                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
+                <div style="min-width:0;">
+                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
+                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1; background:#FCFCFB;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
+              <div style="display:flex; gap:16px; align-items:baseline;">
+                <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Documents</span>
+                <span style="font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0E6B44; border-bottom:2px solid #0E6B44; padding-bottom:2px;">Intake</span>
+                <span style="font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#8A948C;">Ask</span>
+              </div>
+              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">6 new this morning</span>
+            </div>
+            <div style="padding:16px 20px; display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF; animation:ok-s1 15s linear infinite;" data-rm-show>
+                <span style="width:10px; height:13px; border:1px solid #55625A; border-radius:1px; flex:none;"></span>
+                <span style="font-size:13px; flex:1;">invoice_0412.pdf <span style="color:#8A948C;">· from email</span></span>
+                <span style="position:relative; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;">
+                  <span style="color:#8A948C; animation:ok-swA 15s linear infinite -1s;" data-rm-hide>Reading…</span>
+                  <span style="position:absolute; right:0; top:0; color:#0E6B44; white-space:nowrap; animation:ok-swB 15s linear infinite -1s;" data-rm-show>Routed · Accounts</span>
+                </span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF; animation:ok-s2 15s linear infinite;" data-rm-show>
+                <span style="width:10px; height:13px; border:1px solid #55625A; border-radius:1px; flex:none;"></span>
+                <span style="font-size:13px; flex:1;">contract_hale.pdf <span style="color:#8A948C;">· scanned</span></span>
+                <span style="position:relative; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;">
+                  <span style="color:#8A948C; animation:ok-swA 15s linear infinite 1.5s;" data-rm-hide>Reading…</span>
+                  <span style="position:absolute; right:0; top:0; color:#0E6B44; white-space:nowrap; animation:ok-swB 15s linear infinite 1.5s;" data-rm-show>Filed · Contracts</span>
+                </span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF; animation:ok-s3 15s linear infinite;" data-rm-show>
+                <span style="width:10px; height:13px; border:1px solid #55625A; border-radius:1px; flex:none;"></span>
+                <span style="font-size:13px; flex:1;">site_survey_may.pdf <span style="color:#8A948C;">· from email</span></span>
+                <span style="position:relative; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;">
+                  <span style="color:#8A948C; animation:ok-swA 15s linear infinite 3s;" data-rm-hide>Reading…</span>
+                  <span style="position:absolute; right:0; top:0; color:#0E6B44; white-space:nowrap; animation:ok-swB 15s linear infinite 3s;" data-rm-show>Filed · Jobs</span>
+                </span>
+              </div>
+              <div style="animation:ok-s4 15s linear infinite; padding:2px 2px 0;" data-rm-show>
+                <span style="font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:#55625A;">Read, routed, filed — nothing waits for Monday.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
       </div>
       <div class="folio__group">
         <h3 class="folio__cat">Knowledge</h3>
@@ -861,17 +1028,67 @@
           <li><h4 class="folio__title">Ask your own documents</h4><p class="folio__desc">A straight answer from your files, contracts and old threads — with the source attached to every claim.</p></li>
           <li><h4 class="folio__title">Conversation review</h4><p class="folio__desc">Every customer conversation checked automatically for the misses you&rsquo;d catch yourself if you had the time.</p></li>
         </ul>
-        <div class="demo demo--chat" aria-hidden="true">
-          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Ask your documents</span></div>
-          <div class="demo__stage">
-            <p class="msg msg--you p6">What did we agree with Hale about late payments?</p>
-            <span class="dots w12"><i></i><i></i><i></i></span>
-            <p class="msg msg--ai p24">Late invoices accrue a 2% monthly charge after a 15-day grace period.<span class="cite p30">contract_hale.pdf · page 4</span></p>
-            <p class="msg msg--you p36">And who signed that version?</p>
-            <span class="dots w42"><i></i><i></i><i></i></span>
-            <p class="msg msg--ai p54">R. Hale, on October 14, 2025.<span class="cite p60">contract_hale.pdf · page 12</span></p>
+<div class="okd" aria-hidden="true">
+<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
+          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
+          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
+          <span style="width:33px;"></span>
+        </div>
+        <div class="okd-body" style="display:flex; height:408px;">
+          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
+              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
+              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
+            </div>
+            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
+            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
+              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Documents</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
+            </div>
+            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
+              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
+                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
+                <div style="min-width:0;">
+                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
+                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1; background:#FCFCFB;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
+              <div style="display:flex; gap:16px; align-items:baseline;">
+                <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Documents</span>
+                <span style="font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#8A948C;">Intake</span>
+                <span style="font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0E6B44; border-bottom:2px solid #0E6B44; padding-bottom:2px;">Ask</span>
+              </div>
+              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">214 files indexed</span>
+            </div>
+            <div style="padding:16px 20px; display:flex; flex-direction:column; gap:14px;">
+              <div style="border:1px solid #E2E5DF; border-radius:3px; padding:11px 14px; background:#FFFFFF; font-size:13.5px; white-space:nowrap; overflow:hidden;">
+                <span style="display:inline-block; overflow:hidden; white-space:nowrap; vertical-align:bottom; max-width:100%; animation:ok-type 15s linear infinite;" data-rm-show>What's the notice period in the Hale contract?</span>
+              </div>
+              <div style="animation:ok-s2 15s linear infinite; padding:0 2px;" data-rm-show>
+                <div style="font-family:'Fraunces',serif; font-size:19px; line-height:1.45; font-weight:450;">Sixty days' written notice, from either party — per §8.2, Termination.</div>
+              </div>
+              <div style="display:flex; gap:8px; animation:ok-s3 15s linear infinite;" data-rm-show>
+                <span style="display:inline-flex; align-items:center; gap:6px; border:1px solid #DCE0DA; border-radius:2px; padding:4px 9px; font-size:11px; color:#55625A; background:#F7F8F5;"><span style="width:7px; height:9px; border:1px solid #0E6B44; border-radius:1px; flex:none;"></span>contract_hale.pdf · page 4</span>
+                <span style="display:inline-flex; align-items:center; gap:6px; border:1px solid #DCE0DA; border-radius:2px; padding:4px 9px; font-size:11px; color:#55625A; background:#F7F8F5;">§8.2 Termination</span>
+              </div>
+              <div style="border-top:1px solid #EDEFEA; padding-top:12px; animation:ok-s4 15s linear infinite;" data-rm-show>
+                <span style="font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:#55625A;">Every answer cites its source.</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+</div>
       </div>
       <div class="folio__group">
         <h3 class="folio__cat">Operations</h3>
@@ -880,17 +1097,80 @@
           <li><h4 class="folio__title">Ask your data</h4><p class="folio__desc">Plain-English questions against your real numbers — sales, jobs, stock — answered instantly, no report request queue.</p></li>
           <li><h4 class="folio__title">Always-on agents</h4><p class="folio__desc">A fleet of agents working the queue around the clock: assigning, chasing, updating, and telling you when something needs you.</p></li>
         </ul>
-        <div class="demo demo--chat" aria-hidden="true">
-          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Office assistant</span></div>
-          <div class="demo__stage">
-            <p class="msg msg--you p6">Did the Henderson invoice ever go out?</p>
-            <span class="dots w12"><i></i><i></i><i></i></span>
-            <p class="msg msg--ai p24">Sent Tuesday at 9:04 am. They&rsquo;ve opened it twice but haven&rsquo;t paid — want me to send a friendly nudge?</p>
-            <p class="msg msg--you p36">Yes, do it.</p>
-            <span class="dots w42"><i></i><i></i><i></i></span>
-            <p class="msg msg--ai p54">Done. Follow-up sent, and I&rsquo;ll remind you Friday if it&rsquo;s still unpaid.</p>
+<div class="okd" aria-hidden="true">
+<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
+          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
+          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
+          <span style="width:33px;"></span>
+        </div>
+        <div class="okd-body" style="display:flex; height:408px;">
+          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
+              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
+              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
+            </div>
+            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
+            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
+              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Operations</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
+            </div>
+            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
+              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
+                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">HR</span>
+                <div style="min-width:0;">
+                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Hale Roofing Co.</div>
+                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">dana@haleroofing.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1; background:#FCFCFB;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
+              <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Operations</span>
+              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">No spreadsheets needed</span>
+            </div>
+            <div style="padding:16px 20px; display:flex; flex-direction:column; gap:14px;">
+              <div style="border:1px solid #E2E5DF; border-radius:3px; padding:11px 14px; background:#FFFFFF; font-size:13.5px; white-space:nowrap; overflow:hidden;">
+                <span style="display:inline-block; overflow:hidden; white-space:nowrap; vertical-align:bottom; max-width:100%; animation:ok-type 15s linear infinite;" data-rm-show>How did March go?</span>
+              </div>
+              <div style="display:flex; gap:24px; animation:ok-s2 15s linear infinite; padding:0 2px;" data-rm-show>
+                <div>
+                  <div style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#8A948C;">Revenue</div>
+                  <div style="font-family:'Fraunces',serif; font-size:22px; font-weight:550; margin-top:2px;">$48,200 <span style="font-size:13px; color:#0E6B44;">+12%</span></div>
+                </div>
+                <div>
+                  <div style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#8A948C;">Jobs closed</div>
+                  <div style="font-family:'Fraunces',serif; font-size:22px; font-weight:550; margin-top:2px;">34</div>
+                </div>
+                <div>
+                  <div style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#8A948C;">Lead conversion</div>
+                  <div style="font-family:'Fraunces',serif; font-size:22px; font-weight:550; margin-top:2px;">41%</div>
+                </div>
+              </div>
+              <div style="animation:ok-s3 15s linear infinite; border:1px solid #E2E5DF; border-radius:3px; background:#FFFFFF; padding:14px 16px 10px;" data-rm-show>
+                <div style="display:flex; align-items:flex-end; gap:14px; height:96px;">
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; height:38%; background:#DCE5DE; border-radius:1px; transform-origin:bottom; animation:ok-bar 15s linear infinite;"></div><span style="font-size:10px; color:#8A948C;">Oct</span></div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; height:46%; background:#DCE5DE; border-radius:1px; transform-origin:bottom; animation:ok-bar 15s linear infinite .12s;"></div><span style="font-size:10px; color:#8A948C;">Nov</span></div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; height:34%; background:#DCE5DE; border-radius:1px; transform-origin:bottom; animation:ok-bar 15s linear infinite .24s;"></div><span style="font-size:10px; color:#8A948C;">Dec</span></div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; height:52%; background:#DCE5DE; border-radius:1px; transform-origin:bottom; animation:ok-bar 15s linear infinite .36s;"></div><span style="font-size:10px; color:#8A948C;">Jan</span></div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; height:64%; background:#DCE5DE; border-radius:1px; transform-origin:bottom; animation:ok-bar 15s linear infinite .48s;"></div><span style="font-size:10px; color:#8A948C;">Feb</span></div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; height:88%; background:#0E6B44; border-radius:1px; transform-origin:bottom; animation:ok-bar 15s linear infinite .6s;"></div><span style="font-size:10px; font-weight:600; color:#161D19;">Mar</span></div>
+                </div>
+              </div>
+              <div style="animation:ok-s4 15s linear infinite; padding:0 2px;" data-rm-show>
+                <span style="font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:#55625A;">Ask in plain English. Answered instantly.</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+</div>
       </div>
       <div class="folio__group">
         <h3 class="folio__cat">Retail &amp; E-commerce</h3>
@@ -898,41 +1178,141 @@
           <li><h4 class="folio__title">Pricing &amp; inventory autopilot</h4><p class="folio__desc">Round-the-clock monitoring of prices and stock across marketplaces, flagging the moves worth making.</p></li>
           <li><h4 class="folio__title">Vendor sheet to storefront</h4><p class="folio__desc">A supplier&rsquo;s messy spreadsheet turned into clean, ready-to-sell product listings — hundreds at a time.</p></li>
         </ul>
-        <div class="demo demo--docs" aria-hidden="true">
-          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Marketplace watch</span></div>
-          <div class="demo__stage">
-            <div class="doc p6">
-              <span class="thumb"><img src="product-earbuds.jpg" width="42" height="42" loading="lazy" decoding="async" alt="" /></span>
-              <span class="name">Wireless earbuds · SKU 8841</span><span class="steps"><span class="p12">watching</span><span class="p18">price ↓ 36%</span><span class="p24"><i class="ok">✓</i> buy flagged</span></span>
+<div class="okd" aria-hidden="true">
+<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
+          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
+          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
+          <span style="width:33px;"></span>
+        </div>
+        <div class="okd-body" style="display:flex; height:408px;">
+          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
+              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
+              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
             </div>
-            <div class="doc p30">
-              <span class="thumb"><img src="product-mixer.jpg" width="42" height="42" loading="lazy" decoding="async" alt="" /></span>
-              <span class="name">Stand mixer · SKU 2210</span><span class="steps"><span class="p36">watching</span><span class="p42">stock low</span><span class="p48"><i class="ok">✓</i> reorder queued</span></span>
+            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
+            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
+              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Marketplace</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
             </div>
-            <div class="doc p54">
-              <span class="thumb"><img src="product-lamp.jpg" width="42" height="42" loading="lazy" decoding="async" alt="" /></span>
-              <span class="name">Desk lamp · SKU 977</span><span class="steps"><span class="p60">watching</span><span class="p66"><i class="ok">✓</i> no action needed</span></span>
+            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
+              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
+                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">BM</span>
+                <div style="min-width:0;">
+                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Birch &amp; Main Goods</div>
+                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">sam@birchandmain.com</div>
+                </div>
+              </div>
             </div>
-            <p class="line-note p66" style="margin:.2rem 0 0;">Two moves flagged overnight. Approved over coffee.</p>
+          </div>
+          <div style="flex:1; background:#FCFCFB;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
+              <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Marketplace</span>
+              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Watching 142 SKUs · round the clock</span>
+            </div>
+            <div style="padding:16px 20px; display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF; animation:ok-s1 15s linear infinite;" data-rm-show>
+                <span style="width:28px; height:28px; border-radius:2px; background:repeating-linear-gradient(45deg,#EDEFEA,#EDEFEA 3px,#F7F8F5 3px,#F7F8F5 6px); border:1px solid #E2E5DF; flex:none;"></span>
+                <span style="font-size:13px; flex:1;">Wireless earbuds <span style="color:#8A948C;">· SKU 8841</span></span>
+                <span style="position:relative; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;">
+                  <span style="color:#8A948C; animation:ok-swA 15s linear infinite -1s;" data-rm-hide>Watching</span>
+                  <span style="position:absolute; right:0; top:0; white-space:nowrap; animation:ok-swB 15s linear infinite -1s;" data-rm-show><span style="color:#161D19;">Price ↓ 36%</span> · <span style="color:#0E6B44;">✓ Buy flagged</span></span>
+                </span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF; animation:ok-s2 15s linear infinite;" data-rm-show>
+                <span style="width:28px; height:28px; border-radius:2px; background:repeating-linear-gradient(45deg,#EDEFEA,#EDEFEA 3px,#F7F8F5 3px,#F7F8F5 6px); border:1px solid #E2E5DF; flex:none;"></span>
+                <span style="font-size:13px; flex:1;">Stand mixer <span style="color:#8A948C;">· SKU 2210</span></span>
+                <span style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#8A948C;">Watching</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF; animation:ok-s3 15s linear infinite;" data-rm-show>
+                <span style="width:28px; height:28px; border-radius:2px; background:repeating-linear-gradient(45deg,#EDEFEA,#EDEFEA 3px,#F7F8F5 3px,#F7F8F5 6px); border:1px solid #E2E5DF; flex:none;"></span>
+                <span style="font-size:13px; flex:1;">Desk lamp <span style="color:#8A948C;">· SKU 1108</span></span>
+                <span style="position:relative; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;">
+                  <span style="color:#8A948C; animation:ok-swA 15s linear infinite 2s;" data-rm-hide>Watching</span>
+                  <span style="position:absolute; right:0; top:0; white-space:nowrap; color:#B0783C; animation:ok-swB 15s linear infinite 2s;" data-rm-show>Stock low · Reorder drafted</span>
+                </span>
+              </div>
+              <div style="animation:ok-s4 15s linear infinite; padding:2px 2px 0;" data-rm-show>
+                <span style="font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:#55625A;">Flagging the moves worth making.</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+</div>
       </div>
       <div class="folio__group">
         <h3 class="folio__cat">Storefronts</h3>
         <ul class="folio__cards">
           <li><h4 class="folio__title">Storefront assistant</h4><p class="folio__desc">An assistant that knows everything you carry, answers real customer questions honestly, and brings them through the door.</p></li>
         </ul>
-        <div class="demo demo--chat" aria-hidden="true">
-          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Storefront assistant</span></div>
-          <div class="demo__stage">
-            <p class="msg msg--you p6">Do you have the trail bike in a large?</p>
-            <span class="dots w12"><i></i><i></i><i></i></span>
-            <p class="msg msg--ai p24">Two in stock — a large in matte black and one in green. Want me to hold one for you?</p>
-            <p class="msg msg--you p36">Hold the black one till noon.</p>
-            <span class="dots w42"><i></i><i></i><i></i></span>
-            <p class="msg msg--ai p54">Done — it&rsquo;ll be at the counter under your name.</p>
+<div class="okd" aria-hidden="true">
+<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
+          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
+          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
+          <span style="width:33px;"></span>
+        </div>
+        <div class="okd-body" style="display:flex; height:408px;">
+          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
+              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
+              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
+            </div>
+            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
+            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
+              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Storefront</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Cameras</div>
+            </div>
+            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
+              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
+                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">BM</span>
+                <div style="min-width:0;">
+                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Birch &amp; Main Goods</div>
+                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">sam@birchandmain.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1; background:#FCFCFB;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
+              <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Storefront</span>
+              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Answering customers 24/7</span>
+            </div>
+            <div style="padding:16px 20px; display:flex; flex-direction:column; gap:12px;">
+              <div style="align-self:flex-end; max-width:80%; background:#F0F2EE; border:1px solid #E2E5DF; border-radius:3px 3px 1px 3px; padding:10px 13px; animation:ok-s1 15s linear infinite;" data-rm-show>
+                <div style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#8A948C; margin-bottom:4px;">Customer · store chat</div>
+                <div style="font-size:13px; line-height:1.5;">Do you have the walnut console in stock?</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:9px; padding:0 2px; animation:ok-s2 15s linear infinite;" data-rm-show>
+                <span style="width:6px; height:6px; border-radius:50%; background:#0E6B44;"></span>
+                <span style="font-size:12px; color:#55625A;">Checking live inventory</span>
+                <span style="display:inline-flex; gap:4px;"><span style="width:4px; height:4px; border-radius:50%; background:#0E6B44; animation:ok-dot 1.1s ease-in-out infinite;"></span><span style="width:4px; height:4px; border-radius:50%; background:#0E6B44; animation:ok-dot 1.1s ease-in-out infinite .18s;"></span><span style="width:4px; height:4px; border-radius:50%; background:#0E6B44; animation:ok-dot 1.1s ease-in-out infinite .36s;"></span></span>
+              </div>
+              <div style="align-self:flex-start; max-width:84%; background:#FFFFFF; border:1px solid #CFE3D8; border-radius:3px 3px 3px 1px; padding:10px 13px; animation:ok-s3 15s linear infinite;" data-rm-show>
+                <div style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#0E6B44; margin-bottom:4px;">OAKAS · storefront</div>
+                <div style="font-size:13px; line-height:1.5;">Yes — three in stock at Elm St. Want me to hold one for you?</div>
+              </div>
+              <div style="display:flex; gap:8px; animation:ok-s4 15s linear infinite;" data-rm-show>
+                <span style="border:1px solid #DCE0DA; border-radius:2px; padding:4px 9px; font-size:11px; color:#55625A; background:#F7F8F5;">Held until Saturday</span>
+                <span style="border:1px solid #DCE0DA; border-radius:2px; padding:4px 9px; font-size:11px; color:#55625A; background:#F7F8F5;">Pickup reminder sent</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+</div>
       </div>
       <div class="folio__group">
         <h3 class="folio__cat">Computer Vision</h3>
@@ -941,40 +1321,83 @@
           <li><h4 class="folio__title">Catch it before it ships</h4><p class="folio__desc">Photos and video of your product or your crew&rsquo;s work checked automatically, with the exceptions flagged to a human.</p></li>
           <li><h4 class="folio__title">Read plans and photos</h4><p class="folio__desc">Drawings, site photos and job documentation turned into structured data: measurements, materials, takeoffs.</p></li>
         </ul>
-        <div class="demo demo--vision" aria-hidden="true">
-          <div class="demo__bar"><span class="demo__dot"></span><span class="t">Visual inspection</span></div>
-          <div class="demo__stage">
-            <div class="vision">
-              <div class="v-hud"><span>Line Cam 2 · Bottling</span><span class="rec"><i></i>Live</span></div>
-              <div class="v-scan"></div>
-              <svg class="v-scene" viewBox="0 0 600 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-                <defs>
-                  <linearGradient id="vg-glass" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0" stop-color="#232D27"/><stop offset=".42" stop-color="#39473F"/>
-                    <stop offset=".58" stop-color="#415148"/><stop offset="1" stop-color="#1F2823"/>
-                  </linearGradient>
-                  <g id="vg-bottle">
-                    <path d="M0,126 Q0,106 12,96 L17,88 L17,72 L31,72 L31,88 L36,96 Q48,106 48,126 L48,204 L0,204 Z" fill="url(#vg-glass)" stroke="rgba(242,245,241,.16)" stroke-width="1"/>
-                    <rect x="15" y="63" width="18" height="10" rx="2" fill="#55625A"/>
-                    <rect x="6" y="108" width="5" height="88" rx="2.5" fill="rgba(242,245,241,.13)"/>
-                    <rect x="8" y="146" width="32" height="34" rx="2" fill="rgba(242,245,241,.07)" stroke="rgba(242,245,241,.12)" stroke-width="1"/>
-                  </g>
-                </defs>
-                <rect x="0" y="204" width="600" height="3" fill="rgba(242,245,241,.2)"/>
-                <rect x="0" y="207" width="600" height="33" fill="rgba(5,8,7,.5)"/>
-                <use href="#vg-bottle" x="62" y="0"/>
-                <use href="#vg-bottle" x="262" y="0"/>
-                <g><use href="#vg-bottle" x="462" y="0"/>
-                  <polyline points="472,120 483,138 477,154 490,174" fill="none" stroke="rgba(255,180,162,.7)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-              </svg>
-              <div class="v-box p12" style="left:8%; width:11%; height:64%; bottom:15%;"><span class="v-lbl">Pass · 0.98</span></div>
-              <div class="v-box p30" style="left:41.3%; width:11%; height:64%; bottom:15%;"><span class="v-lbl">Pass · 0.97</span></div>
-              <div class="v-box bad p48" style="left:74.6%; width:11%; height:64%; bottom:15%;"><span class="v-lbl">Crack · held</span></div>
+<div class="okd" aria-hidden="true">
+<div style="background:#FCFCFB; border:1px solid #DCE0DA; border-radius:4px; overflow:hidden; box-shadow:0 1px 2px rgba(22,29,25,0.05), 0 12px 32px -18px rgba(22,29,25,0.18);">
+        <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #E7EAE4; background:#F7F8F5;">
+          <span style="display:flex; gap:6px;"><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span><span style="width:9px; height:9px; border-radius:50%; background:#E2E5DF;"></span></span>
+          <span style="margin:0 auto; font-size:11px; letter-spacing:.06em; color:#8A948C; background:#FFFFFF; border:1px solid #E7EAE4; border-radius:3px; padding:3px 26px;">app.oakas.ai</span>
+          <span style="width:33px;"></span>
+        </div>
+        <div class="okd-body" style="display:flex; height:408px;">
+          <div class="okd-side" style="width:164px; flex:none; border-right:1px solid #E7EAE4; background:#F7F8F5; padding:14px 0; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 16px 14px;">
+              <span style="width:20px; height:20px; border-radius:50%; border:1px solid #161D19; display:inline-flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:11px;">O</span>
+              <span style="font-size:12px; font-weight:700; letter-spacing:.22em;">OAKAS</span>
             </div>
-            <p class="line-note p66">The cracked bottle never leaves the line. A person only sees the one that matters.</p>
+            <div style="height:1px; background:#E7EAE4; margin:0 16px 10px;"></div>
+            <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px;">
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Leads</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Assistant</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Documents</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Operations</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Marketplace</div>
+              <div style="padding:6px 10px; font-size:12.5px; color:#8A948C;">Storefront</div>
+              <div style="position:relative; padding:6px 10px; font-size:12.5px; font-weight:600; background:#EAF2ED; border-radius:2px;"><span style="position:absolute; left:0; top:5px; bottom:5px; width:2px; background:#0E6B44;"></span>Cameras</div>
+            </div>
+            <div style="margin-top:auto; padding:12px 12px 0; border-top:1px solid #E7EAE4;">
+              <div style="display:flex; align-items:center; gap:9px; padding:0 4px;">
+                <span style="width:24px; height:24px; border-radius:50%; background:#0E6B44; color:#F7F8F5; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; flex:none;">AB</span>
+                <div style="min-width:0;">
+                  <div style="font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Alder Bottling Co.</div>
+                  <div style="font-size:10px; color:#8A948C; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">ops@alderbottling.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1; background:#FCFCFB;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
+              <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Cameras · Unit 2</span>
+              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">3 held today · 0 escapes</span>
+            </div>
+            <div style="padding:16px 20px;">
+              <div style="position:relative; height:252px; background:#050807; border-radius:3px; overflow:hidden; background-image:linear-gradient(rgba(127,233,180,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(127,233,180,0.06) 1px, transparent 1px); background-size:28px 28px;">
+                <div style="position:absolute; top:10px; left:12px; display:flex; align-items:center; gap:7px;">
+                  <span style="width:6px; height:6px; border-radius:50%; background:#E8534A; animation:ok-pulse 1.6s ease-in-out infinite;"></span>
+                  <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:10px; letter-spacing:.1em; color:rgba(233,238,234,0.7);">REC · LINE CAMERA · UNIT 2</span>
+                </div>
+                <div style="position:absolute; top:10px; right:12px; font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:10px; letter-spacing:.1em; color:rgba(127,233,180,0.5);">CONF ≥ 0.90</div>
+                <div style="position:absolute; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, rgba(127,233,180,0.7), transparent); top:40%; animation:ok-scan 7s ease-in-out infinite;" data-rm-hide></div>
+                <div style="position:absolute; left:0; right:0; bottom:36px; height:1px; background:rgba(127,233,180,0.25);"></div>
+                <div style="position:absolute; bottom:37px; left:0; width:200%; display:flex; animation:ok-belt 14s linear infinite;">
+                  <div style="width:50%; display:flex; justify-content:space-around; align-items:flex-end;">
+                    <div style="display:flex; flex-direction:column; align-items:center;"><div style="width:9px; height:15px; border:1px solid rgba(127,233,180,0.5); border-bottom:none; border-radius:2px 2px 0 0;"></div><div style="width:28px; height:62px; border:1px solid rgba(127,233,180,0.5); border-radius:3px;"></div></div>
+                    <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
+                      <div style="width:9px; height:15px; border:1px solid rgba(127,233,180,0.5); border-bottom:none; border-radius:2px 2px 0 0;"></div><div style="width:28px; height:62px; border:1px solid rgba(127,233,180,0.5); border-radius:3px;"></div>
+                      <div style="position:absolute; inset:-9px -11px -4px; border:1px solid #7FE9B4; border-radius:2px; animation:ok-box 14s linear infinite;" data-rm-show><div style="position:absolute; top:-19px; left:-1px; font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:10px; color:#050807; background:#7FE9B4; padding:1px 5px; white-space:nowrap;">PASS 0.98</div></div>
+                    </div>
+                    <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
+                      <div style="width:9px; height:15px; border:1px solid rgba(127,233,180,0.5); border-bottom:none; border-radius:2px 2px 0 0;"></div><div style="width:28px; height:62px; border:1px solid rgba(127,233,180,0.5); border-radius:3px; position:relative; overflow:hidden;"><div style="position:absolute; top:19px; left:-5px; width:38px; height:1px; background:#E8C08B; transform:rotate(24deg);"></div></div>
+                      <div style="position:absolute; inset:-9px -11px -4px; border:1px solid #E8C08B; border-radius:2px; animation:ok-box2 14s linear infinite;" data-rm-show><div style="position:absolute; top:-19px; left:-1px; font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:10px; color:#050807; background:#E8C08B; padding:1px 5px; white-space:nowrap;">CRACK · HELD</div></div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center;"><div style="width:9px; height:15px; border:1px solid rgba(127,233,180,0.5); border-bottom:none; border-radius:2px 2px 0 0;"></div><div style="width:28px; height:62px; border:1px solid rgba(127,233,180,0.5); border-radius:3px;"></div></div>
+                  </div>
+                  <div style="width:50%; display:flex; justify-content:space-around; align-items:flex-end;">
+                    <div style="display:flex; flex-direction:column; align-items:center;"><div style="width:9px; height:15px; border:1px solid rgba(127,233,180,0.5); border-bottom:none; border-radius:2px 2px 0 0;"></div><div style="width:28px; height:62px; border:1px solid rgba(127,233,180,0.5); border-radius:3px;"></div></div>
+                    <div style="display:flex; flex-direction:column; align-items:center;"><div style="width:9px; height:15px; border:1px solid rgba(127,233,180,0.5); border-bottom:none; border-radius:2px 2px 0 0;"></div><div style="width:28px; height:62px; border:1px solid rgba(127,233,180,0.5); border-radius:3px;"></div></div>
+                    <div style="display:flex; flex-direction:column; align-items:center;"><div style="width:9px; height:15px; border:1px solid rgba(127,233,180,0.5); border-bottom:none; border-radius:2px 2px 0 0;"></div><div style="width:28px; height:62px; border:1px solid rgba(127,233,180,0.5); border-radius:3px;"></div></div>
+                    <div style="display:flex; flex-direction:column; align-items:center;"><div style="width:9px; height:15px; border:1px solid rgba(127,233,180,0.5); border-bottom:none; border-radius:2px 2px 0 0;"></div><div style="width:28px; height:62px; border:1px solid rgba(127,233,180,0.5); border-radius:3px;"></div></div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:11px;">
+                <span style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#8A948C; font-weight:600;">Defects held automatically</span>
+                <span style="font-family:'Fraunces',serif; font-style:italic; font-size:14px; color:#55625A;">A person only sees the one that matters.</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+</div>
       </div>
     </div>
 
