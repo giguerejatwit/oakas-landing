@@ -1051,7 +1051,7 @@
               <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">3 held today · 0 escapes</span>
             </div>
             <div style="padding:16px 20px;">
-              <div style="position:relative; height:252px; background:#050807; border-radius:3px; overflow:hidden;">
+              <div style="position:relative; aspect-ratio:2.55/1; background:#050807; border-radius:3px; overflow:hidden;">
                 <video class="okd-cam" src="cv-line.mp4" poster="cv-line-poster.jpg" muted loop playsinline preload="metadata" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
                 <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(127,233,180,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(127,233,180,0.05) 1px, transparent 1px); background-size:28px 28px; background-color:rgba(5,8,7,0.18); pointer-events:none;"></div>
                 <div style="position:absolute; top:10px; left:12px; display:flex; align-items:center; gap:7px;">
@@ -1060,10 +1060,10 @@
                 </div>
                 <div style="position:absolute; top:10px; right:12px; font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:10px; letter-spacing:.1em; color:rgba(127,233,180,0.75); text-shadow:0 1px 3px rgba(5,8,7,.8);">CONF ≥ 0.90</div>
                 <div style="position:absolute; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, rgba(127,233,180,0.6), transparent); top:40%; animation:ok-scan 7s ease-in-out infinite;" data-rm-hide></div>
-                <div style="position:absolute; left:33%; top:34%; width:15%; height:44%; border:1px solid #7FE9B4; border-radius:2px; box-shadow:0 0 0 1px rgba(127,233,180,.15); animation:ok-box 14s linear infinite;" data-rm-show>
+                <div class="okd-det" data-det="4.0,8.5" style="position:absolute; left:30.7%; top:40%; width:15.6%; height:57%; border:1px solid #7FE9B4; border-radius:2px; box-shadow:0 0 0 1px rgba(127,233,180,.15); opacity:0; transition:opacity .18s ease;" data-rm-show>
                   <div style="position:absolute; top:-19px; left:-1px; font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:10px; color:#050807; background:#7FE9B4; padding:1px 5px; white-space:nowrap;">PASS 0.98</div>
                 </div>
-                <div style="position:absolute; left:51%; top:26%; width:13%; height:40%; border:1px solid #E8C08B; border-radius:2px; box-shadow:0 0 0 1px rgba(232,192,139,.15); animation:ok-box2 14s linear infinite;" data-rm-show>
+                <div class="okd-det" data-det="5.6,8.5" style="position:absolute; left:41.9%; top:39.5%; width:11.7%; height:52%; border:1px solid #E8C08B; border-radius:2px; box-shadow:0 0 0 1px rgba(232,192,139,.15); opacity:0; transition:opacity .18s ease;" data-rm-show>
                   <div style="position:absolute; top:-19px; left:-1px; font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:10px; color:#050807; background:#E8C08B; padding:1px 5px; white-space:nowrap;">FILL LOW · HELD</div>
                 </div>
               </div>
@@ -1460,6 +1460,16 @@
     document.querySelectorAll('.okd-cam').forEach(function(v){
       var active = screens[i].contains(v);
       if(active && !reduced){ v.play().catch(function(){}); } else { v.pause(); }
+      if(!v._detWired){
+        v._detWired = true;
+        var dets = [].slice.call(v.parentElement.querySelectorAll('.okd-det'));
+        v.addEventListener('timeupdate', function(){
+          dets.forEach(function(d){
+            var w = d.getAttribute('data-det').split(',');
+            d.style.opacity = (v.currentTime >= +w[0] && v.currentTime <= +w[1]) ? 1 : 0;
+          });
+        });
+      }
     });
   }
   function stop(){ if(timer){ clearInterval(timer); timer = null; } }
