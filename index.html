@@ -782,9 +782,6 @@
     <a class="btn focusline" href="/book">Discover Oakas <span class="arrow" aria-hidden="true">→</span></a>
   </div>
 
-  <div class="stage stage-1" aria-hidden="true">
-    <p class="line t1">Get rooted.</p>
-  </div>
   <div class="stage stage-2" aria-hidden="true">
     <p class="line t2">Branch out.</p>
   </div>
@@ -1102,7 +1099,7 @@
       <div class="folio__group">
         <h3 class="folio__cat">Ask Your Documents</h3>
         <ul class="folio__cards">
-          <li><h4 class="folio__title">Ask your own documents</h4><p class="folio__desc">A straight answer from your files, contracts and old threads, with the source attached to every claim.</p></li>
+          <li><h4 class="folio__title">Cited answers</h4><p class="folio__desc">A straight answer from your files, contracts and old threads, with the source attached to every claim.</p></li>
           <li><h4 class="folio__title">Conversation review</h4><p class="folio__desc">Every customer conversation checked automatically for the misses you&rsquo;d catch yourself if you had the time.</p></li>
         </ul>
 
@@ -1147,7 +1144,7 @@
   <div class="wrap">
     <p class="kicker">The Team</p>
     <h2 class="statement" id="team-h" style="font-size:var(--s-3); max-width:20ch;">You work with the people who build it.</h2>
-    <p class="lede" style="margin-top:1.2rem; max-width:58ch;">No account managers and no handoffs. The engineers who scope your system are the same ones who build it and hand it over.</p>
+    <p class="lede" style="margin-top:1.2rem; max-width:58ch;">No account managers, no handoffs. The founders who scope your system are the same people who build it and hand it over.</p>
     <div class="founders">
       <figure class="founder">
         <div class="founder__photo"><img src="founder-hunter.jpg" width="400" height="400" loading="lazy" decoding="async" alt="Hunter Mimaroglu" /></div>
@@ -1179,7 +1176,7 @@
     <div class="grid2">
       <div>
         <h2 class="cta-head" id="begin-h">Book your free <em>30-minute</em> discovery&nbsp;call.</h2>
-        <p class="lede" style="margin-top:1.3rem;">Our goal at Oakas is to get you back into doing what you love, cutting down the busywork.</p>
+        <p class="lede" style="margin-top:1.3rem;">Our goal at Oakas is simple: cut the busywork so you can get back to what you love.</p>
         <ul class="foot" style="list-style:none; padding:0; margin:1.6rem 0 0; display:grid; gap:.6rem; max-width:44ch;">
           <li>Every build is scoped and priced before work starts. No surprises.</li>
         </ul>
@@ -1221,7 +1218,7 @@
               <div class="field"><label for="f-note">What eats your team’s week?</label><textarea id="f-note" name="note" placeholder="The recurring manual work you’d most like to hand off…"></textarea></div>
             </div>
             <div class="form-actions" style="margin-top:1.4rem;">
-              <button class="btn focusline" type="submit" id="submitBtn">Book My Discovery Call <span class="arrow" aria-hidden="true">→</span></button>
+              <button class="btn focusline" type="submit" id="submitBtn">Book My Call <span class="arrow" aria-hidden="true">→</span></button>
             </div>
             <p class="assure" style="margin:1rem 0 0;">One of the founders reads every message. You’ll have call times to pick from within one business day.</p>
             <p class="assure assure--links">In a hurry? <a href="mailto:eric@oakas.ai">eric@oakas.ai</a> &nbsp;·&nbsp; Questions first? <a href="faq.html" target="_blank" rel="noopener">Read the FAQ</a></p>
@@ -1411,12 +1408,10 @@
     }
   });
   /* the climb: base ("Get rooted.") → through the canopy → fly-out ("Branch out.") → the crown + lockup */
-  gsap.set(".stage-1, .stage-2", { autoAlpha: 0 });
+  gsap.set(".stage-2", { autoAlpha: 0 });
   tl.fromTo(proxy, { f: 0 }, { f: FRAME_COUNT - 1, ease: "none", duration: 1, onUpdate: function(){ draw(proxy.f); } }, 0)
     .to(".opening", { autoAlpha: 0, y: -26, duration: .035, ease: "none" }, .008)
     .to(mast, { autoAlpha: 1, duration: .015, ease: "none" }, .065) /* chrome arrives crisply after the card clears */
-    .fromTo(".stage-1", { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: .05, ease: "none" }, .07)
-    .to(".stage-1", { autoAlpha: 0, y: -20, duration: .05, ease: "none" }, .24)
     .fromTo(".stage-2", { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: .05, ease: "none" }, .52)
     .to(".stage-2", { autoAlpha: 0, y: -20, duration: .05, ease: "none" }, .72)
     .to(".lockup", { autoAlpha: 1, y: 0, duration: .06, ease: "none" }, .86);
