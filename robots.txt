@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Thank-you and delivery pages: reachable by link, not worth indexing, and
+# indexing them would surface post-conversion pages in search ahead of the
+# pages that actually explain the business.
+Disallow: /success
+Disallow: /arb-success
+Disallow: /course-success
+Disallow: /download
+Disallow: /_download
+Disallow: /index.backup
+
+Sitemap: https://oakas.ai/sitemap.xml
