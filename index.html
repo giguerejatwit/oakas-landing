@@ -1410,19 +1410,20 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
   gsap.set(".intro__scrim", { autoAlpha: .45 });
   var tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".intro", start: "top top", end: small ? "+=80%" : "+=100%",
+      trigger: ".intro", start: "top top", end: small ? "+=45%" : "+=55%",
       pin: true, scrub: 0.6, refreshPriority: 1, invalidateOnRefresh: true
     }
   });
-  /* the descent: close on the sky and crown → down to the whole oak + lockup */
+  /* the descent: close on the sky and crown → down to the whole oak + lockup,
+     which lands at ~60% so the last stretch of the pin holds it readable */
   tl.to(photo, {
       scale: function(){ return cam().s; }, x: function(){ return cam().x; }, y: function(){ return cam().y; },
-      ease: "power1.inOut", duration: .94
+      ease: "power1.inOut", duration: .75
     }, 0)
-    .to(".intro__scrim", { autoAlpha: 1, duration: .1, ease: "none" }, .8)
-    .to(".opening", { autoAlpha: 0, y: -26, duration: .035, ease: "none" }, .008)
-    .to(mast, { autoAlpha: 1, duration: .015, ease: "none" }, .065) /* chrome arrives crisply after the card clears */
-    .to(".lockup", { autoAlpha: 1, y: 0, duration: .06, ease: "none" }, .86);
+    .to(".intro__scrim", { autoAlpha: 1, duration: .15, ease: "none" }, .5)
+    .to(".opening", { autoAlpha: 0, y: -26, duration: .12, ease: "none" }, 0)
+    .to(mast, { autoAlpha: 1, duration: .05, ease: "none" }, .12) /* chrome arrives crisply after the card clears */
+    .to(".lockup", { autoAlpha: 1, y: 0, duration: .15, ease: "none" }, .58);
 })();
 </script>
 <script>
