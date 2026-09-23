@@ -6,12 +6,12 @@
 <title>OAKAS | Integrate AI In Your Business</title>
 <meta name="description" content="OAKAS is an AI consulting firm for small and medium businesses. We find where your team loses hours to manual work, then build the custom AI systems that run it. You own all of it." />
 <link rel="canonical" href="https://oakas.ai/" />
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
-<link rel="icon" type="image/png" href="/favicon-48.png" sizes="48x48" />
-<link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
-<link rel="icon" type="image/png" href="/icon-512.png" sizes="512x512" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+<link rel="icon" href="/favicon.ico?v=oak2" sizes="any" />
+<link rel="icon" type="image/png" href="/favicon-32.png?v=oak2" sizes="32x32" />
+<link rel="icon" type="image/png" href="/favicon-48.png?v=oak2" sizes="48x48" />
+<link rel="icon" type="image/png" href="/icon-192.png?v=oak2" sizes="192x192" />
+<link rel="icon" type="image/png" href="/icon-512.png?v=oak2" sizes="512x512" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=oak2" sizes="180x180" />
 <!-- Open Graph (link previews: iMessage, Slack, LinkedIn, Facebook) -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Oakas" />
@@ -231,26 +231,6 @@
   }
   .opening .btn:focus-visible{ outline:2px solid var(--ivory); outline-offset:3px; }
 
-  /* staged lines (GSAP path only) */
-  .stage{
-    position:absolute; z-index:3; inset:0;
-    align-items:center; justify-content:center; text-align:center;
-    pointer-events:none; display:none;
-  }
-  .scrub-on .stage{ display:flex; }
-  .stage .line{
-    font-family:"Fraunces", serif; font-optical-sizing:auto;
-    font-variation-settings:"opsz" 144;
-    font-style:italic; font-weight:340;
-    font-size:var(--s-5); letter-spacing:-.02em; color:var(--ivory);
-    text-shadow:0 2px 42px rgba(8,12,8,.85), 0 1px 6px rgba(8,12,8,.55);
-  }
-  /* soft vignette behind the staged lines so they hold over bright daylight footage */
-  .stage::before{
-    content:""; position:absolute; left:0; right:0; top:-90%; bottom:-90%;
-    background:radial-gradient(46% 52% at 50% 50%, rgba(8,12,8,.5), transparent 72%);
-  }
-  .stage .line{ position:relative; }
   /* the closing lockup — also the static hero for mobile / no-JS / reduced motion */
   .lockup{ max-width:820px; }
   /* ivory, not mint — the kicker lands on the sunlit meadow band in the final
@@ -820,9 +800,6 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
     <a class="btn focusline" href="/book">Discover Oakas <span class="arrow" aria-hidden="true">→</span></a>
   </div>
 
-  <div class="stage stage-2" aria-hidden="true">
-    <p class="line t2">Branch out.</p>
-  </div>
 
   <div class="wrap intro__inner">
     <div class="lockup" id="lockup">
@@ -1433,12 +1410,11 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
   gsap.set(".intro__scrim", { autoAlpha: .45 });
   var tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".intro", start: "top top", end: small ? "+=110%" : "+=150%",
+      trigger: ".intro", start: "top top", end: small ? "+=80%" : "+=100%",
       pin: true, scrub: 0.6, refreshPriority: 1, invalidateOnRefresh: true
     }
   });
-  /* the descent: close on the sky and crown → down through the canopy ("Branch out.") → the whole oak + lockup */
-  gsap.set(".stage-2", { autoAlpha: 0 });
+  /* the descent: close on the sky and crown → down to the whole oak + lockup */
   tl.to(photo, {
       scale: function(){ return cam().s; }, x: function(){ return cam().x; }, y: function(){ return cam().y; },
       ease: "power1.inOut", duration: .94
@@ -1446,8 +1422,6 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
     .to(".intro__scrim", { autoAlpha: 1, duration: .1, ease: "none" }, .8)
     .to(".opening", { autoAlpha: 0, y: -26, duration: .035, ease: "none" }, .008)
     .to(mast, { autoAlpha: 1, duration: .015, ease: "none" }, .065) /* chrome arrives crisply after the card clears */
-    .fromTo(".stage-2", { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: .05, ease: "none" }, .52)
-    .to(".stage-2", { autoAlpha: 0, y: -20, duration: .05, ease: "none" }, .72)
     .to(".lockup", { autoAlpha: 1, y: 0, duration: .06, ease: "none" }, .86);
 })();
 </script>
