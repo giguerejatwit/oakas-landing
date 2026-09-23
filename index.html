@@ -163,8 +163,9 @@
     overflow:hidden; isolation:isolate;
   }
   .intro__poster{ position:absolute; inset:0; z-index:0; }
-  .intro__poster img{ width:100%; height:100%; object-fit:cover; object-position:center; transform:scale(1.03); /* overscan: crop the baked letterbox edges */ }
-  .intro__canvas{ position:absolute; inset:0; z-index:1; width:100%; height:100%; }
+  .intro__poster img{ width:100%; height:100%; object-fit:cover; object-position:50% 50%; }
+  /* scroll camera: starts close on the sky and crown, pulls back to the whole oak (GSAP path only) */
+  .scrub-on .intro__photo{ transform-origin:50% 0; will-change:transform; }
   .intro__scrim{
     position:absolute; inset:0; z-index:2; pointer-events:none;
     background:
@@ -616,6 +617,7 @@
   @keyframes ok-s4 { 0%,68% { opacity:0; transform:translateY(5px); } 74% { opacity:1; transform:none; } 94% { opacity:1; } 98%,100% { opacity:0; } }
   @keyframes ok-swA { 0%,46% { opacity:1; } 52%,96% { opacity:0; } 100% { opacity:1; } }
   @keyframes ok-swB { 0%,46% { opacity:0; } 52% { opacity:1; } 94% { opacity:1; } 98%,100% { opacity:0; } }
+  @keyframes ok-fill { 0%,30% { transform:scaleX(.05); } 42% { transform:scaleX(1); } 94% { transform:scaleX(1); } 98%,100% { transform:scaleX(.05); } }
   @keyframes ok-bar { 0%,30% { transform:scaleY(.05); } 42% { transform:scaleY(1); } 94% { transform:scaleY(1); } 98%,100% { transform:scaleY(.05); } }
   @keyframes ok-scan { 0% { top:8%; } 50% { top:86%; } 100% { top:8%; } }
   @keyframes ok-belt { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
@@ -805,9 +807,8 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
 <main id="top">
 
 <!-- ============ THE INTRO — scroll is the playhead ============ -->
-<section class="intro" id="intro" aria-label="OAKAS: a climb from the roots of a giant oak to its crown">
-  <div class="intro__poster"><img src="frames/poster.webp?v=kling4k" width="2560" height="1440" fetchpriority="high" decoding="async" alt="A giant oak in full view, standing alone in a sunlit wildflower meadow under a clear sky." /></div>
-  <canvas class="intro__canvas" aria-hidden="true"></canvas>
+<section class="intro" id="intro" aria-label="OAKAS: a lone oak standing in an open field">
+  <div class="intro__poster"><img class="intro__photo" src="oak-2560.webp" srcset="oak-1280.webp 1280w, oak-2560.webp 2560w, oak-3840.webp 3840w" sizes="135vw" width="3840" height="2160" fetchpriority="high" decoding="async" alt="A lone oak standing in a golden field under a clear blue sky." /></div>
   <div class="intro__scrim" aria-hidden="true"></div>
 
   <div class="opening" id="opening">
@@ -1046,33 +1047,57 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
           <div class="okd-screen" data-i="5">
 <div style="flex:1; background:#FCFCFB;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 20px; border-bottom:1px solid #E7EAE4;">
-              <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Marketplace</span>
-              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Watching 142 SKUs</span>
+              <span style="font-family:'Fraunces',serif; font-size:16px; font-weight:550;">Stock levels</span>
+              <span style="font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#8A948C;">Counted 6:15 AM · 38 items</span>
             </div>
-            <div style="padding:16px 20px; display:flex; flex-direction:column; gap:10px;">
-              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF; animation:ok-s1 15s linear infinite;" data-rm-show>
-                <img src="product-earbuds.jpg" width="28" height="28" loading="lazy" decoding="async" alt="" style="width:28px; height:28px; border-radius:2px; object-fit:cover; border:1px solid #E2E5DF; flex:none; display:block;" />
-                <span style="font-size:13px; flex:1;">Wireless earbuds <span style="color:#8A948C;">· SKU 8841</span></span>
-                <span style="position:relative; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;">
-                  <span style="color:#8A948C; animation:ok-swA 15s linear infinite -1s;" data-rm-hide>Watching</span>
-                  <span style="position:absolute; right:0; top:0; white-space:nowrap; animation:ok-swB 15s linear infinite -1s;" data-rm-show><span style="color:#161D19;">Price ↓ 36%</span> · <span style="color:#0E6B44;">✓ Buy flagged</span></span>
-                </span>
+            <div style="padding:18px 20px; display:flex; flex-direction:column; gap:11px;">
+              <div style="display:flex; align-items:center; gap:14px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 16px 12px 12px; background:#FFFFFF; animation:ok-s1 15s linear infinite;" data-rm-show>
+                <img src="stock-beans.webp" width="52" height="52" loading="lazy" decoding="async" alt="" style="width:52px; height:52px; border-radius:3px; object-fit:cover; border:1px solid #E2E5DF; flex:none; display:block;" />
+                <div style="flex:1; min-width:0;">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px;">
+                    <span style="font-size:14.5px; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Espresso beans <span style="color:#8A948C;">· 5 lb bags</span></span>
+                    <span style="display:inline-grid; justify-items:end; font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; flex:none;">
+                      <span style="grid-area:1/1; color:#B0783C; animation:ok-swA 15s linear infinite -1s;" data-rm-hide>Low · 2 days left</span>
+                      <span style="grid-area:1/1; color:#0E6B44; animation:ok-swB 15s linear infinite -1s;" data-rm-show>Reorder drafted</span>
+                    </span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:12px; margin-top:9px;">
+                    <div style="flex:1; height:6px; background:#EDEFEA; border-radius:1px; overflow:hidden;"><div style="width:25%; height:100%; background:#B0783C; transform-origin:left; animation:ok-fill 15s linear infinite;"></div></div>
+                    <span style="font-size:12px; color:#55625A; font-variant-numeric:tabular-nums; white-space:nowrap; min-width:48px; text-align:right;">3 / 12</span>
+                  </div>
+                </div>
               </div>
-              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF; animation:ok-s2 15s linear infinite;" data-rm-show>
-                <img src="product-mixer.jpg" width="28" height="28" loading="lazy" decoding="async" alt="" style="width:28px; height:28px; border-radius:2px; object-fit:cover; border:1px solid #E2E5DF; flex:none; display:block;" />
-                <span style="font-size:13px; flex:1;">Stand mixer <span style="color:#8A948C;">· SKU 2210</span></span>
-                <span style="font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#8A948C;">Watching</span>
+              <div style="display:flex; align-items:center; gap:14px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 16px 12px 12px; background:#FFFFFF; animation:ok-s2 15s linear infinite;" data-rm-show>
+                <img src="stock-oatmilk.webp" width="52" height="52" loading="lazy" decoding="async" alt="" style="width:52px; height:52px; border-radius:3px; object-fit:cover; border:1px solid #E2E5DF; flex:none; display:block;" />
+                <div style="flex:1; min-width:0;">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px;">
+                    <span style="font-size:14.5px; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Oat milk <span style="color:#8A948C;">· cartons</span></span>
+                    <span style="display:inline-grid; justify-items:end; font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; flex:none;">
+                      <span style="grid-area:1/1; color:#B0783C; animation:ok-swA 15s linear infinite 1.5s;" data-rm-hide>Runs out Sat</span>
+                      <span style="grid-area:1/1; color:#0E6B44; animation:ok-swB 15s linear infinite 1.5s;" data-rm-show>Added to Fri order</span>
+                    </span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:12px; margin-top:9px;">
+                    <div style="flex:1; height:6px; background:#EDEFEA; border-radius:1px; overflow:hidden;"><div style="width:21%; height:100%; background:#B0783C; transform-origin:left; animation:ok-fill 15s linear infinite;"></div></div>
+                    <span style="font-size:12px; color:#55625A; font-variant-numeric:tabular-nums; white-space:nowrap; min-width:48px; text-align:right;">5 / 24</span>
+                  </div>
+                </div>
               </div>
-              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 14px; background:#FFFFFF; animation:ok-s3 15s linear infinite;" data-rm-show>
-                <img src="product-lamp.jpg" width="28" height="28" loading="lazy" decoding="async" alt="" style="width:28px; height:28px; border-radius:2px; object-fit:cover; border:1px solid #E2E5DF; flex:none; display:block;" />
-                <span style="font-size:13px; flex:1;">Desk lamp <span style="color:#8A948C;">· SKU 1108</span></span>
-                <span style="position:relative; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;">
-                  <span style="color:#8A948C; animation:ok-swA 15s linear infinite 2s;" data-rm-hide>Watching</span>
-                  <span style="position:absolute; right:0; top:0; white-space:nowrap; color:#B0783C; animation:ok-swB 15s linear infinite 2s;" data-rm-show>Stock low · Reorder drafted</span>
-                </span>
+              <div style="display:flex; align-items:center; gap:14px; border:1px solid #E2E5DF; border-radius:3px; padding:12px 16px 12px 12px; background:#FFFFFF; animation:ok-s3 15s linear infinite;" data-rm-show>
+                <img src="stock-cups.webp" width="52" height="52" loading="lazy" decoding="async" alt="" style="width:52px; height:52px; border-radius:3px; object-fit:cover; border:1px solid #E2E5DF; flex:none; display:block;" />
+                <div style="flex:1; min-width:0;">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px;">
+                    <span style="font-size:14.5px; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">12 oz hot cups <span style="color:#8A948C;">· sleeves</span></span>
+                    <span style="font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#0E6B44; white-space:nowrap; flex:none;">On track</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:12px; margin-top:9px;">
+                    <div style="flex:1; height:6px; background:#EDEFEA; border-radius:1px; overflow:hidden;"><div style="width:70%; height:100%; background:#0E6B44; transform-origin:left; animation:ok-fill 15s linear infinite;"></div></div>
+                    <span style="font-size:12px; color:#55625A; font-variant-numeric:tabular-nums; white-space:nowrap; min-width:48px; text-align:right;">14 / 20</span>
+                  </div>
+                </div>
               </div>
-              <div style="animation:ok-s4 15s linear infinite; padding:2px 2px 0;" data-rm-show>
-                <span style="font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:#55625A;">Flagging the moves worth making.</span>
+              <div style="animation:ok-s4 15s linear infinite; padding:4px 2px 0;" data-rm-show>
+                <span style="font-family:'Fraunces',serif; font-style:italic; font-size:16px; color:#55625A;">Nothing runs out before the morning rush.</span>
               </div>
             </div>
           </div>
@@ -1387,66 +1412,38 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true }); /* iOS URL-bar show/hide must not re-trigger layout */
 
-  /* ---- frames: full 2560px webp set on desktop, 800px jpg set on phones ---- */
-  var FRAME_COUNT = small ? 96 : 286;
-  var canvas = document.querySelector(".intro__canvas");
-  var ctx = null, frames = [], errors = 0, ready = false, last = -1;
-  var proxy = { f: 0 };
-  function src(i){
-    var n = String(i + 1).padStart(3, "0");
-    return small ? "frames/m/f_" + n + ".jpg?v=kling4k" : "frames/f_" + n + ".webp?v=kling4k";
-  }
-  function draw(f){
-    if(!ready || !ctx) return;
-    var i = Math.max(0, Math.min(FRAME_COUNT - 1, Math.round(f)));
-    if(i === last) return;
-    var img = frames[i];
-    if(!img || !img.naturalWidth) return;
-    last = i;
-    var cw = canvas.width, ch = canvas.height;
-    var s = Math.max(cw / img.naturalWidth, ch / img.naturalHeight) * 1.03; /* overscan: crop the baked letterbox edges */
-    var dw = img.naturalWidth * s, dh = img.naturalHeight * s;
-    ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
-  }
-  function size(){
-    var r = canvas.parentElement.getBoundingClientRect();
-    var dpr = Math.min(window.devicePixelRatio || 1, 2); /* full Retina density: the 2560px frames can feed it */
-    canvas.width = Math.round(r.width * dpr);
-    canvas.height = Math.round(r.height * dpr);
-    last = -1;
-    draw(proxy.f);
-  }
-  (function load(){
-    var pending = FRAME_COUNT;
-    for(var i = 0; i < FRAME_COUNT; i++){
-      var img = new Image();
-      img.decoding = "async";
-      img.onload = img.onerror = function(ev){
-        if(ev.type === "error") errors++;
-        if(--pending === 0 && errors === 0){
-          ready = true;
-          ctx = canvas.getContext("2d");
-          size();
-        }
-      };
-      img.src = src(i);
-      frames.push(img);
-    }
-  })();
-  ScrollTrigger.addEventListener("refresh", function(){ if(ready) size(); });
-
   /* ---- the one scroll animation on this site ---- */
   gsap.set(".lockup", { autoAlpha: 0, y: 28 });
   gsap.set(mast, { autoAlpha: 0 }); /* chrome-free opening; the timeline brings it back once the film starts */
+  /* camera end-state: whole oak in frame, shifted right on wide screens so the lockup
+     sits over open field, and pushed down so the grass fills the bottom edge */
+  var photo = document.querySelector(".intro__photo");
+  var IMG_AR = 16 / 9;
+  function cam(){
+    /* object-fit clips to the img box, so the box itself must keep covering the frame */
+    var w = photo.offsetWidth, h = photo.offsetHeight;
+    var H = Math.max(h, w / IMG_AR);                 /* rendered image height inside the box */
+    var x = (small || w < h * 1.2) ? 0 : w * .05;     /* only landscape frames have room to slide */
+    var s = (w + 2 * x) / w + .005;                   /* keep zoom low: the source only holds ~1.1x cleanly */
+    var crown = s * ((h - H) / 2 + .115 * H);         /* crown sits ~11.5% down the source image */
+    var y = Math.max(h - h * s, Math.min(0, h * .11 - crown));
+    return { s: s, x: x, y: y };
+  }
+  gsap.set(photo, { scale: 1.32, x: 0, y: 0 });
+  gsap.set(".intro__scrim", { autoAlpha: .45 });
   var tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".intro", start: "top top", end: small ? "+=110%" : "+=150%",
-      pin: true, scrub: 0.6, refreshPriority: 1
+      pin: true, scrub: 0.6, refreshPriority: 1, invalidateOnRefresh: true
     }
   });
-  /* the climb: base ("Get rooted.") → through the canopy → fly-out ("Branch out.") → the crown + lockup */
+  /* the descent: close on the sky and crown → down through the canopy ("Branch out.") → the whole oak + lockup */
   gsap.set(".stage-2", { autoAlpha: 0 });
-  tl.fromTo(proxy, { f: 0 }, { f: FRAME_COUNT - 1, ease: "none", duration: 1, onUpdate: function(){ draw(proxy.f); } }, 0)
+  tl.to(photo, {
+      scale: function(){ return cam().s; }, x: function(){ return cam().x; }, y: function(){ return cam().y; },
+      ease: "power1.inOut", duration: .94
+    }, 0)
+    .to(".intro__scrim", { autoAlpha: 1, duration: .1, ease: "none" }, .8)
     .to(".opening", { autoAlpha: 0, y: -26, duration: .035, ease: "none" }, .008)
     .to(mast, { autoAlpha: 1, duration: .015, ease: "none" }, .065) /* chrome arrives crisply after the card clears */
     .fromTo(".stage-2", { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: .05, ease: "none" }, .52)
@@ -1469,7 +1466,7 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
     ['HR','Hale Roofing Co.','dana@haleroofing.com'],
     ['HR','Hale Roofing Co.','dana@haleroofing.com'],
     ['HR','Hale Roofing Co.','dana@haleroofing.com'],
-    ['BM','Birch & Main','kate@birchandmain.com'],
+    ['RC','Ridgeline Coffee','maya@ridgelinecoffee.com'],
     ['AB','Alder Bottling Co.','sam@alderbottling.com']
   ];
   var avatar = document.querySelector('.okd-avatar');
