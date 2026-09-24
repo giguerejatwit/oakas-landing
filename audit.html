@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OAKAS | The 10-Minute Workflow Audit</title>
+<meta name="description" content="Seven questions about how work actually moves through your business. Get a plain-language read on where manual work is costing you the most." />
+<link rel="canonical" href="https://oakas.ai/audit" />
+<meta property="og:title" content="The 10-Minute Workflow Audit | OAKAS" />
+<meta property="og:description" content="Seven questions. A plain-language read on where your team loses hours to manual work." />
+<meta property="og:url" content="https://oakas.ai/audit" />
+<meta property="og:image" content="https://oakas.ai/og-image.jpg" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..520&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F7F8F5; --ink:#161D19; --ink-dim:#55625A; --accent:#0E6B44;
+    --rule:rgba(22,29,25,.16); --rule-soft:rgba(22,29,25,.09);
+    --s--1: clamp(.78rem, .74rem + .18vw, .875rem);
+    --s-0:  clamp(1.02rem, .98rem + .2vw, 1.15rem);
+    --s-1:  clamp(1.2rem, 1.08rem + .5vw, 1.5rem);
+    --s-3:  clamp(2rem, 1.5rem + 2.3vw, 3.15rem);
+    --edge: clamp(1.25rem, 5vw, 6rem);
+    --maxw: 860px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+    font-size:var(--s-0); line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  ::selection{ background:var(--accent); color:var(--paper); }
+  a{ color:var(--accent); text-underline-offset:.18em; text-decoration-thickness:1px; }
+  h1,h2{ font-family:"Fraunces", Georgia, serif; font-weight:540; margin:0; }
+  .wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--edge); }
+  .masthead{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding:clamp(.7rem,1.6vw,1.1rem) var(--edge);
+    border-bottom:1px solid var(--rule);
+  }
+  .brandlock{ display:flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--ink); }
+  .brandlock img{ width:26px; height:auto; display:block; }
+  .brandlock .word{
+    font-family:"Fraunces", serif; font-weight:500;
+    font-size:1.12rem; letter-spacing:.34em; text-transform:uppercase; padding-left:.34em;
+  }
+  .backlink{
+    font-size:var(--s--1); font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink-dim); white-space:nowrap;
+  }
+  .backlink:hover{ color:var(--ink); }
+  .kicker{
+    font-size:var(--s--1); font-weight:600; text-transform:uppercase;
+    letter-spacing:.24em; color:var(--accent); margin:0;
+  }
+  .band{ padding-block:clamp(3.5rem, 8vh, 6rem); }
+  .statement{ font-size:var(--s-3); line-height:1.1; letter-spacing:-.015em; margin:.5em 0 0; text-wrap:balance; }
+  .statement em{ font-style:italic; }
+  .lede{ font-size:var(--s-1); line-height:1.5; color:var(--ink); max-width:50ch; margin-top:1.2rem; }
+  .body{ max-width:62ch; color:var(--ink-dim); margin-top:1.2rem; }
+  .btn{
+    font-size:var(--s--1); font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+    padding:.85em 1.5em; border-radius:2px; min-height:44px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:.6em; text-decoration:none;
+    font-family:inherit;
+  }
+  .btn:hover{ background:#0B5737; }
+  .btn:disabled{ opacity:.55; cursor:default; }
+  .btn--ghost{ background:transparent; color:var(--ink); border-color:var(--rule); }
+  .btn--ghost:hover{ background:rgba(22,29,25,.05); }
+  .fine{ font-size:var(--s--1); color:var(--ink-dim); margin:.9rem 0 0; }
+
+  /* ---- the audit ---- */
+  .audit{ margin-top:clamp(2rem,5vh,3rem); border-top:1px solid var(--ink); }
+  .progress{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 0 .4rem; font-size:var(--s--1); color:var(--ink-dim); letter-spacing:.08em; text-transform:uppercase; font-weight:600; }
+  .progress .bar{ flex:1; height:2px; background:var(--rule-soft); position:relative; }
+  .progress .bar i{ position:absolute; inset:0 auto 0 0; background:var(--accent); width:0; transition:width .3s ease; }
+  .q{ display:none; border:0; margin:0; min-width:0; padding:clamp(1.2rem,3vw,1.8rem) 0 1.4rem; border-bottom:1px solid var(--rule); }
+  .q.on{ display:block; }
+  .q h2{ font-size:var(--s-1); font-weight:520; line-height:1.25; letter-spacing:-.01em; max-width:34ch; }
+  .opts{ list-style:none; padding:0; margin:1.1rem 0 0; display:grid; gap:.55rem; }
+  .opts label{
+    display:flex; align-items:center; gap:.9rem; padding:.85rem 1rem; cursor:pointer;
+    border:1px solid var(--rule); border-radius:2px; background:#fff;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .opts label:hover{ border-color:var(--ink); }
+  .opts input{ accent-color:var(--accent); width:1.05rem; height:1.05rem; margin:0; flex:none; }
+  .opts label:has(input:checked){ border-color:var(--accent); background:rgba(14,107,68,.06); }
+  .nav{ display:flex; justify-content:space-between; gap:1rem; margin-top:1.3rem; }
+
+  /* ---- results ---- */
+  .result{ display:none; outline:none; }
+  .result:focus{ outline:none; }
+  .result.on{ display:block; }
+  .score{ display:flex; align-items:baseline; gap:1rem; margin-top:1.4rem; flex-wrap:wrap; }
+  .score .n{ font-family:"Fraunces", serif; font-size:var(--s-3); line-height:1; font-weight:540; }
+  .score .of{ color:var(--ink-dim); }
+  .bandtag{ display:inline-block; font-size:var(--s--1); font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.3em .7em; border-radius:2px; }
+  .findings{ list-style:none; padding:0; margin:1.6rem 0 0; border-top:1px solid var(--ink); }
+  .findings li{ padding:1rem 0; border-bottom:1px solid var(--rule); max-width:62ch; }
+  .findings li strong{ display:block; font-family:"Fraunces", serif; font-weight:520; font-size:1.08em; margin-bottom:.2rem; }
+  .findings li span{ color:var(--ink-dim); }
+  .card{ margin-top:2rem; border:1px solid var(--rule); border-radius:2px; padding:clamp(1.2rem,3vw,1.8rem); background:#fff; }
+  .card h2{ font-size:var(--s-1); font-weight:520; }
+  .grid{ display:grid; gap:.9rem; margin-top:1rem; }
+  @media (min-width:640px){ .grid{ grid-template-columns:1fr 1fr; } .grid .full{ grid-column:1/-1; } }
+  .field label{ display:block; font-size:var(--s--1); font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:.35rem; }
+  .field input{ width:100%; font:inherit; padding:.7rem .85rem; border:1px solid var(--rule); border-radius:2px; background:var(--paper); color:var(--ink); }
+  .field input:focus{ outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent); }
+  .sent{ display:none; color:var(--accent); font-weight:600; margin-top:1rem; }
+  .sent.on{ display:block; }
+  .cta-band{ border-top:1px solid var(--rule); padding-block:clamp(2.5rem,6vh,4rem); }
+  .colophon{ border-top:1px solid var(--rule); padding-block:1.6rem; }
+  .colophon p{ margin:0; font-size:var(--s--1); color:var(--ink-dim); }
+  .sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1456801719618219');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<header class="masthead">
+  <a class="brandlock" href="/" aria-label="OAKAS home">
+    <img src="logo_bw.png" width="26" height="26" alt="" />
+    <span class="word">Oakas</span>
+  </a>
+  <a class="backlink" href="/">&larr; Back to the site</a>
+</header>
+
+<main>
+<section class="band">
+  <div class="wrap">
+    <div id="intro">
+      <p class="kicker">The 10-Minute Workflow Audit</p>
+      <h1 class="statement">Where is your team&rsquo;s time <em>actually</em> going?</h1>
+      <p class="lede">Seven questions about how work actually moves through your business today. You&rsquo;ll get a plain-language read on where the manual work is costing you the most, and whether it&rsquo;s worth a conversation.</p>
+      <p class="body">Most businesses can name one obvious bottleneck. Fewer can see the two or three quieter ones stacked behind it: the re-entered data, the document nobody can find fast, the follow-up that happens a day later than it should. This audit is built to surface those, not to sell you anything. If the honest answer is you&rsquo;re in good shape, we&rsquo;ll tell you that.</p>
+      <p style="margin-top:1.6rem;"><button class="btn" id="startBtn" type="button">Start the Audit <span aria-hidden="true">&rarr;</span></button></p>
+      <p class="fine">Takes about 10 minutes. Your results show up right here. We&rsquo;ll only email you if you ask us to.</p>
+    </div>
+
+    <form class="audit" id="audit" novalidate style="display:none;">
+      <div class="progress"><span id="pnum">Question 1 of 7</span><span class="bar"><i id="pbar"></i></span></div>
+
+      <fieldset class="q on" data-q="1"><legend class="sr">Question 1</legend>
+        <h2>How many employees does your business have?</h2>
+        <ul class="opts">
+          <li><label><input type="radio" name="q1" value="20-50" /> 20 to 50</label></li>
+          <li><label><input type="radio" name="q1" value="50-100" /> 50 to 100</label></li>
+          <li><label><input type="radio" name="q1" value="100-200" /> 100 to 200</label></li>
+          <li><label><input type="radio" name="q1" value="other" /> Fewer than 20, or more than 200</label></li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="q" data-q="2"><legend class="sr">Question 2</legend>
+        <h2>What industry best describes you?</h2>
+        <ul class="opts">
+          <li><label><input type="radio" name="q2" value="trades" /> Trades or field service (contracting, HVAC, plumbing, electrical)</label></li>
+          <li><label><input type="radio" name="q2" value="hospitality" /> Hospitality (hotels, restaurants, venues)</label></li>
+          <li><label><input type="radio" name="q2" value="professional" /> Professional services (accounting, insurance, property management, legal, healthcare admin)</label></li>
+          <li><label><input type="radio" name="q2" value="retail" /> Retail or e-commerce</label></li>
+          <li><label><input type="radio" name="q2" value="other" /> Something else</label></li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="q" data-q="3"><legend class="sr">Question 3</legend>
+        <h2>How does a new lead or inquiry get its first response today?</h2>
+        <ul class="opts">
+          <li><label><input type="radio" name="q3" value="0" data-t="Phone answered live" /> A person answers the phone live</label></li>
+          <li><label><input type="radio" name="q3" value="2" data-t="Voicemail, called back later" /> It goes to voicemail and someone calls back later</label></li>
+          <li><label><input type="radio" name="q3" value="3" data-t="Web form, checked periodically" /> A web form or inbox that someone checks periodically</label></li>
+          <li><label><input type="radio" name="q3" value="1" data-t="Other" /> Something else</label></li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="q" data-q="4"><legend class="sr">Question 4</legend>
+        <h2>How long does it typically take before someone follows up?</h2>
+        <ul class="opts">
+          <li><label><input type="radio" name="q4" value="0" data-t="Under 1 hour" /> Under an hour</label></li>
+          <li><label><input type="radio" name="q4" value="1" data-t="Same day" /> Same day</label></li>
+          <li><label><input type="radio" name="q4" value="2" data-t="1 to 3 days" /> One to three days</label></li>
+          <li><label><input type="radio" name="q4" value="3" data-t="Longer" /> Longer than that, or it depends</label></li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="q" data-q="5"><legend class="sr">Question 5</legend>
+        <h2>How much of your team&rsquo;s week goes to re-entering the same information across more than one system?</h2>
+        <ul class="opts">
+          <li><label><input type="radio" name="q5" value="0" data-t="None" /> None that I know of</label></li>
+          <li><label><input type="radio" name="q5" value="1" data-t="A little" /> A little</label></li>
+          <li><label><input type="radio" name="q5" value="2" data-t="A noticeable amount" /> A noticeable amount</label></li>
+          <li><label><input type="radio" name="q5" value="3" data-t="A lot" /> A lot</label></li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="q" data-q="6"><legend class="sr">Question 6</legend>
+        <h2>Where does someone go to find a past contract, invoice, or document when they need it fast?</h2>
+        <ul class="opts">
+          <li><label><input type="radio" name="q6" value="0" data-t="One shared, searchable place" /> One shared, searchable place</label></li>
+          <li><label><input type="radio" name="q6" value="2" data-t="A shared drive to dig through" /> A shared drive they have to dig through</label></li>
+          <li><label><input type="radio" name="q6" value="3" data-t="Someone's inbox" /> Someone&rsquo;s inbox</label></li>
+          <li><label><input type="radio" name="q6" value="3" data-t="Someone's memory" /> Someone&rsquo;s memory</label></li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="q" data-q="7"><legend class="sr">Question 7</legend>
+        <h2>If your busiest employee took a two-week vacation, would the business run the same?</h2>
+        <ul class="opts">
+          <li><label><input type="radio" name="q7" value="0" data-t="Yes" /> Yes</label></li>
+          <li><label><input type="radio" name="q7" value="1" data-t="Mostly" /> Mostly</label></li>
+          <li><label><input type="radio" name="q7" value="3" data-t="No" /> No</label></li>
+        </ul>
+      </fieldset>
+
+      <div class="nav">
+        <button class="btn btn--ghost" type="button" id="backBtn">&larr; Back</button>
+        <button class="btn" type="button" id="nextBtn">Next <span aria-hidden="true">&rarr;</span></button>
+      </div>
+    </form>
+
+    <div class="result" id="result" tabindex="-1">
+      <p class="kicker">Your Result</p>
+      <h1 class="statement" id="rTitle"></h1>
+      <div class="score"><span class="n" id="rScore"></span><span class="of">out of 15</span><span class="bandtag" id="rBand"></span></div>
+      <p class="lede" id="rSummary"></p>
+      <p class="body" id="rExample"></p>
+      <ul class="findings" id="rFindings"></ul>
+
+      <div class="card" id="emailCard">
+        <h2>Want a copy of this in your inbox?</h2>
+        <p class="body" style="margin-top:.5rem;">We&rsquo;ll send this exact result, nothing else, and we won&rsquo;t add you to anything without asking.</p>
+        <form id="emailForm" novalidate>
+          <div class="grid">
+            <div class="field"><label for="e-name">Name</label><input id="e-name" name="name" type="text" autocomplete="name" placeholder="Jordan Ellis" required /></div>
+            <div class="field"><label for="e-email">Work Email</label><input id="e-email" name="email" type="email" autocomplete="email" placeholder="jordan@ellis.co" required /></div>
+            <div class="field full"><label for="e-company">Company <span style="font-weight:400; letter-spacing:0; text-transform:none;">(optional)</span></label><input id="e-company" name="company" type="text" autocomplete="organization" placeholder="Ellis &amp; Co." /></div>
+          </div>
+          <p style="margin:1.1rem 0 0;"><button class="btn" type="submit" id="emailBtn">Email Me My Results <span aria-hidden="true">&rarr;</span></button></p>
+          <p class="sent" id="emailSent">Sent. Check your inbox in the next few minutes.</p>
+        </form>
+      </div>
+
+      <p style="margin-top:2.2rem;"><a class="btn" href="/book">Book a 30-Minute Discovery Call <span aria-hidden="true">&rarr;</span></a></p>
+      <p class="fine">Free, with one of the founders who builds every system. We&rsquo;ll tell you plainly if AI is the answer for your business, and if it isn&rsquo;t, we&rsquo;ll say that too.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="colophon">
+  <div class="wrap">
+    <p>&copy; 2026 OAKAS &middot; <a href="/">oakas.ai</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="support.html">Support</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var TOTAL = 7, cur = 1;
+  var intro = document.getElementById("intro");
+  var form = document.getElementById("audit");
+  var result = document.getElementById("result");
+  var pnum = document.getElementById("pnum"), pbar = document.getElementById("pbar");
+  var backBtn = document.getElementById("backBtn"), nextBtn = document.getElementById("nextBtn");
+
+  function show(n){
+    cur = n;
+    var qs = form.querySelectorAll(".q");
+    for(var i=0;i<qs.length;i++){ qs[i].classList.toggle("on", i === n-1); }
+    pnum.textContent = "Question " + n + " of " + TOTAL;
+    pbar.style.width = ((n-1)/TOTAL*100) + "%";
+    backBtn.style.visibility = n === 1 ? "hidden" : "visible";
+    nextBtn.innerHTML = n === TOTAL ? 'See My Results <span aria-hidden="true">&rarr;</span>' : 'Next <span aria-hidden="true">&rarr;</span>';
+    form.querySelector(".q.on").scrollIntoView({ block:"nearest", behavior:"smooth" });
+  }
+  function picked(n){ return form.querySelector('input[name="q'+n+'"]:checked'); }
+
+  document.getElementById("startBtn").addEventListener("click", function(){
+    intro.style.display = "none"; form.style.display = "block"; show(1);
+  });
+  backBtn.addEventListener("click", function(){ if(cur > 1) show(cur-1); });
+  nextBtn.addEventListener("click", function(){
+    var p = picked(cur);
+    if(!p){ form.querySelector(".q.on").classList.add("shake"); form.querySelector('.q.on input').focus(); return; }
+    if(cur < TOTAL){ show(cur+1); } else { finish(); }
+  });
+  form.addEventListener("change", function(e){
+    if(e.target && e.target.type === "radio" && cur < TOTAL){ setTimeout(function(){ show(cur+1); }, 180); }
+  });
+
+  /* ---- scoring ---- */
+  var BANDS = [
+    { max:4, key:"lean", tag:"Lean and mostly automated", title:"You’re in <em>good shape.</em>",
+      summary:"Honest answer: there isn’t much here for us to build. Your intake is fast, your information lives in one place, and the business doesn’t hinge on one person’s memory. Keep it that way.",
+      ex:{ trades:"For a contractor at this level, the next gain is usually small: an estimate that writes itself from the site visit notes.",
+           hospitality:"For a property at this level, the next gain is usually guest requests routed to the right person before the desk has to relay them.",
+           professional:"For a firm at this level, the next gain is usually a weekly report that assembles itself instead of being rebuilt by hand.",
+           retail:"For a shop at this level, the next gain is usually inventory and reorder signals that surface before a stockout.",
+           other:"At this level the next gain is usually one specific report or handoff that still gets rebuilt by hand each week." } },
+    { max:9, key:"gaps", tag:"A few real gaps", title:"A few gaps worth <em>closing.</em>",
+      summary:"Your business runs, but a couple of workflows are leaking hours every week. None of them are dramatic on their own. Together they’re the difference between a team that scales and one that keeps hiring to stay even.",
+      ex:{ trades:"For contractors we see this most often as a lead that sits in voicemail while a competitor texts back in two minutes.",
+           hospitality:"For hotels we see this most often as the same five guest questions answered by hand at the desk all day.",
+           professional:"For firms we see this most often as a contract or policy someone has to dig for while a client waits on the phone.",
+           retail:"For retailers we see this most often as order and stock data typed into two systems that never quite agree.",
+           other:"We see this most often as one handoff between two tools that a person bridges by hand, every single day." } },
+    { max:15, key:"heavy", tag:"Significant manual load", title:"Your team is carrying <em>a lot by hand.</em>",
+      summary:"Slow follow-up, duplicate data entry, and information that lives in inboxes or in someone’s head. That combination usually means the owner or one key employee is the bottleneck for everything. This is exactly the profile we build for, and it’s usually the clearest return on a custom system.",
+      ex:{ trades:"For a contractor with this profile, a speed-to-lead system that answers a job inquiry in minutes is usually the first build, using the phone and calendar you already have.",
+           hospitality:"For a property with this profile, the first build is usually the back-office work behind the desk: requests, deposits, and review responses handled before they pile up.",
+           professional:"For a firm with this profile, the first build is usually an internal search that answers “where’s that contract” in seconds, trained on nothing but your own documents.",
+           retail:"For a retailer with this profile, the first build is usually one system that keeps orders, stock, and customer records in sync without re-entry.",
+           other:"With this profile, the first build is usually whichever workflow currently depends on one person remembering to do it." } }
+  ];
+  var FINDINGS = {
+    q3:{ 2:["Leads wait on a callback.","Every hour a lead sits in voicemail, the odds it books with someone else go up. This is the most fixable gap on the list."],
+         3:["Inquiries sit until someone checks.","A form or inbox that gets checked periodically means your response time is set by whoever is least busy that day."] },
+    q4:{ 2:["Follow-up takes days.","Most buyers decide within the first day. A one-to-three-day follow-up is losing jobs you never hear about."],
+         3:["Follow-up is inconsistent.","When follow-up depends on who has time, it quietly stops happening during the busy weeks you need it most."] },
+    q5:{ 2:["Double entry is eating hours.","The same information typed into two systems is pure overhead, and it’s where most data errors come from."],
+         3:["Double entry is a full-time job.","At this level you are likely paying a salary, or a big piece of one, to move data between tools by hand."] },
+    q6:{ 2:["Documents take digging.","A shared drive is better than nothing, but if finding a contract means opening folders, it’s costing minutes every time, many times a day."],
+         3:["Documents live with a person.","When the answer to “where is it” is an inbox or a memory, the business stops working the day that person is out."] },
+    q7:{ 1:["One person is close to critical.","“Mostly” usually means a handful of things only they know how to do. Those are the first things to write down and systemize."],
+         3:["The business depends on one person.","This is the single biggest risk on the list. It also means that person is your bottleneck every ordinary week, not just on vacation."] }
+  };
+  var lastResult = null;
+
+  function finish(){
+    var score = 0, answers = {}, labels = {};
+    for(var n=1;n<=TOTAL;n++){
+      var p = picked(n); answers["q"+n] = p.value; labels["q"+n] = p.getAttribute("data-t") || p.value;
+      if(n >= 3) score += parseInt(p.value, 10);
+    }
+    var band = BANDS[0]; for(var b=0;b<BANDS.length;b++){ if(score <= BANDS[b].max){ band = BANDS[b]; break; } }
+    var industry = answers.q2 in band.ex ? answers.q2 : "other";
+    document.getElementById("rTitle").innerHTML = band.title;
+    document.getElementById("rScore").textContent = score;
+    document.getElementById("rBand").textContent = band.tag;
+    document.getElementById("rSummary").textContent = band.summary;
+    document.getElementById("rExample").textContent = band.ex[industry];
+    var ul = document.getElementById("rFindings"); ul.innerHTML = "";
+    var found = [];
+    ["q3","q4","q5","q6","q7"].forEach(function(q){
+      var v = parseInt(answers[q], 10); var f = FINDINGS[q] && FINDINGS[q][v];
+      if(f){ found.push(f); var li = document.createElement("li"); li.innerHTML = "<strong></strong><span></span>";
+        li.firstChild.textContent = f[0]; li.lastChild.textContent = f[1]; ul.appendChild(li); }
+    });
+    if(!found.length){ var li0 = document.createElement("li"); li0.innerHTML = "<strong>No red flags.</strong><span>None of your answers pointed to a workflow that’s clearly costing you hours. That’s rarer than you’d think.</span>"; ul.appendChild(li0); }
+    lastResult = { score:score, band:band.tag, bandKey:band.key, industry:answers.q2, employees:answers.q1, answers:labels, findings:found.map(function(f){ return f[0]; }), example:band.ex[industry], summary:band.summary };
+    form.style.display = "none"; result.classList.add("on");
+    window.scrollTo({ top:0, behavior:"smooth" }); result.focus();
+    if(typeof fbq !== "undefined") fbq("trackCustom", "AuditComplete", { band:band.key, score:score });
+  }
+
+  /* ---- email a copy: logs to the same sheet as the discovery form, then asks the API to send ---- */
+  var LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbw5kvcw1iL8uH6UFEet5adbza4EleDISofr8zoFQZj75IKKrKYHKgVK2EHyTYSoEWWeNg/exec";
+  var ef = document.getElementById("emailForm"), eb = document.getElementById("emailBtn"), es = document.getElementById("emailSent");
+  ef.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(!ef.checkValidity()){ ef.reportValidity(); return; }
+    var name = document.getElementById("e-name").value.trim();
+    var email = document.getElementById("e-email").value.trim();
+    var company = document.getElementById("e-company").value.trim();
+    var r = lastResult || {};
+    var pain = "Workflow audit: " + r.band + " (" + r.score + "/15). " + (r.findings && r.findings.length ? r.findings.join(" ") : "No red flags.") +
+               " Industry: " + r.industry + ". Answers: " + Object.keys(r.answers || {}).map(function(k){ return k + "=" + r.answers[k]; }).join("; ");
+    eb.disabled = true; eb.textContent = "Sending…";
+    /* 1. log the lead in the sheet (fire and forget, same as the discovery form) */
+    try{ fetch(LEAD_ENDPOINT, { method:"POST", mode:"no-cors", headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify({ name:name, email:email, phone:"", company:company, location:"", revenue:"", employees:r.employees || "", painpoint:pain }) }); }catch(e){}
+    /* 2. ask our function to email the result */
+    fetch("/api/audit", { method:"POST", headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify({ name:name, email:email, company:company, result:r, page:location.href }) })
+    .then(function(res){ return res.ok ? res.json() : { emailed:false }; })
+    .catch(function(){ return { emailed:false }; })
+    .then(function(j){
+      if(typeof fbq !== "undefined") fbq("track", "Lead", { content_name:"workflow-audit" });
+      ef.querySelector(".grid").style.display = "none"; eb.parentNode.style.display = "none";
+      es.textContent = j.emailed ? "Sent. Check your inbox in the next few minutes." : "Got it. One of the founders will send your results over shortly.";
+      es.classList.add("on");
+    });
+  });
+})();
+</script>
+</body>
+</html>
