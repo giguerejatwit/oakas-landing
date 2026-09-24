@@ -89,8 +89,6 @@
     border-bottom:1px solid transparent;
     transition:background .3s ease, color .3s ease, border-color .3s ease;
   }
-  /* scrub mode opens chrome-free: GSAP hides the masthead over the opening card,
-     then fades it back in once the film starts so a CTA is always in reach */
   .masthead.scrolled{
     background:color-mix(in srgb, var(--paper) 86%, transparent);
     -webkit-backdrop-filter:blur(14px) saturate(1.1);
@@ -164,8 +162,8 @@
   }
   .intro__poster{ position:absolute; inset:0; z-index:0; }
   .intro__poster img{ width:100%; height:100%; object-fit:cover; object-position:50% 50%; }
-  /* scroll camera: starts close on the sky and crown, pulls back to the whole oak (GSAP path only) */
-  .scrub-on .intro__photo{ transform-origin:50% 0; will-change:transform; }
+  /* framing (set in JS): whole oak in frame, slid right on landscape screens */
+  .intro__photo{ transform-origin:50% 0; }
   .intro__scrim{
     position:absolute; inset:0; z-index:2; pointer-events:none;
     background:
@@ -177,65 +175,14 @@
     position:relative; z-index:3; width:100%;
     padding-bottom:clamp(2.6rem,7vh,5rem); padding-top:7rem;
   }
-  /* the opening card — centered wordmark + CTA, fades as the film starts (GSAP path only) */
-  .opening{
-    position:absolute; inset:0; z-index:4;
-    flex-direction:column; align-items:center; justify-content:center;
-    gap:1.15rem; text-align:center; display:none;
-  }
-  .scrub-on .opening{ display:flex; }
-  /* mark stacked small above the wordmark — classic title-card hierarchy,
-     and inline it read as a stray seventh glyph ("OOAKAS") */
-  .opening__brand{
-    position:relative; display:flex; flex-direction:column; align-items:center;
-    gap:clamp(1.1rem, 2.5vh, 1.6rem);
-  }
-  .opening__brand img{
-    width:clamp(2.4rem, 5vw, 3.2rem); height:auto;
-    filter:drop-shadow(0 2px 18px rgba(8,12,8,.7));
-  }
-  .opening__word{
-    font-family:"Fraunces", serif; font-optical-sizing:auto;
-    font-variation-settings:"opsz" 144;
-    font-weight:420; font-size:clamp(3.4rem, 9.5vw, 7rem); line-height:.95;
-    letter-spacing:.3em; text-transform:uppercase;
-    color:var(--ivory); margin:0 -.3em 0 0; /* optical: swallow the trailing tracking */
-    text-shadow:0 2px 42px rgba(8,12,8,.85), 0 1px 6px rgba(8,12,8,.5);
-  }
-  .opening::before{
-    content:""; position:absolute; left:0; right:0; top:14%; bottom:14%;
-    background:radial-gradient(44% 46% at 50% 50%, rgba(8,12,8,.45), transparent 72%);
-  }
-  .opening__word, .opening .btn{ position:relative; }
-  .opening__tag{
-    font-size:var(--s--1); letter-spacing:.28em; text-transform:uppercase;
-    color:#DDE7DE; margin:0; text-shadow:0 1px 16px rgba(5,8,7,.9); position:relative;
-    text-wrap:balance; max-width:40ch;
-  }
-  /* the opening CTA: frosted-glass pill, built for sitting on top of film */
-  .opening .btn{
-    margin-top:1rem; /* tagline clusters with the wordmark; the CTA stands apart */
-    background:rgba(242,245,241,.09);
-    border:1px solid rgba(242,245,241,.6);
-    color:var(--ivory);
-    border-radius:100px;
-    padding:1.05em 2.6em;
-    letter-spacing:.18em;
-    -webkit-backdrop-filter:blur(12px) saturate(1.15);
-    backdrop-filter:blur(12px) saturate(1.15);
-    box-shadow:0 10px 34px rgba(5,8,7,.3);
-    transition:transform .16s var(--ease-out), background .35s ease, color .35s ease, border-color .35s ease;
-  }
-  @media (hover:hover){
-    .opening .btn:hover{ background:var(--ivory); color:var(--ink); border-color:var(--ivory); }
-  }
-  .opening .btn:focus-visible{ outline:2px solid var(--ivory); outline-offset:3px; }
-
   /* the closing lockup — also the static hero for mobile / no-JS / reduced motion */
   .lockup{ max-width:820px; }
   /* ivory, not mint — the kicker lands on the sunlit meadow band in the final
      frame and the cool green vibrated against the warm footage */
-  .lockup .kicker{ color:var(--ivory); text-shadow:0 1px 16px rgba(5,8,7,.95), 0 0 4px rgba(5,8,7,.8); }
+  .lockup .kicker{
+    color:var(--ivory); text-shadow:0 1px 16px rgba(5,8,7,.95), 0 0 4px rgba(5,8,7,.8);
+    font-size:clamp(1rem, .7rem + 1vw, 1.35rem); letter-spacing:.26em;
+  }
   .lockup h1{
     font-optical-sizing:auto; font-variation-settings:"opsz" 144;
     font-weight:360; font-size:var(--s-4); line-height:1; letter-spacing:-.022em;
@@ -791,16 +738,6 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
   <div class="intro__poster"><img class="intro__photo" src="oak-2560.webp" srcset="oak-1280.webp 1280w, oak-2560.webp 2560w, oak-3840.webp 3840w" sizes="135vw" width="3840" height="2160" fetchpriority="high" decoding="async" alt="A lone oak standing in a golden field under a clear blue sky." /></div>
   <div class="intro__scrim" aria-hidden="true"></div>
 
-  <div class="opening" id="opening">
-    <div class="opening__brand">
-      <img src="logo_bw.png" alt="" width="64" height="64" decoding="async" />
-      <p class="opening__word">Oakas</p>
-    </div>
-    <p class="opening__tag">AI Consulting to keep you<br />rooted in your craft.</p>
-    <a class="btn focusline" href="/book">Discover Oakas <span class="arrow" aria-hidden="true">→</span></a>
-  </div>
-
-
   <div class="wrap intro__inner">
     <div class="lockup" id="lockup">
       <p class="kicker">OAKAS · AI Consulting</p>
@@ -1315,15 +1252,13 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous"></script>
 <script>
 (function(){
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var small = window.matchMedia && window.matchMedia("(max-width: 819px)").matches;
-  /* the scrub runs with GSAP and motion allowed; phones get a lighter
-     frame set (96 × 800px jpg ≈ 6MB) instead of the full 60MB film */
-  var G = !!(window.gsap && window.ScrollTrigger) && !reduce;
+  /* the hero entrance runs with GSAP and motion allowed */
+  var G = !!window.gsap && !reduce;
 
   /* masthead frost: transparent over the dark intro, paper afterwards */
   var mast = document.getElementById("masthead");
@@ -1383,16 +1318,7 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
     });
   });
 
-  if(!G) return; /* static page for everyone else — done */
-
-  document.documentElement.classList.add("scrub-on");
-  gsap.registerPlugin(ScrollTrigger);
-  ScrollTrigger.config({ ignoreMobileResize: true }); /* iOS URL-bar show/hide must not re-trigger layout */
-
-  /* ---- the one scroll animation on this site ---- */
-  gsap.set(".lockup", { autoAlpha: 0, y: 28 });
-  gsap.set(mast, { autoAlpha: 0 }); /* chrome-free opening; the timeline brings it back once the film starts */
-  /* camera end-state: whole oak in frame, shifted right on wide screens so the lockup
+  /* hero framing: whole oak in frame, shifted right on wide screens so the lockup
      sits over open field, and pushed down so the grass fills the bottom edge */
   var photo = document.querySelector(".intro__photo");
   var IMG_AR = 16 / 9;
@@ -1406,24 +1332,20 @@ src="https://www.facebook.com/tr?id=1456801719618219&ev=PageView&noscript=1"
     var y = Math.max(h - h * s, Math.min(0, h * .11 - crown));
     return { s: s, x: x, y: y };
   }
-  gsap.set(photo, { scale: 1.32, x: 0, y: 0 });
-  gsap.set(".intro__scrim", { autoAlpha: .45 });
-  var tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".intro", start: "top top", end: small ? "+=45%" : "+=55%",
-      pin: true, scrub: 0.6, refreshPriority: 1, invalidateOnRefresh: true
-    }
-  });
-  /* the descent: close on the sky and crown → down to the whole oak + lockup,
-     which lands at ~60% so the last stretch of the pin holds it readable */
-  tl.to(photo, {
-      scale: function(){ return cam().s; }, x: function(){ return cam().x; }, y: function(){ return cam().y; },
-      ease: "power1.inOut", duration: .75
-    }, 0)
-    .to(".intro__scrim", { autoAlpha: 1, duration: .15, ease: "none" }, .5)
-    .to(".opening", { autoAlpha: 0, y: -26, duration: .12, ease: "none" }, 0)
-    .to(mast, { autoAlpha: 1, duration: .05, ease: "none" }, .12) /* chrome arrives crisply after the card clears */
-    .to(".lockup", { autoAlpha: 1, y: 0, duration: .15, ease: "none" }, .58);
+  function frame(){
+    var c = cam();
+    photo.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")";
+  }
+  frame();
+  window.addEventListener("resize", frame);
+
+  if(!G) return; /* static page for everyone else — done */
+
+  /* entrance: the photo settles a touch and the lockup rises in — no scroll pin */
+  var c0 = cam();
+  gsap.fromTo(photo, { x: c0.x, y: c0.y, scale: c0.s * 1.05 },
+    { scale: c0.s, duration: 2.2, ease: "power2.out", clearProps: "transform", onComplete: frame });
+  gsap.from(".lockup > *", { autoAlpha: 0, y: 22, duration: 1, ease: "power2.out", stagger: .09, delay: .25 });
 })();
 </script>
 <script>
